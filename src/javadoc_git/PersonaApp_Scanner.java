@@ -2,7 +2,12 @@ package javadoc_git;
 
 import java.util.Locale;
 import java.util.Scanner;
-
+/**
+ * Clase Scanner que solicita los datos, rellena persona
+ * e imprime los atributos y su peso y edad
+ *@author Alberto
+ *@version v0.0
+ */
 
 public class PersonaApp_Scanner {
 	
@@ -28,9 +33,17 @@ public class PersonaApp_Scanner {
 		System.out.println("Introduce la altura");
 		sc.reset();
 		double altura = sc.nextDouble();
+		
+		
 		Persona persona1 = new Persona();
+		/**
+		 * instanciamos persona2 y 3 con los datos capturados
+		 */
 		Persona persona2 = new Persona(nombre, edad, sexo);
 		Persona persona3 = new Persona(nombre, edad, sexo, peso, altura);
+		/**
+		 * Instanciamos por codigo la persona1 
+		 */
 		persona1.setNombre("Laura");
 		persona1.setEdad(30);
 		persona1.setSexo('M');
@@ -38,6 +51,8 @@ public class PersonaApp_Scanner {
 		persona1.setAltura(1.60);
 		persona2.setPeso(90.5);
 		persona2.setAltura(1.80);
+		
+		// imprimimos los datos de cada persona
 		System.out.println("Persona1");
 		MuestraMensajePeso(persona1);
 		System.out.println(persona1.toString());
@@ -50,6 +65,12 @@ public class PersonaApp_Scanner {
 		sc.close();
 		
 	}
+	
+	/**
+	 * Método que muestra el texto de cómo es el peso ideal de la persona
+	 * @param p  pasamos como parámetro la clase persona que queremos evaluar
+	 */
+	
       
 public static void MuestraMensajePeso(Persona p) {
 int IMC = p.calcularIMC();
