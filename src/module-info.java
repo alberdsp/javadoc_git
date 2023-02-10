@@ -1,7 +1,7 @@
 /**
  * 
  */
-/**
+/**modulo información
  * @author Alberto
  *
  */

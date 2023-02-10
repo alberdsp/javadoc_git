@@ -3,14 +3,18 @@ package javadoc_git;
 import java.util.Locale;
 import java.util.Scanner;
 /**
- * Clase Scanner que solicita los datos, rellena persona
+ * Clase PersonaApp_Scanner que solicita los datos, rellena persona
  * e imprime los atributos y su peso y edad
  *@author Alberto
- *@version v0.0
+ *@version v0.1
  */
-
 public class PersonaApp_Scanner {
 	
+	
+	/**
+	 * metodo main
+	 * @param args argumentos del método main
+	 */
 	
 	public static void main(String[] args) {
 		

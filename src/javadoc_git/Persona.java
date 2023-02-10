@@ -8,11 +8,28 @@ package javadoc_git;
  *
  */
 
+
 public class Persona {
 
+	/**
+	 *  SEXO_DEF es el sexo por defecto si no se pasa valor
+	 */
+
 	private final static char SEXO_DEF = 'H';
+	/**
+	 *  INFRAPESO  con valor -1 significa que está por debajo de su ideal
+	 */
+	
 	public static final int INFRAPESO = -1;
+	/**
+	 *  SOBREPESO = 1 significa x
+	 */
+	
 	public static final int PESO_IDEAL = 0;
+	/**
+	 *  SOBREPESO = 1 significa x
+	 */
+	
 	public static final int SOBREPESO = 1;
 	private String nombre;
 	private int edad;
@@ -33,9 +50,9 @@ public class Persona {
 	/**
 	 * Constuctor reducido
 	 * 
-	 * @param nombre
-	 * @param edad
-	 * @param sexo
+	 * @param nombre nombre de la persona
+	 * @param edad   edad de la persona
+	 * @param sexo   sexo de la persona
 	 */
 
 	public Persona(String nombre, int edad, char sexo) {
@@ -45,11 +62,11 @@ public class Persona {
 	/**
 	 * Constructor completo
 	 * 
-	 * @param nombre
-	 * @param edad
-	 * @param sexo
-	 * @param peso
-	 * @param altura
+ * @param nombre nombre de la persona
+	 * @param edad   edad de la persona
+	 * @param sexo   sexo de la persona
+	 * @param peso   peso de la persona
+	 * @param altura altura de la persona
 	 */
 
 	public Persona(String nombre, int edad, char sexo, double peso, double altura) {
@@ -208,3 +225,4 @@ public class Persona {
 	}
 
 }
+ 
