@@ -39,12 +39,12 @@ public class PersonaApp_Scanner {
 		double altura = sc.nextDouble();
 		
 		
-		Persona persona1 = new Persona();
+		Paciente persona1 = new Paciente();
 		/**
 		 * instanciamos persona2 y 3 con los datos capturados
 		 */
-		Persona persona2 = new Persona(nombre, edad, sexo);
-		Persona persona3 = new Persona(nombre, edad, sexo, peso, altura);
+		Paciente persona2 = new Paciente(nombre, edad, sexo);
+		Paciente persona3 = new Paciente(nombre, edad, sexo, peso, altura);
 		/**
 		 * Instanciamos por codigo la persona1 
 		 */
@@ -76,16 +76,16 @@ public class PersonaApp_Scanner {
 	 */
 	
       
-public static void MuestraMensajePeso(Persona p) {
+public static void MuestraMensajePeso(Paciente p) {
 int IMC = p.calcularIMC();
 switch (IMC) {
-case Persona.PESO_IDEAL:
+case Paciente.peso_ideal:
 System.out.println("La persona esta en su peso ideal");
 break;
-case Persona.INFRAPESO:
+case Paciente.infrapeso:
 System.out.println("La persona esta por debajo de su peso ideal");
 break;
-case Persona.SOBREPESO:
+case Paciente.sobrepeso:
 System.out.println("La persona esta por encima de su peso ideal");
 break;
 }
