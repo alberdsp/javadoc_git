@@ -1,5 +1,4 @@
 package javadoc_git;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -65,11 +64,13 @@ public class TratamientoFichero {
 	/*
 	 * En este metodo leemos el fichero de clientes llamada en la definición de un
 	 * procedimmiento definido como estático con la palabra reservada Throws seguida
-	 * de las excepciones a capturar
+	 * de las excepciones a capturar.
+	 * Nos devuelve un TreeMap con clave dni y el objeto Paciente con
+	 * el listado de pacientes. 
 	 *
 	 */
 
-	public static TreeMap<String, Paciente> leerFicheroCli() throws IOException {
+	public static TreeMap<String, Paciente> leerFicheroPaci() throws IOException {
 
 		TreeMap<String, Paciente> listaPacientes = new TreeMap<String, Paciente>();
 		String cadena; // variable donde almacenanamos cada linea del fichero
@@ -115,7 +116,8 @@ public class TratamientoFichero {
 		return listaPacientes;
 
 	}
+	
+	
 
 }
 	
-
