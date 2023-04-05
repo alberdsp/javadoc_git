@@ -1,7 +1,0 @@
-48456925L,Alberto Barberá, 43,180.00, Camino viejo de callosa 39, Orihuela,03300
-44444325L,Pepa Perez, 43,179.00, Almar 3, Bigastro,03380
-42216925L,Pedro Barberá, 43,150.50, Camino viejo de callosa 39, Orihuela,03300
-
-
-
-

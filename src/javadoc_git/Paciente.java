@@ -42,7 +42,7 @@ this("", 0, sexo_def, 0, 0);
 
 
 
-public Paciente(String dni ,String nombre, int edad , double altura, String localidad, String cod_postal) {
+public Paciente(String dni ,String nombre, int edad , char sexo, double peso, double altura, String calle, String localidad, String cod_postal) {
 
 this.dni = dni;
 this.nombre = nombre;
@@ -50,6 +50,9 @@ this.edad = edad;
 this.altura = altura;
 this.localidad = localidad;
 this.cod_postal = cod_postal;
+this.sexo = sexo;
+this.peso = peso;
+this.calle = calle;
 
 
 }
@@ -260,7 +263,7 @@ private boolean esMayorDeEdad() {
  */
 
   
-public static String muestraMensajePeso(Paciente p) {
+public static String resultadoImc(Paciente p) {
  String supeso  =""; // nos devuelve el texto del calculo del IMC
 int imc = p.calcularImc();
 switch (imc) {
