@@ -56,38 +56,19 @@ public class PersonaApp_Scanner {
 		persona2.setPeso(90.5);
 		persona2.setAltura(1.80);
 		
-		// imprimimos los datos de cada persona
-		System.out.println("Persona1");
-		MuestraMensajePeso(persona1);
-		System.out.println(persona1.toString());
-		System.out.println("Persona2");
-		MuestraMensajePeso(persona2);
-		System.out.println(persona2.toString());
-		System.out.println("Persona3");
-		MuestraMensajePeso(persona3);
-		System.out.println(persona3.toString());
-		sc.close();
-		
+//		// imprimimos los datos de cada persona
+//		System.out.println("Persona1");
+//		MuestraMensajePeso(persona1);
+//		System.out.println(persona1.toString());
+//		System.out.println("Persona2");
+//		MuestraMensajePeso(persona2);
+//		System.out.println(persona2.toString());
+//		System.out.println("Persona3");
+//		MuestraMensajePeso(persona3);
+//		System.out.println(persona3.toString());
+//		sc.close();
+//		
 	}
 	
-	/**
-	 * Método que muestra el texto de cómo es el peso ideal de la persona
-	 * @param p  pasamos como parámetro la clase persona que queremos evaluar
-	 */
-	
-      
-public static void MuestraMensajePeso(Paciente p) {
-int IMC = p.calcularIMC();
-switch (IMC) {
-case Paciente.peso_ideal:
-System.out.println("La persona esta en su peso ideal");
-break;
-case Paciente.infrapeso:
-System.out.println("La persona esta por debajo de su peso ideal");
-break;
-case Paciente.sobrepeso:
-System.out.println("La persona esta por encima de su peso ideal");
-break;
-}
-}
+
 }

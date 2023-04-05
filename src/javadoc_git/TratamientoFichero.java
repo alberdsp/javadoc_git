@@ -20,7 +20,7 @@ import java.util.TreeMap;
 
 public class TratamientoFichero {
 
-	public static String ruta_clientes = "C:/Users/Alber/eclipse-workspace/persona_edt4/almacenamiento/pacientes.txt";
+	public static String ruta_pacientes = "C:/Users/Alber/eclipse-workspace/persona_edt4/almacenamiento/pacientes.txt";
 	public static String ruta_visitas = "C:/Users/Alber/eclipse-workspace/persona_edt4/almacenamiento/visitas.txt";
 	private static String ruta; // proporcionará la ruta de fichero a tratar
 
@@ -79,7 +79,7 @@ public class TratamientoFichero {
 		Paciente paciente = new Paciente(); // clase paciente
 		String[] pacienteArray; // array para almacenar atributos de la linea del fichero
 
-		ruta = ruta_clientes; // establece la ruta al path del fichero clientes
+		ruta = ruta_pacientes; // establece la ruta al path del fichero clientes
 
 		FileReader f = new FileReader(ruta);
 		BufferedReader b = new BufferedReader(f);
@@ -95,14 +95,14 @@ public class TratamientoFichero {
 
 			pacienteArray = cadena.split(delimitador);
 
-			dni = pacienteArray[0];
-
+			dni = pacienteArray[0];   // será la clave        
 			paciente.setDni(pacienteArray[0]);
 			paciente.setNombre(pacienteArray[1]);
 			paciente.setEdad(Integer.valueOf((pacienteArray[2]).trim()));
-			paciente.setCalle(pacienteArray[3]);
-			paciente.setLocalidad(pacienteArray[4]);
-			paciente.setCod_postal(pacienteArray[5]);
+			paciente.setAltura(Double.valueOf((pacienteArray[3]).trim()));
+			paciente.setCalle(pacienteArray[4]);
+			paciente.setLocalidad(pacienteArray[5]);
+			paciente.setCod_postal(pacienteArray[6]);
 
 			// Grabamos el objeto en el TreeMap con clave DNI
 
@@ -117,7 +117,67 @@ public class TratamientoFichero {
 
 	}
 	
+	/*
+	 * En este método   busca en el ficehro de Pacientes
+	 * hasta que encuentra el DNI pasado como parametro String ndni
+	 * en el fichero indicado o bien llega al final del fichero
+	 * y nos devuelve el fichero vacio
+	 *
+	 */
 	
+	
+	public static TreeMap<String, Paciente> buscarPaciente(String ndni) throws IOException {
+
+		TreeMap<String, Paciente> pacienteEncontrado = new TreeMap<String, Paciente>();
+		String cadena; // variable donde almacenanamos cada linea del fichero
+		String delimitador = ","; // indica como van separados los atributos
+		String dni = ""; // actua también de clave en los mapas
+		Paciente paciente = new Paciente(); // clase paciente
+		String[] pacienteArray; // array para almacenar atributos de la linea del fichero
+        Boolean encontrado = false ; // nos indica si hemos encontrado el registro buscado
+		ruta = ruta_pacientes; // establece la ruta al path del fichero clientes
+
+		FileReader f = new FileReader(ruta);
+		BufferedReader b = new BufferedReader(f);
+		// añadimos lineas al Map siempre que no esten vacia la linea
+		// de ese modo controlamos que si la longitud es myor de 0
+		// le leeremos
+		
+
+		while (((cadena = b.readLine()).length() > 0) && encontrado == false ) {
+
+			// creamos un array string con los atributos del metodo split
+			// asignamos los valores a los atributos a la clase paciente
+			// que será devuelta
+                    
+			pacienteArray = cadena.split(delimitador);
+            
+			dni = pacienteArray[0];   // será la clave        
+			paciente.setDni(pacienteArray[0]);
+			paciente.setNombre(pacienteArray[1]);
+			paciente.setEdad(Integer.valueOf((pacienteArray[2]).trim()));
+			paciente.setAltura(Double.valueOf((pacienteArray[3]).trim()));
+			paciente.setCalle(pacienteArray[4]);
+			paciente.setLocalidad(pacienteArray[5]);
+			paciente.setCod_postal(pacienteArray[6]);
+
+			// Grabamos el objeto en el TreeMap con clave DNI si es encontrado
+			 if (ndni.equals(dni)) {
+				  
+				 encontrado = true;
+				 pacienteEncontrado.put(dni, paciente); 
+			  }
+			 
+			  
+			// vaciamos array y paciente
+			pacienteArray = null;
+			paciente = new Paciente();
+
+		}
+		b.close();
+		return pacienteEncontrado;
+
+	}
 
 }
 	

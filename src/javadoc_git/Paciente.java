@@ -36,19 +36,21 @@ this("", 0, sexo_def, 0, 0);
 }
 
 /**
-* Declaramos constructor con parametros (String dni ,String nombre, int edad , String localidad, String cod_postal)
+* Declaramos constructor con parametros (String dni ,String nombre, int edad , double altura, String localidad, String cod_postal)
 * lo utilizaremos por defecto en el tratamiento de ficheros
 */
 
 
 
-public Paciente(String dni ,String nombre, int edad , String localidad, String cod_postal) {
+public Paciente(String dni ,String nombre, int edad , double altura, String localidad, String cod_postal) {
 
 this.dni = dni;
 this.nombre = nombre;
 this.edad = edad;
+this.altura = altura;
 this.localidad = localidad;
 this.cod_postal = cod_postal;
+
 
 }
 
@@ -59,7 +61,6 @@ this.cod_postal = cod_postal;
 public Paciente(String dni, int edad, char sexo) {
 
 this.dni = dni;
-this.nombre = nombre;
 this.edad = edad;
 this.sexo = sexo;
 comprobarSexo();
@@ -192,11 +193,10 @@ return altura;
 }
 
 
-
-public int calcularIMC() {
+public int calcularImc() {
 //Calculamos el peso de la persona
 double pesoActual = peso / (Math.pow(altura, 2));
-//Segun el peso, devuelve un codigo
+//Según el peso, devuelve un código
 if (pesoActual >= 20 && pesoActual <= 25) {
 return peso_ideal;
 } else if (pesoActual < 20) {
@@ -251,7 +251,32 @@ private boolean esMayorDeEdad() {
 	return mayoredad;
 	
 	
-}		 
+}		
+
+
+/**
+ * Método que graba el peso ideal de la persona
+ * @param p  pasamos como parámetro la clase persona que queremos evaluar
+ */
+
+  
+public static String muestraMensajePeso(Paciente p) {
+ String supeso  =""; // nos devuelve el texto del calculo del IMC
+int imc = p.calcularImc();
+switch (imc) {
+case Paciente.peso_ideal:
+supeso = "peso ideal";
+break;
+case Paciente.infrapeso:
+	supeso = "infrapeso";
+break;
+case Paciente.sobrepeso:
+	supeso = "sobrepeso";
+break;
+
+}
+return supeso;
+}
 	 
 
 }
