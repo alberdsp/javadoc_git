@@ -235,7 +235,7 @@ return "Informacion de la persona:\n"
 + "Edad: " + edad + " años\n"
 + "DNI: " + dni + "\n"
 + "Peso: " + peso + " kg\n"
-+ "Altura: " + altura + " metros\n"
++ "Altura: " + altura + " centímetros\n"
 + "Condición: " + tipopersona;
 } 
 

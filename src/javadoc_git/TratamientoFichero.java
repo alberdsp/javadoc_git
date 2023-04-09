@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.Scanner;
@@ -31,7 +32,8 @@ public class TratamientoFichero {
 
 	/**
 	 * 
-	 * metodo para escribir el fichero pasamo como parametro un TreeMap
+	 * metodo para escribir el fichero pasamos como parametro un TreeMap
+	 * con clave = dni del paciente y valor = Objeto Persona
 	 * 
 	 */
 
@@ -198,4 +200,58 @@ public class TratamientoFichero {
 
 	}
 
+	
+	/**
+	 * 
+	 * metodo para escribir el fichero pasamos como parametro un TreeMap
+	 * con clave = dni del paciente y valor = Objeto Persona
+	 * 
+	 */
+
+	public static void grabarVisitas(TreeMap<String, Visita> visitas) {
+
+		TreeMap<String, Visita> listavisitas = visitas;
+		FileWriter fichero = null;
+		PrintWriter pw = null;
+		String delimitador = ",";
+
+		try {
+
+// Añadir flag a true para no machacar contenido del fichero de escritura
+
+			fichero = new FileWriter(ruta_visitas, true);
+			pw = new PrintWriter(fichero);
+
+			// cremos una variable listmap para recorrerla y grabar los pacientes pasados
+			for (Entry<String, Visita> listav : listavisitas.entrySet()) {
+
+				
+				String dni = listav.getValue().getDni();;
+				Date fecha = listav.getValue().getFecha();
+				Date hora = listav.getValue().getHora();
+				Double peso = listav.getValue().getPeso() ;
+				Double altura = listav.getValue().getAltura() ;
+				String resulimc = listav.getValue().getResulimc();
+				
+				
+				pw.println(dni + delimitador + fecha + delimitador + hora + delimitador + peso + delimitador + 
+						delimitador + altura + delimitador + resulimc);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				// Nuevamente aprovechamos el finally para
+				// asegurarnos que se cierra el fichero.
+				if (null != fichero) {
+					fichero.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+
+	}
+	
+	
 }
