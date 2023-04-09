@@ -1,6 +1,8 @@
 package javadoc_git;
 
+
 import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
 import java.util.TreeMap;
@@ -22,12 +24,18 @@ public class PersonaApp_Scanner {
 	 * @throws IOException 
 	 */
 	
+	
+	
+	
 	public static void main(String[] args) throws IOException {
+		
+		 boolean menuok = false;
+		
 		
 		// instanciamos listapacientes para ir alamcenando los pacientes
 		
 		
-		 TreeMap<String,Paciente> listaPacientes = new TreeMap<String,Paciente>();
+		
 			/*
 			 * Scanner sc = new Scanner(System.in); sc.useDelimiter("\n");
 			 * sc.useLocale(Locale.US); //Introducimos los datos
@@ -66,49 +74,120 @@ public class PersonaApp_Scanner {
 			 * listaPacientes = TratamientoFichero.leerFicheroPaci();
 			 */
 		
-		Menu_Inicial menuinicial = new Menu_Inicial();
+		 
+		 
+		 // llamamos al menú inicial
+		 
+		
+		
+		
+		
+		
+		do {
+			
+			Menu_Inicial menuinicial = new Menu_Inicial();
 		
 		menuinicial.printMenu();
+		Scanner sc = new Scanner(System.in);
+		int opcionmenu =0; 
+			
+			// variable para controlar cuando salir del menú
+			
+			
+		try {
+		 
+		 
+				
+			opcionmenu = sc.nextInt();
+			switch (opcionmenu) {
+			//
+
+			case 1: {
+
+				TreeMap<String,Paciente> listaPacientes = new TreeMap<String,Paciente>();
+				
+				
+				System.out.println("Ha elegido alta de Pacientes");
+				System.out.println("----------------------------------");
+				menuok = true;
+				//opcionmenu1 = 1;
+				
+				
+				Alta_Pacientes alta_paciente = new Alta_Pacientes();
+				
+				alta_paciente.printMenu();
+				
+				Paciente paciente = new Paciente();
+				paciente = alta_paciente.nuevoPaciente();
+				String dni = paciente.getDni();
+				listaPacientes.put(dni, paciente);
+				
+				TratamientoFichero.grabarPacientes(listaPacientes);
+				
+				//System.out.println("nombre: "+ listaPacientes.toString());
+				
+				System.out.print(paciente.toString());
+				
+				break;
+			}
+
+			case 2: {
+
+				System.out.println("Ha elegido alta de Visitas");
+				System.out.println("----------------------------------");
+				menuok = false;
+				//opcionmenu1 = 2;
+				
+				
+				break;
+
+			}
+			case 99: {
+
+				menuok = true;
+				System.out.println("_____________________");
+				System.out.println("Saliendo del programa");
+				System.exit(0);
+				break;
+			}
+			default:
+				
+			System.out.println("Opcion incorrecta");
+			System.out.println("\n");
+				System.out.println("\n");
+			
+			menuok = false;
+			
+			}
+			
+			
 		
-		Alta_Pacientes alta_paciente = new Alta_Pacientes();
+		} catch (InputMismatchException ex) {
+			
+			
+            System.out.println("Debe ingresar obligatoriamente un número entero.");
+            System.out.println("\n");
+			System.out.println("\n");
+        }
 		
-		alta_paciente.printMenu();
-		Paciente paciente = new Paciente();
-		paciente = alta_paciente.nuevoPaciente();
-		String dni = paciente.getDni();
-		listaPacientes.put(dni, paciente);
+		finally {
+			
 		
-		TratamientoFichero.grabarPacientes(listaPacientes);
-		
-		//System.out.println("nombre: "+ listaPacientes.toString());
-		
-		System.out.print(paciente.toString());
+				
+			}
+			
+			
+			
 		
 		
+
 		
-		/**
-		 * Instanciamos por codigo la persona1 
-		 */
-//		persona1.setNombre("Laura");
-//		persona1.setEdad(30);
-//		persona1.setSexo('M');
-//		persona1.setPeso(60);
-//		persona1.setAltura(1.60);
-//		persona2.setPeso(90.5);
-//		persona2.setAltura(1.80);
+	} while (menuok == false);
 		
-//		// imprimimos los datos de cada persona
-//		System.out.println("Persona1");
-//		MuestraMensajePeso(persona1);
-//		System.out.println(persona1.toString());
-//		System.out.println("Persona2");
-//		MuestraMensajePeso(persona2);
-//		System.out.println(persona2.toString());
-//		System.out.println("Persona3");
-//		MuestraMensajePeso(persona3);
-//		System.out.println(persona3.toString());
-//		sc.close();
-//		
+		
+		//TODO     falta implementar las visitas y comprobar el dni
+		// si existe nos quedamos el dni, si no existe lo damos de alta
+		
 	}
 	
 

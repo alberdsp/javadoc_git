@@ -13,7 +13,7 @@ public class Menu_Inicial {
 	 * Método que imprime el Menú Inicial
 	 */
 
-	public static void printMenu() {
+	public void printMenu() {
 
 		System.out.println("      Gestion de Pacientes 2023");
 		System.out.println("***********************************");

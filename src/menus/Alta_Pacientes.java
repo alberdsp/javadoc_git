@@ -22,7 +22,7 @@ public class Alta_Pacientes {
 
 	public void printMenu() {
 
-		System.out.println("      Alta de Pacientes 2023");
+		System.out.println("      Alta de Pacientes   ");
 		System.out.println("***********************************");
 		System.out.println("  Introduzca los datos del paciente");
 		System.out.println("\n");
@@ -74,7 +74,7 @@ public class Alta_Pacientes {
 		String direccion = "";
 		direccion = sc1.next().trim();
 		sc1.reset();
-		
+
 		System.out.println("Introduce la localidad");
 		String localidad = "";
 		localidad = sc.next().trim();
@@ -86,7 +86,69 @@ public class Alta_Pacientes {
 
 		Paciente paciente = new Paciente(dni, nombre, edad, sexo, peso, altura, direccion, localidad, cod_postal);
 		sc.close();
-        sc1.close();
+		sc1.close();
+		return paciente;
+
+	}
+
+	/**
+	 * Metodo para dar de alta paciente pasando ndni
+	 * 
+	 * @param ndni String ndni será el número de dni pasado
+	 * @return devuelve objeto Paciente
+	 */
+
+	public Paciente nuevoPaciente(String ndni) {
+
+		Scanner sc = new Scanner(System.in);
+		sc.useDelimiter("\n");
+		sc.useLocale(Locale.US);
+		// Introducimos los datos
+
+		System.out.println("Introduce el DNI");
+		String dni = ndni.trim();
+		System.out.println("Introduce el nombre");
+		Scanner sc1 = new Scanner(System.in).useDelimiter("\n");
+
+		String nombre = "";
+
+		nombre = sc1.next().trim();
+
+		sc1.reset();
+		System.out.println("Introduce la edad");
+
+		int edad = sc.nextInt();
+		sc.reset();
+		System.out.println("Introduce el sexo H hombre o M mujer");
+
+		char sexo = sc.next().toUpperCase().charAt(0);
+		sc.reset();
+		System.out.println("Introduce el peso, ejemplo 60,50");
+
+		double peso = sc.nextDouble();
+		sc.reset();
+		System.out.println("Introduce la altura, ejemplo 175,10");
+
+		double altura = sc.nextDouble();
+		sc.reset();
+		System.out.println("Introduce la dirección");
+
+		String direccion = "";
+		direccion = sc1.next().trim();
+		sc1.reset();
+
+		System.out.println("Introduce la localidad");
+		String localidad = "";
+		localidad = sc.next().trim();
+		sc.reset();
+		System.out.println("Introduce el codigo postal");
+
+		String cod_postal = sc.next();
+		sc.reset();
+
+		Paciente paciente = new Paciente(dni, nombre, edad, sexo, peso, altura, direccion, localidad, cod_postal);
+		sc.close();
+		sc1.close();
 		return paciente;
 
 	}
