@@ -9,6 +9,7 @@ import java.util.TreeMap;
 
 import menus.Menu_Inicial;
 import menus.Alta_Pacientes;
+import menus.Alta_Visitas;
 /**
  * Clase PersonaApp_Scanner que solicita los datos, rellena persona
  * e imprime los atributos y su peso y edad
@@ -138,6 +139,8 @@ public class PersonaApp_Scanner {
 				menuok = false;
 				//opcionmenu1 = 2;
 				
+				Alta_Visitas altavisita = new Alta_Visitas();
+				altavisita.nuevaVisita();
 				
 				break;
 
