@@ -31,65 +31,65 @@ private double peso;
 private double altura;
 
 
+
+
 public Paciente() {
-this("", 0, sexo_def, 0, 0);
 }
 
 /**
-* Declaramos constructor con parametros (String dni ,String nombre, int edad , double altura, String localidad, String cod_postal)
+* Declaramos constructor con parametros (String dni ,String nombre, int edad , char sexo, String calle, String localidad, String cod_postal)
 * lo utilizaremos por defecto en el tratamiento de ficheros
 */
 
 
 
-public Paciente(String dni ,String nombre, int edad , char sexo, double peso, double altura, String calle, String localidad, String cod_postal) {
+public Paciente(String dni ,String nombre, int edad , char sexo, String calle, String localidad, String cod_postal) {
 
-this.dni = dni;
-this.nombre = nombre;
+this.dni = dni.toUpperCase();
+this.nombre = nombre.toUpperCase();
 this.edad = edad;
-this.altura = altura;
-this.localidad = localidad;
+this.calle = calle.toUpperCase();
+this.localidad = localidad.toUpperCase();
 this.cod_postal = cod_postal;
 this.sexo = sexo;
-this.peso = peso;
-this.calle = calle;
+
 
 
 }
 
-/**
-* Declaramos constructor con parametros (String nombre, int edad, char sexo)
-*/
+///**
+//* Declaramos constructor con parametros (String nombre, int edad, char sexo)
+//*/
+//
+//public Paciente(String dni, int edad, char sexo) {
+//
+//this.dni = dni;
+//this.edad = edad;
+//this.sexo = sexo;
+//comprobarSexo();
+//}
 
-public Paciente(String dni, int edad, char sexo) {
 
-this.dni = dni;
-this.edad = edad;
-this.sexo = sexo;
-comprobarSexo();
-}
-
-
-/**
-* Declaramos constructor con parametros (String nombre, int edad, char sexo, double peso,
-double altura)
-*/
-
-public Paciente(String nombre, int edad, char sexo, double peso,
-double altura) {
-this.nombre = nombre;
-this.edad = edad;
-this.peso = peso;
-this.altura = altura;
-generarDni();
-this.sexo = sexo;
-comprobarSexo();
-}
-private void comprobarSexo() {
-if (sexo != 'H' && sexo != 'M') {
-this.sexo = sexo_def;
-}
-}
+///**
+//* Declaramos constructor con parametros (String nombre, int edad, char sexo, double peso,
+//double altura)
+//*/
+//
+//public Paciente(String nombre, int edad, char sexo, double peso,
+//double altura) {
+//this.nombre = nombre;
+//this.edad = edad;
+//this.peso = peso;
+//this.altura = altura;
+//generarDni();
+//this.sexo = sexo;
+//comprobarSexo();
+//}
+//private void comprobarSexo() {
+//if (sexo != 'H' && sexo != 'M') {
+//this.sexo = sexo_def;
+//}
+//}
 private void generarDni() {
 final int divisor = 23;
 int numDNI = ((int) Math.floor(Math.random() * (100000000 -
@@ -117,18 +117,18 @@ return letras[res];
 
 
 public void setDni(String dni) {
-this.dni = dni;
+this.dni = dni.toUpperCase();
 }
 
 
 public void setCalle(String calle) {
-this.calle = calle;
+this.calle = calle.toUpperCase();
 }
 
 
 
 public void setLocalidad(String localidad) {
-this.localidad = localidad;
+this.localidad = localidad.toUpperCase();
 }
 
 
@@ -138,7 +138,7 @@ this.cod_postal = cod_postal;
 }
 
 public void setNombre(String nombre) {
-this.nombre = nombre;
+this.nombre = nombre.toUpperCase();
 }
 public void setEdad(int edad) {
 this.edad = edad;
@@ -229,14 +229,13 @@ if (this.esMayorDeEdad()) {
 	}
 
 
-return "Informacion de la persona:\n"
+return "----------------------------\n"
++ "Informacion del Paciente:\n"
 + "Nombre: " + nombre + "\n"
 + "Sexo: " + sexo + "\n"
 + "Edad: " + edad + " años\n"
 + "DNI: " + dni + "\n"
-+ "Peso: " + peso + " kg\n"
-+ "Altura: " + altura + " centímetros\n"
-+ "Condición: " + tipopersona;
++ "Condicion: " + tipopersona;
 } 
 
 

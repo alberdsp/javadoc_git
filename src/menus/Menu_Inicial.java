@@ -19,7 +19,7 @@ public class Menu_Inicial {
 		System.out.println("***********************************");
 		System.out.println("----------MENU PRINCIPAL-----------");
 		System.out.println("***********************************");
-		System.out.println("  Introduzca los datos iniciales");
+		System.out.println("   Seleccione la opción deseada");
 		System.out.println("\n");
 		System.out.println("\n");
 		System.out.println("1. Alta de Pacientes");

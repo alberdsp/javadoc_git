@@ -1,9 +1,12 @@
 package menus;
 
+import java.io.IOException;
 import java.util.Locale;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 import javadoc_git.Paciente;
+import javadoc_git.TratamientoFichero;
 
 /**
  * 
@@ -33,19 +36,29 @@ public class Alta_Pacientes {
 	 * Método para crear un nuevo paciente
 	 * 
 	 * @return devuelve un objeto Paciente
+	 * @throws IOException 
 	 */
 
-	public Paciente nuevoPaciente() {
-
+	public Paciente nuevoPaciente() throws IOException {
+		
+		TreeMap<String,Paciente> listaPacientes = new TreeMap<String,Paciente>();
+		
 		Scanner sc = new Scanner(System.in);
 		sc.useDelimiter("\n");
 		sc.useLocale(Locale.US);
+		
 		// Introducimos los datos
 
 		System.out.println("Introduce el DNI");
 		String dni = sc.next().trim();
 		sc.reset();
-		System.out.println("Introduce el nombre");
+		
+		// comprobamos si existe el paciente
+		Paciente paciente = TratamientoFichero.buscarPaciente(dni);
+		// si no existe pasamos a darlo de alta
+		
+		if (paciente.getDni() == null) {
+			System.out.println("Introduce el nombre");
 		Scanner sc1 = new Scanner(System.in).useDelimiter("\n");
 
 		String nombre = "";
@@ -61,19 +74,12 @@ public class Alta_Pacientes {
 
 		char sexo = sc.next().toUpperCase().charAt(0);
 		sc.reset();
-		System.out.println("Introduce el peso, ejemplo 60,50");
-
-		double peso = sc.nextDouble();
-		sc.reset();
-		System.out.println("Introduce la altura, ejemplo 175,10");
-
-		double altura = sc.nextDouble();
-		sc.reset();
+		
 		System.out.println("Introduce la dirección");
-
+		Scanner sc2 = new Scanner(System.in).useDelimiter("\n");
 		String direccion = "";
-		direccion = sc1.next().trim();
-		sc1.reset();
+		direccion = sc2.next().trim();
+		sc2.reset();
 
 		System.out.println("Introduce la localidad");
 		String localidad = "";
@@ -84,9 +90,31 @@ public class Alta_Pacientes {
 		String cod_postal = sc.next();
 		sc.reset();
 
-		Paciente paciente = new Paciente(dni, nombre, edad, sexo, peso, altura, direccion, localidad, cod_postal);
+		paciente = new Paciente(dni, nombre, edad, sexo, direccion, localidad, cod_postal);
 		sc.close();
 		sc1.close();
+		sc2.close();	
+		
+		listaPacientes.put(dni, paciente);
+		TratamientoFichero.grabarPacientes(listaPacientes);
+		
+		
+			
+		}    else {
+			
+			
+			System.out.println("el paciente ya existe");
+			System.out.println("---------------------");
+			System.out.println(paciente.toString());
+			
+			
+			
+		}
+		
+		
+		
+	
+		
 		return paciente;
 
 	}
@@ -99,58 +127,55 @@ public class Alta_Pacientes {
 	 */
 
 	public Paciente nuevoPaciente(String ndni) {
+		TreeMap<String,Paciente> listaPacientes = new TreeMap<String,Paciente>();
 
-		Scanner sc = new Scanner(System.in);
-		sc.useDelimiter("\n");
-		sc.useLocale(Locale.US);
-		// Introducimos los datos
+Scanner sc = new Scanner(System.in);
+sc.useDelimiter("\n");
+sc.useLocale(Locale.US);
+// Introducimos los datos
 
-		System.out.println("Introduce el DNI");
-		String dni = ndni.trim();
-		System.out.println("Introduce el nombre");
-		Scanner sc1 = new Scanner(System.in).useDelimiter("\n");
+String dni = ndni.trim();
+sc.reset();
+System.out.println("Introduce el nombre");
+Scanner sc1 = new Scanner(System.in).useDelimiter("\n");
 
-		String nombre = "";
+String nombre = "";
 
-		nombre = sc1.next().trim();
+nombre = sc1.next().trim();
 
-		sc1.reset();
-		System.out.println("Introduce la edad");
+sc1.reset();
+System.out.println("Introduce la edad");
 
-		int edad = sc.nextInt();
-		sc.reset();
-		System.out.println("Introduce el sexo H hombre o M mujer");
+int edad = sc.nextInt();
+sc.reset();
+System.out.println("Introduce el sexo H hombre o M mujer");
 
-		char sexo = sc.next().toUpperCase().charAt(0);
-		sc.reset();
-		System.out.println("Introduce el peso, ejemplo 60,50");
+char sexo = sc.next().toUpperCase().charAt(0);
+sc.reset();
 
-		double peso = sc.nextDouble();
-		sc.reset();
-		System.out.println("Introduce la altura, ejemplo 175,10");
+System.out.println("Introduce la dirección");
 
-		double altura = sc.nextDouble();
-		sc.reset();
-		System.out.println("Introduce la dirección");
+String direccion = "";
+direccion = sc1.next().trim();
+sc1.reset();
 
-		String direccion = "";
-		direccion = sc1.next().trim();
-		sc1.reset();
+System.out.println("Introduce la localidad");
+String localidad = "";
+localidad = sc.next().trim();
+sc.reset();
+System.out.println("Introduce el codigo postal");
 
-		System.out.println("Introduce la localidad");
-		String localidad = "";
-		localidad = sc.next().trim();
-		sc.reset();
-		System.out.println("Introduce el codigo postal");
+String cod_postal = sc.next();
+sc.reset();
 
-		String cod_postal = sc.next();
-		sc.reset();
+Paciente paciente = new Paciente(dni, nombre, edad, sexo, direccion, localidad, cod_postal);
+sc.close();
+sc1.close();
 
-		Paciente paciente = new Paciente(dni, nombre, edad, sexo, peso, altura, direccion, localidad, cod_postal);
-		sc.close();
-		sc1.close();
-		return paciente;
+listaPacientes.put(dni, paciente);
+TratamientoFichero.grabarPacientes(listaPacientes);
 
+return paciente;
 	}
 
 }

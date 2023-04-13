@@ -89,7 +89,7 @@ public class PersonaApp_Scanner {
 			Menu_Inicial menuinicial = new Menu_Inicial();
 		
 		menuinicial.printMenu();
-		Scanner sc = new Scanner(System.in);
+		Scanner omenu = new Scanner(System.in);
 		int opcionmenu =0; 
 			
 			// variable para controlar cuando salir del menú
@@ -99,13 +99,13 @@ public class PersonaApp_Scanner {
 		 
 		 
 				
-			opcionmenu = sc.nextInt();
+			opcionmenu = omenu.nextInt();
 			switch (opcionmenu) {
 			//
 
 			case 1: {
 
-				TreeMap<String,Paciente> listaPacientes = new TreeMap<String,Paciente>();
+			
 				
 				
 				System.out.println("Ha elegido alta de Pacientes");
@@ -120,20 +120,20 @@ public class PersonaApp_Scanner {
 				
 				Paciente paciente = new Paciente();
 				paciente = alta_paciente.nuevoPaciente();
-				String dni = paciente.getDni();
-				listaPacientes.put(dni, paciente);
 				
-				TratamientoFichero.grabarPacientes(listaPacientes);
+				String dni = paciente.getDni();
+			
 				
 				//System.out.println("nombre: "+ listaPacientes.toString());
 				
 				System.out.print(paciente.toString());
 				
-				break;
+				
 			}
 
 			case 2: {
-
+				
+			
 				System.out.println("Ha elegido alta de Visitas");
 				System.out.println("----------------------------------");
 				menuok = false;
@@ -142,7 +142,7 @@ public class PersonaApp_Scanner {
 				Alta_Visitas altavisita = new Alta_Visitas();
 				altavisita.nuevaVisita();
 				
-				break;
+				
 
 			}
 			case 99: {

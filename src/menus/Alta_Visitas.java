@@ -42,20 +42,21 @@ public class Alta_Visitas {
 	public String nuevaVisita() throws IOException {
 
 		Scanner sc = new Scanner(System.in);
-		sc.useDelimiter("\n");
+		//sc.useDelimiter("\n");
 		sc.useLocale(Locale.US);
-		Paciente paciente;
+		
 		String insertado = " Visita grabada";
 		
 		// Introducimos los datos
 
 		System.out.println("Introduce el DNI");
-		String dni = sc.next().trim();
+		String dni = sc.next();
 		
 
 		// buscamos el DNI en el fichero, si lo encuentra grabamos
 		// el DNI, si no lo encuentra llamamos al método Alta_Pacientes
-		if (TratamientoFichero.buscarPaciente(dni).getNombre() != null) {
+		Paciente paciente = TratamientoFichero.buscarPaciente(dni);
+		if (paciente.getDni() != null) {
 
 			System.out.println("    Paciente encontrado     ");
 			System.out.println("****************************");
@@ -66,9 +67,20 @@ public class Alta_Visitas {
 			paciente = TratamientoFichero.buscarPaciente(dni);
 
 		} else {
-
+			System.out.println("paciente no encontrado");
+			System.out.println("----------------------");
+			System.out.println("Procedemos a dar de alta");
+			System.out.println("\n");
+			TreeMap<String,Paciente> listaPacientes = new TreeMap<String,Paciente>();
 			Alta_Pacientes alta_paciente = new Alta_Pacientes();
+			
+			alta_paciente.printMenu();
+			
+			paciente = new Paciente();
+			// pasamos dni como paramatro para no pedirlo de nuevo en el alta
 			paciente = alta_paciente.nuevoPaciente(dni);
+			listaPacientes.put(dni, paciente);
+			TratamientoFichero.grabarPacientes(listaPacientes);
 
 		}
 
@@ -80,14 +92,15 @@ public class Alta_Visitas {
 
 		String resulimc = Paciente.resultadoImc(paciente);
 		System.out.println("Introduce el peso, ejemplo 60,50");
-
-		double peso = sc.nextDouble();
+		sc.reset();
+		double peso = paciente.getPeso();
 		sc.reset();
 
 		System.out.println("Introduce la altura, ejemplo 175,10");
-
-		double altura = sc.nextDouble();
-		sc.reset();
+         
+		Scanner scd = new Scanner(System.in);
+		double altura = scd.nextDouble();
+		scd.reset();
 
 		System.out.println("Introduce la unidad de altura cm,dm,m...");
 

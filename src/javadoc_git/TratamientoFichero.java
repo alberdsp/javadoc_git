@@ -56,14 +56,12 @@ public class TratamientoFichero {
 				String nombre = listap.getValue().getNombre();
 				int edad = listap.getValue().getEdad();
 				char sexo = listap.getValue().getSexo();
-				double peso = listap.getValue().getPeso();
-				double altura = listap.getValue().getAltura();
 				String calle = listap.getValue().getCalle();
 				String localidad = listap.getValue().getLocalidad();
 				String cod_postal = listap.getValue().getCod_postal();
 
-				pw.println(dni + delimitador + nombre + delimitador + edad + delimitador + sexo + delimitador + peso
-						+ delimitador + altura + delimitador + calle + delimitador + localidad + delimitador
+				pw.println(dni + delimitador + nombre + delimitador + edad + delimitador + sexo + delimitador 
+					    + calle + delimitador + localidad + delimitador
 						+ cod_postal);
 			}
 		} catch (Exception e) {
@@ -119,11 +117,9 @@ public class TratamientoFichero {
 			paciente.setNombre(pacienteArray[1]);
 			paciente.setEdad(Integer.valueOf((pacienteArray[2]).trim()));
 			paciente.setSexo(pacienteArray[3].charAt(0));
-			paciente.setPeso(Double.valueOf((pacienteArray[4]).trim()));
-			paciente.setAltura(Double.valueOf((pacienteArray[5]).trim()));
-			paciente.setCalle(pacienteArray[6]);
-			paciente.setLocalidad(pacienteArray[7]);
-			paciente.setCod_postal(pacienteArray[8]);
+			paciente.setCalle(pacienteArray[4]);
+			paciente.setLocalidad(pacienteArray[5]);
+			paciente.setCod_postal(pacienteArray[6]);
 
 			// Grabamos el objeto en el TreeMap con clave DNI
 
@@ -152,7 +148,7 @@ public class TratamientoFichero {
 	//TODO   a falta de terminar el metodo de busqueda
 	public static Paciente buscarPaciente(String ndni) throws IOException {
 
-		TreeMap<String, Paciente> pacienteEncontradoTM = new TreeMap<String, Paciente>();
+	//	TreeMap<String, Paciente> pacienteEncontradoTM = new TreeMap<String, Paciente>();
 		String cadena; // variable donde almacenanamos cada linea del fichero
 		String delimitador = ","; // indica como van separados los atributos
 		String dni = ""; // actua también de clave en los mapas
@@ -173,11 +169,11 @@ public class TratamientoFichero {
 
 			pacienteArray = cadena.split(delimitador);
 
-			dni = pacienteArray[0]; // será la clave
+			dni = pacienteArray[0].trim(); // será la clave
 			paciente.setDni(pacienteArray[0]);
 			paciente.setNombre(pacienteArray[1]);
 			paciente.setEdad(Integer.valueOf((pacienteArray[2]).trim()));
-			paciente.setAltura(Double.valueOf((pacienteArray[3]).trim()));
+			paciente.setSexo((pacienteArray[3]).charAt(0));
 			paciente.setCalle(pacienteArray[4]);
 			paciente.setLocalidad(pacienteArray[5]);
 			paciente.setCod_postal(pacienteArray[6]);
@@ -186,8 +182,11 @@ public class TratamientoFichero {
 			if (ndni.equals(dni)) {
 
 				encontrado = true;
-				pacienteEncontradoTM.put(dni, paciente);
+			//	pacienteEncontradoTM.put(dni, paciente);
 				
+			}else {
+				
+				paciente = new Paciente();
 			}
 
 			// vaciamos array y paciente
@@ -196,6 +195,10 @@ public class TratamientoFichero {
 
 		}
 		b.close();
+		
+		
+		
+		
 		return paciente; // devuelve el objeto paciente encontrado
 
 	}
