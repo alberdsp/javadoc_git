@@ -29,10 +29,12 @@ public class PersonaApp_Scanner {
 	
 	
 	public static void main(String[] args) throws IOException {
+		// iniciamos variables
 		
-		 boolean menuok = false;
-		
-		
+		 boolean salir = false;
+		 int opcionmenu = 0;
+		 Scanner omenu;
+		 Menu_Inicial menuinicial = new Menu_Inicial();
 		// instanciamos listapacientes para ir alamcenando los pacientes
 		
 		
@@ -86,20 +88,24 @@ public class PersonaApp_Scanner {
 		
 		do {
 			
-			Menu_Inicial menuinicial = new Menu_Inicial();
+			
 		
 		menuinicial.printMenu();
-		Scanner omenu = new Scanner(System.in);
-		int opcionmenu =0; 
+			
+			omenu = new Scanner(System.in);
+		 
+		    opcionmenu = omenu.nextInt();
 			
 			// variable para controlar cuando salir del menú
 			
 			
 		try {
+			
+			
 		 
 		 
 				
-			opcionmenu = omenu.nextInt();
+			
 			switch (opcionmenu) {
 			//
 
@@ -110,7 +116,6 @@ public class PersonaApp_Scanner {
 				
 				System.out.println("Ha elegido alta de Pacientes");
 				System.out.println("----------------------------------");
-				menuok = true;
 				//opcionmenu1 = 1;
 				
 				
@@ -121,14 +126,14 @@ public class PersonaApp_Scanner {
 				Paciente paciente = new Paciente();
 				paciente = alta_paciente.nuevoPaciente();
 				
-				String dni = paciente.getDni();
+				
 			
 				
 				//System.out.println("nombre: "+ listaPacientes.toString());
 				
 				System.out.print(paciente.toString());
 				
-				
+				break;
 			}
 
 			case 2: {
@@ -136,18 +141,17 @@ public class PersonaApp_Scanner {
 			
 				System.out.println("Ha elegido alta de Visitas");
 				System.out.println("----------------------------------");
-				menuok = false;
 				//opcionmenu1 = 2;
 				
 				Alta_Visitas altavisita = new Alta_Visitas();
 				altavisita.nuevaVisita();
 				
-				
+				break;
 
 			}
 			case 99: {
 
-				menuok = true;
+				salir = true;
 				System.out.println("_____________________");
 				System.out.println("Saliendo del programa");
 				System.exit(0);
@@ -159,7 +163,7 @@ public class PersonaApp_Scanner {
 			System.out.println("\n");
 				System.out.println("\n");
 			
-			menuok = false;
+			salir = false;
 			
 			}
 			
@@ -185,7 +189,7 @@ public class PersonaApp_Scanner {
 		
 
 		
-	} while (menuok == false);
+	} while (salir == false);
 		
 		
 		//TODO     falta implementar las visitas y comprobar el dni

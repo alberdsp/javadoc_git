@@ -25,11 +25,13 @@ public class Alta_Pacientes {
 
 	public void printMenu() {
 
+		System.out.println("\n");
+		System.out.println("\n");
 		System.out.println("      Alta de Pacientes   ");
 		System.out.println("***********************************");
 		System.out.println("  Introduzca los datos del paciente");
 		System.out.println("\n");
-
+		System.out.println("\n");
 	}
 
 	/**
@@ -77,8 +79,8 @@ public class Alta_Pacientes {
 		
 		System.out.println("Introduce la dirección");
 		Scanner sc2 = new Scanner(System.in).useDelimiter("\n");
-		String direccion = "";
-		direccion = sc2.next().trim();
+		String calle = "";
+		calle = sc2.next().trim();
 		sc2.reset();
 
 		System.out.println("Introduce la localidad");
@@ -90,14 +92,21 @@ public class Alta_Pacientes {
 		String cod_postal = sc.next();
 		sc.reset();
 
-		paciente = new Paciente(dni, nombre, edad, sexo, direccion, localidad, cod_postal);
-		sc.close();
-		sc1.close();
-		sc2.close();	
+		//paciente = new Paciente(dni, nombre, edad, sexo, calle, localidad, cod_postal);
+		paciente.setDni(dni);
+		paciente.setNombre(nombre);
+		paciente.setEdad(edad);
+		paciente.setSexo(sexo);
+		paciente.setCalle(calle);
+		paciente.setLocalidad(localidad);
+		paciente.setCod_postal(cod_postal);
+			
+		
+		
 		
 		listaPacientes.put(dni, paciente);
 		TratamientoFichero.grabarPacientes(listaPacientes);
-		
+		System.out.println("\n");
 		
 			
 		}    else {
@@ -106,6 +115,8 @@ public class Alta_Pacientes {
 			System.out.println("el paciente ya existe");
 			System.out.println("---------------------");
 			System.out.println(paciente.toString());
+			System.out.println("\n");
+			
 			
 			
 			
