@@ -1,4 +1,4 @@
-package javadoc_git;
+package clases;
 
 import java.util.Date;
 
