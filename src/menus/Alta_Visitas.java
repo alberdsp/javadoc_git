@@ -48,7 +48,7 @@ public class Alta_Visitas {
 	 * 
 	 * @throws IOException
 	 */
-	public String nuevaVisita() throws IOException {
+	public void nuevaVisita() throws IOException {
 
 		Scanner sc = new Scanner(System.in);
 		// sc.useDelimiter("\n");
@@ -59,10 +59,12 @@ public class Alta_Visitas {
 		// Introducimos los datos
 
 		System.out.println("Introduce el DNI");
-		String dni = sc.next().toUpperCase();
+		String dni = sc.next();
+		
+		 dni = dni.toUpperCase();
 
-		// buscamos el DNI en el fichero, si lo encuentra grabamos
-		// el DNI, si no lo encuentra llamamos al método Alta_Pacientes
+		// buscamos el DNI en el fichero, si lo encuentra pasamos al alta
+		// de visitas, si no lo encuentra llamamos al método Alta_Pacientes
 		Paciente paciente = TratamientoFichero.buscarPaciente(dni);
 		if (paciente.getDni() != null) {
 
@@ -160,8 +162,12 @@ public class Alta_Visitas {
 		visitas.put(dni, nuevavisita);
 
 		TratamientoFichero.grabarVisitas(visitas);
-
-		return insertado;
+		
+		System.out.println("\n");
+		System.out.println("   Visita grabada correctamente  ");
+		System.out.println("---------------------------------");
+		System.out.println("\n");
+		
 
 	}
 

@@ -148,7 +148,7 @@ public class Visita {
 	@Override
 	public String toString() {
 
-		return "Dia " + this.fecha + " Hora: " + this.hora + "  Peso  " + this.peso + " Altura  " + this.altura
+		return "Dia " + this.fecha + " Hora: " + this.hora + "  Peso  " + this.peso  + "  Kgr.  " + " Altura  " + this.altura
 				+ " Resultado IMC:  " + this.resulimc;
 
 	}

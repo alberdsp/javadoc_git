@@ -44,19 +44,35 @@ public class Alta_Pacientes {
 	public Paciente nuevoPaciente() throws IOException {
 
 		TreeMap<String, Paciente> listaPacientes = new TreeMap<String, Paciente>();
-
+        
+		
+		
+	
 		Scanner sc = new Scanner(System.in);
 		sc.useDelimiter("\n");
 		sc.useLocale(Locale.US);
 
-		// Introducimos los datos
-
-		System.out.println("Introduce el DNI");
-		String dni = sc.next().trim();
+	   
+	    String dni;
 		sc.reset();
-
+        Paciente paciente = new Paciente(); 
+		
+        // validamos dni 
+		do {
+			
+			System.out.println("Introduce DNI valido 8 numeros y letra");
+			dni = sc.next().trim();
+			dni = dni.toUpperCase();
+			
+			
+			
+		}while (paciente.validarDni(dni)==false);
+		
+	
+		
+		
 		// comprobamos si existe el paciente
-		Paciente paciente = TratamientoFichero.buscarPaciente(dni);
+		 paciente = TratamientoFichero.buscarPaciente(dni);
 		// si no existe pasamos a darlo de alta
 
 		if (paciente.getDni() == null) {
@@ -77,7 +93,7 @@ public class Alta_Pacientes {
 			char sexo = sc.next().toUpperCase().charAt(0);
 			sc.reset();
 
-			System.out.println("Introduce la dirección");
+			System.out.println("Introduce la calle");
 			Scanner sc2 = new Scanner(System.in).useDelimiter("\n");
 			String calle = "";
 			calle = sc2.next().trim();
@@ -92,8 +108,6 @@ public class Alta_Pacientes {
 			String cod_postal = sc.next();
 			sc.reset();
 
-			// paciente = new Paciente(dni, nombre, edad, sexo, calle, localidad,
-			// cod_postal);
 			paciente.setDni(dni);
 			paciente.setNombre(nombre);
 			paciente.setEdad(edad);
@@ -128,13 +142,33 @@ public class Alta_Pacientes {
 	public Paciente nuevoPaciente(String ndni) {
 		TreeMap<String, Paciente> listaPacientes = new TreeMap<String, Paciente>();
 
-		Scanner sc = new Scanner(System.in);
-		sc.useDelimiter("\n");
-		sc.useLocale(Locale.US);
-// Introducimos los datos
 
-		String dni = ndni.trim();
-		sc.reset();
+//// Introducimos los datos
+//
+
+				Scanner sc = new Scanner(System.in);
+				sc.useDelimiter("\n");
+				sc.useLocale(Locale.US);
+
+			   
+			    String dni;
+				sc.reset();
+		        Paciente paciente = new Paciente(); 
+				
+		        // validamos dni 
+				do {
+					
+					System.out.println("Introduce DNI valido 8 numeros y letra");
+					dni = sc.next().trim();
+					dni = dni.toUpperCase();
+					
+					
+					
+				}while (paciente.validarDni(dni)==false);
+		
+		
+		
+		
 		System.out.println("Introduce el nombre");
 		Scanner sc1 = new Scanner(System.in).useDelimiter("\n");
 
@@ -167,7 +201,7 @@ public class Alta_Pacientes {
 		String cod_postal = sc.next();
 		sc.reset();
 
-		Paciente paciente = new Paciente(dni, nombre, edad, sexo, direccion, localidad, cod_postal);
+		paciente = new Paciente(dni, nombre, edad, sexo, direccion, localidad, cod_postal);
 
 		listaPacientes.put(dni, paciente);
 		TratamientoFichero.grabarPacientes(listaPacientes);
