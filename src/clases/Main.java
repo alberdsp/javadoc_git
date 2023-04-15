@@ -6,6 +6,7 @@ import java.util.Scanner;
 import menus.Menu_Inicial;
 import menus.Alta_Pacientes;
 import menus.Alta_Visitas;
+import menus.Listar_Visitas;
 
 /**
  * Clase PersonaApp_Scanner carga menú y selecciona añadir alta o visitas
@@ -57,7 +58,8 @@ public class Main {
 
 				System.out.println("Ha elegido alta de Pacientes");
 				System.out.println("----------------------------------");
-				// opcionmenu1 = 1;
+
+				// Instanciamos Alta_Pacientes
 
 				Alta_Pacientes alta_paciente = new Alta_Pacientes();
 
@@ -75,16 +77,27 @@ public class Main {
 
 				System.out.println("Ha elegido alta de Visitas");
 				System.out.println("----------------------------------");
-				// opcionmenu1 = 2;
 
+				// Instanciamos Alta_Visitas
 				Alta_Visitas altavisita = new Alta_Visitas();
 				altavisita.nuevaVisita();
 
 				break;
+			}
+
+			case 3: {
+
+				System.out.println("Ha elegido listado de Visitas");
+				System.out.println("----------------------------------");
+
+				// Instanciamos Listar_Visitas
+				Listar_Visitas listarvisitas = new Listar_Visitas();
+				listarvisitas.printMenu();
+				break;
 
 			}
 			case 99: {
-				// salimos
+				// salimos del programa
 				salir = true;
 				System.out.println("_____________________");
 				System.out.println("Saliendo del programa");

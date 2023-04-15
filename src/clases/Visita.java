@@ -3,14 +3,12 @@ package clases;
 import java.util.Date;
 
 public class Visita {
-	
-	
-	
-	
+
 	/**
 	 * Constructor por defecto
 	 */
-	public Visita() {};
+	public Visita() {
+	};
 
 	/**
 	 * Clase para registrar las visitas de los pacientes a la consulta
@@ -25,7 +23,8 @@ public class Visita {
 	String resulimc;
 
 	/**
-	 *  Constructor con parámetros
+	 * Constructor con parámetros
+	 * 
 	 * @param dni          almacenamos DNI del Paciente
 	 * @param fecha        almacenamos Visita del Paciente
 	 * @param hora         almacenamos la hora de la Visita
@@ -36,7 +35,8 @@ public class Visita {
 	 *                     "pesoideal" que viene del calculo Paciente.resultadoImc()
 	 */
 
-	public Visita(String dni, String fecha, String hora, Double peso, Double altura, String unidadaltura, String resulimc) {
+	public Visita(String dni, String fecha, String hora, Double peso, Double altura, String unidadaltura,
+			String resulimc) {
 		this.dni = dni;
 		this.fecha = fecha;
 		this.hora = hora;
@@ -143,6 +143,14 @@ public class Visita {
 	 */
 	public void setUnidadaltura(String unidadaltura) {
 		this.unidadaltura = unidadaltura;
+	}
+
+	@Override
+	public String toString() {
+
+		return "Dia " + this.fecha + " Hora: " + this.hora + "  Peso  " + this.peso + " Altura  " + this.altura
+				+ " Resultado IMC:  " + this.resulimc;
+
 	}
 
 }

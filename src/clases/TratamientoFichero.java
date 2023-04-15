@@ -135,6 +135,69 @@ public class TratamientoFichero {
 	}
 
 	/**
+	 * Método listarVisitas que nos devuelve un TreeMap de las visitas de un
+	 * paciente
+	 * 
+	 * @param ndni pasamos el parámetro ndni como número de deni del paciente
+	 * @return devuelve un TreeMap con clave Integer incremental y objeto visita
+	 * @throws IOException
+	 */
+	public static TreeMap<Integer, Visita> listaVisitas(String ndni) throws IOException {
+
+		TreeMap<Integer, Visita> listaVisitas = new TreeMap<Integer, Visita>();
+		String cadena; // variable donde almacenanamos cada linea del fichero
+		String delimitador = ","; // indica como van separados los atributos
+		Integer indice = 0; // contador de número de linea
+		String dni; // actua también de clave en los mapas
+		Visita visita = new Visita(); // clase visitas
+		String[] visitaArray; // array para almacenar atributos de la linea del fichero visita
+
+		FileReader f = new FileReader(ruta_visitas);
+		BufferedReader b = new BufferedReader(f);
+		// añadimos lineas al Map siempre que no esten vacia la linea
+		// de ese modo controlamos que si la longitud es myor de 0
+		// le leeremos
+
+		while ((cadena = b.readLine()) != null) {
+
+			// creamos un array string con los atributos del metodo split
+			// asignamos los valores a los atributos a la clase visita
+			// que será devuelta
+
+			visitaArray = cadena.split(delimitador);
+
+			dni = visitaArray[0];
+			visita.setDni(visitaArray[0]);
+			visita.setFecha(visitaArray[1]);
+			visita.setHora(visitaArray[2]);
+			visita.setPeso(Double.parseDouble(visitaArray[3]));
+			visita.setAltura(Double.parseDouble(visitaArray[4]));
+			visita.setUnidadaltura(visitaArray[5]);
+			visita.setResulimc(visitaArray[6]);
+
+			// Grabamos el objeto en el TreeMap con clave indice
+			// si coincide con el dni que buscamos
+
+			ndni = ndni.toUpperCase();
+			// Grabamos el objeto en el TreeMap con clave DNI si es encontrado
+			if (ndni.equals(dni)) {
+				++indice;
+				listaVisitas.put(indice, visita);
+				System.out.println(indice + ". " + visita.toString());
+				System.out.println("\n");
+			}
+
+			// vaciamos array y paciente
+			visitaArray = null;
+			visita = new Visita();
+
+		}
+		b.close();
+		return listaVisitas;
+
+	}
+
+	/**
 	 * Método buscar Paciente, busca en el fichero de Pacientes hasta que encuentra
 	 * el DNI pasado como parametro String ndni en el fichero indicado o bien llega
 	 * al final del fichero y nos devuelve el objeto paciente vacio

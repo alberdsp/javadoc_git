@@ -25,6 +25,7 @@ public class Menu_Inicial {
 		System.out.println("\n");
 		System.out.println("1. Alta de Pacientes");
 		System.out.println("2. Alta de Visitas");
+		System.out.println("3. Lista de Visitas");
 		System.out.println("99. Salir");
 		System.out.println("\n");
 		System.out.println("\n");

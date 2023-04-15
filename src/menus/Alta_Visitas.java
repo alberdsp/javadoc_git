@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
  *
  */
 public class Alta_Visitas {
-	// establecemos los formatos de fecha
+	// establecemos los formatos de fecha y hora
 	DateTimeFormatter forma_fecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	DateTimeFormatter forma_hora = DateTimeFormatter.ofPattern("HH:mm");
 
@@ -113,7 +113,7 @@ public class Alta_Visitas {
 			Scanner scd = new Scanner(System.in);
 			try {
 				scd.reset();
-				System.out.println("Introduce el peso, ejemplo 60,50");
+				System.out.println("Introduce el peso, ejemplo 60,50 (Será en Kilogramos");
 
 				peso = scd.nextDouble();
 				error = false;
@@ -134,7 +134,7 @@ public class Alta_Visitas {
 			Scanner scd2 = new Scanner(System.in);
 			try {
 
-				System.out.println("Introduce la altura, ejemplo 175,10");
+				System.out.println("Introduce la altura, ejemplo 1,75 (Será en Metros");
 
 				scd2.reset();
 				altura = scd2.nextDouble();
@@ -151,13 +151,10 @@ public class Alta_Visitas {
 
 		} while (error);
 
-		System.out.println("Introduce la unidad de altura cm,dm,m...");
-
-		String unidadaltura = sc.next().toLowerCase();
-		sc.reset();
+		String unidadaltura = "metros";
 		String resulimc = Paciente.resultadoImc(paciente);
 		Visita nuevavisita = new Visita(dni, fecha, hora, peso, altura, unidadaltura, resulimc);
-        
+
 		// lista de visitas, puede grabar de una en una o varias en el futuro
 		TreeMap<String, Visita> visitas = new TreeMap<String, Visita>();
 		visitas.put(dni, nuevavisita);
