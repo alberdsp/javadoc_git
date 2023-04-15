@@ -20,6 +20,8 @@ public static final int peso_ideal = 0;
 * Declaramos constante sobrepeso
 */
 public static final int sobrepeso = 1;
+
+
 private String nombre;
 private int edad;
 private String dni;
@@ -31,8 +33,6 @@ private double peso;
 private double altura;
 
 
-
-
 public Paciente() {
 }
 
@@ -40,8 +40,6 @@ public Paciente() {
 * Declaramos constructor con parametros (String dni ,String nombre, int edad , char sexo, String calle, String localidad, String cod_postal)
 * lo utilizaremos por defecto en el tratamiento de ficheros
 */
-
-
 
 public Paciente(String dni ,String nombre, int edad , char sexo, String calle, String localidad, String cod_postal) {
 
@@ -53,43 +51,8 @@ this.localidad = localidad.toUpperCase();
 this.cod_postal = cod_postal;
 this.sexo = sexo;
 
-
-
 }
 
-///**
-//* Declaramos constructor con parametros (String nombre, int edad, char sexo)
-//*/
-//
-//public Paciente(String dni, int edad, char sexo) {
-//
-//this.dni = dni;
-//this.edad = edad;
-//this.sexo = sexo;
-//comprobarSexo();
-//}
-
-
-///**
-//* Declaramos constructor con parametros (String nombre, int edad, char sexo, double peso,
-//double altura)
-//*/
-//
-//public Paciente(String nombre, int edad, char sexo, double peso,
-//double altura) {
-//this.nombre = nombre;
-//this.edad = edad;
-//this.peso = peso;
-//this.altura = altura;
-//generarDni();
-//this.sexo = sexo;
-//comprobarSexo();
-//}
-//private void comprobarSexo() {
-//if (sexo != 'H' && sexo != 'M') {
-//this.sexo = sexo_def;
-//}
-//}
 private void generarDni() {
 final int divisor = 23;
 int numDNI = ((int) Math.floor(Math.random() * (100000000 -
@@ -111,9 +74,6 @@ return letras[res];
 /**
 * Declaramos setters
 */
-
-
-
 
 
 public void setDni(String dni) {
@@ -265,18 +225,16 @@ private boolean esMayorDeEdad() {
 public static String resultadoImc(Paciente p) {
  String supeso  =""; // nos devuelve el texto del calculo del IMC
 int imc = p.calcularImc();
-switch (imc) {
-case Paciente.peso_ideal:
+if (imc == 0) {
 supeso = "peso ideal";
-break;
-case Paciente.infrapeso:
-	supeso = "infrapeso";
-break;
-case Paciente.sobrepeso:
-	supeso = "sobrepeso";
-break;
-
 }
+if (imc == -1) {
+	supeso = "infrapeso";
+}
+if (imc == 1) {
+	supeso = "sobrepeso";
+}
+
 return supeso;
 }
 	 

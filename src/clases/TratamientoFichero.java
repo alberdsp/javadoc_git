@@ -16,10 +16,11 @@ import java.util.Set;
 import java.util.TreeMap;
 
 /**
+ * Clase Tratamiento Fichero clase para tratar los fichero tanto de clientes
+ * como de visitas ruta_clientes establece la ruta donde se guradan los clientes
+ * ruta_visitas establece la ruta donde se guradan las visitas
  * 
- * @author Alber clase para tratar los fichero tanto de clientes como de visitas
- *         ruta_clientes establece la ruta donde se guradan los clientes
- *         ruta_visitas establece la ruta donde se guradan las visitas
+ * @author Alber
  * 
  */
 
@@ -30,8 +31,8 @@ public class TratamientoFichero {
 	public static String ruta_visitas = "C:/Users/Alber/eclipse-workspace/javadoc_git/almacenamiento/visitas.txt";
 
 	/**
-	 * metodo para escribir el fichero pasamos como parametro un TreeMap con clave =
-	 * dni del paciente y valor = Objeto tipo Paciente
+	 * metodo para escribir pacientes en el fichero pasamos como parametro un
+	 * TreeMap con clave = dni del paciente y valor = Objeto tipo Paciente
 	 * 
 	 * @param pacientes
 	 */
@@ -80,7 +81,7 @@ public class TratamientoFichero {
 	}
 
 	/**
-	 * En este metodo leemos el fichero de clientes llamada en la definición de un
+	 * Método leerFichero, el fichero de clientes llamada en la definición de un
 	 * procedimmiento definido como estático con la palabra reservada Throws seguida
 	 * de las excepciones a capturar.
 	 * 
@@ -134,9 +135,9 @@ public class TratamientoFichero {
 	}
 
 	/**
-	 * * En este método busca en el fichero de Pacientes hasta que encuentra el DNI
-	 * pasado como parametro String ndni en el fichero indicado o bien llega al
-	 * final del fichero y nos devuelve el objeto paciente vacio
+	 * Método buscar Paciente, busca en el fichero de Pacientes hasta que encuentra
+	 * el DNI pasado como parametro String ndni en el fichero indicado o bien llega
+	 * al final del fichero y nos devuelve el objeto paciente vacio
 	 * 
 	 * @param ndni es el número de dni
 	 * @return devuelve un objeto paciente si lo encuentra
@@ -175,7 +176,7 @@ public class TratamientoFichero {
 			paciente.setCalle(pacienteArray[4]);
 			paciente.setLocalidad(pacienteArray[5]);
 			paciente.setCod_postal(pacienteArray[6]);
-            ndni= ndni.toUpperCase();
+			ndni = ndni.toUpperCase();
 			// Grabamos el objeto en el TreeMap con clave DNI si es encontrado
 			if (ndni.equals(dni)) {
 
@@ -198,9 +199,9 @@ public class TratamientoFichero {
 	}
 
 	/**
-	 * metodo para escribir el fichero pasamos como parametro un TreeMap con clave =
-	 * dni del paciente y valor = Objeto Persona este metodo nos permite grabar de
-	 * uno en uno varios pacientes según los que pasemos en el TreeMap
+	 * Método grabarVisitas, escribe el fichero pasamos como parametro un TreeMap
+	 * con clave = dni del paciente y valor = Objeto Persona este metodo nos permite
+	 * grabar de uno en uno varios pacientes según los que pasemos en el TreeMap
 	 * 
 	 * @param visitas TreeMap que contiene una visita o varias a grabar
 	 */

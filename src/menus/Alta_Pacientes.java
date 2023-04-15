@@ -168,7 +168,6 @@ public class Alta_Pacientes {
 		sc.reset();
 
 		Paciente paciente = new Paciente(dni, nombre, edad, sexo, direccion, localidad, cod_postal);
-	
 
 		listaPacientes.put(dni, paciente);
 		TratamientoFichero.grabarPacientes(listaPacientes);

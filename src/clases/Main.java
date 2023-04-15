@@ -10,7 +10,6 @@ import menus.Alta_Visitas;
 /**
  * Clase PersonaApp_Scanner carga menú y selecciona añadir alta o visitas
  * 
- * 
  * @author Alberto
  * @version v0.2
  */
@@ -36,84 +35,73 @@ public class Main {
 
 			menuinicial.printMenu();
 
-			
-			
-			boolean numbad=true;
+			boolean numbad = true;
 			do {
-			omenu = new Scanner(System.in);	
-			try {
-		    omenu.reset();
-			opcionmenu = omenu.nextInt();
-			omenu.reset();
-			numbad=false;
-			}catch (InputMismatchException er) {
-				System.out.println("intruduzca un numero valido");	
-				
-			}
-			}while(numbad);
+				omenu = new Scanner(System.in);
+				try {
+					omenu.reset();
+					opcionmenu = omenu.nextInt();
+					omenu.reset();
+					numbad = false;
+				} catch (InputMismatchException er) {
+					System.out.println("intruduzca un numero valido");
+
+				}
+			} while (numbad);
 			// evaluamos menú
 
-			
-				
-				
+			switch (opcionmenu) {
+			//
 
-				switch (opcionmenu) {
-				//
+			case 1: {
 
-				case 1: {
+				System.out.println("Ha elegido alta de Pacientes");
+				System.out.println("----------------------------------");
+				// opcionmenu1 = 1;
 
-					System.out.println("Ha elegido alta de Pacientes");
-					System.out.println("----------------------------------");
-					// opcionmenu1 = 1;
+				Alta_Pacientes alta_paciente = new Alta_Pacientes();
 
-					Alta_Pacientes alta_paciente = new Alta_Pacientes();
+				alta_paciente.printMenu();
 
-					alta_paciente.printMenu();
+				Paciente paciente = new Paciente();
+				paciente = alta_paciente.nuevoPaciente();
 
-					Paciente paciente = new Paciente();
-					paciente = alta_paciente.nuevoPaciente();
+				System.out.print(paciente.toString());
 
-					System.out.print(paciente.toString());
+				break;
+			}
 
-					break;
-				}
+			case 2: {
 
-				case 2: {
+				System.out.println("Ha elegido alta de Visitas");
+				System.out.println("----------------------------------");
+				// opcionmenu1 = 2;
 
-					System.out.println("Ha elegido alta de Visitas");
-					System.out.println("----------------------------------");
-					// opcionmenu1 = 2;
+				Alta_Visitas altavisita = new Alta_Visitas();
+				altavisita.nuevaVisita();
 
-					Alta_Visitas altavisita = new Alta_Visitas();
-					altavisita.nuevaVisita();
+				break;
 
-					break;
+			}
+			case 99: {
+				// salimos
+				salir = true;
+				System.out.println("_____________________");
+				System.out.println("Saliendo del programa");
+				System.exit(0);
+				break;
+			}
+			default:
 
-				}
-				case 99: {
-                    // salimos
-					salir = true;
-					System.out.println("_____________________");
-					System.out.println("Saliendo del programa");
-					System.exit(0);
-					break;
-				}
-				default:
+				System.out.println("Opcion incorrecta");
+				System.out.println("\n");
+				System.out.println("\n");
 
-					System.out.println("Opcion incorrecta");
-					System.out.println("\n");
-					System.out.println("\n");
+				salir = false;
 
-					salir = false;
-
-				}
-
-//			} catch (InputMismatchException ex) {
-		
+			}
 
 		} while (salir == false);
-
-	
 
 	}
 
