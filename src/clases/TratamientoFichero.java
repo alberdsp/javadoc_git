@@ -16,7 +16,7 @@ import java.util.Set;
 import java.util.TreeMap;
 
 /**
- * Clase Tratamiento Fichero clase para tratar los fichero tanto de clientes
+ * Clase TratamientoFichero para tratar los fichero tanto de clientes
  * como de visitas ruta_clientes establece la ruta donde se guradan los clientes
  * ruta_visitas establece la ruta donde se guradan las visitas
  * 
@@ -25,23 +25,33 @@ import java.util.TreeMap;
  */
 
 public class TratamientoFichero {
+	
+	/**
+	 * Constructor por defecto
+	 */
+	public TratamientoFichero() {}
 
+	/**
+	 * ruta del fichero pacientes
+	 */
 	public static String ruta_pacientes = "C:/Users/Alber/eclipse-workspace/javadoc_git/almacenamiento/pacientes.txt";
-
+	/**
+	 * ruta del fichero visitas
+	 */
 	public static String ruta_visitas = "C:/Users/Alber/eclipse-workspace/javadoc_git/almacenamiento/visitas.txt";
 
 	/**
 	 * metodo para escribir pacientes en el fichero pasamos como parametro un
 	 * TreeMap con clave = dni del paciente y valor = Objeto tipo Paciente
 	 * 
-	 * @param pacientes
+	 * @param pacientes pasamos un objeto paciente
 	 */
 	public static void grabarPacientes(TreeMap<String, Paciente> pacientes) {
 
 		TreeMap<String, Paciente> listapacientes = pacientes;
 		FileWriter fichero = null;
 		PrintWriter pw = null;
-		String delimitador = ",";
+		String delimitador = ";";
 
 		try {
 
@@ -87,13 +97,13 @@ public class TratamientoFichero {
 	 * 
 	 * @return Nos devuelve un TreeMap con clave dni y el objeto Paciente con el
 	 *         listado de pacientes.
-	 * @throws IOException
+	 * @throws IOException captura excepción
 	 */
 	public static TreeMap<String, Paciente> leerFicheroPaci() throws IOException {
 
 		TreeMap<String, Paciente> listaPacientes = new TreeMap<String, Paciente>();
 		String cadena; // variable donde almacenanamos cada linea del fichero
-		String delimitador = ","; // indica como van separados los atributos
+		String delimitador = ";"; // indica como van separados los atributos
 		String dni; // actua también de clave en los mapas
 		Paciente paciente = new Paciente(); // clase paciente
 		String[] pacienteArray; // array para almacenar atributos de la linea del fichero
@@ -140,13 +150,13 @@ public class TratamientoFichero {
 	 * 
 	 * @param ndni pasamos el parámetro ndni como número de deni del paciente
 	 * @return devuelve un TreeMap con clave Integer incremental y objeto visita
-	 * @throws IOException
+	 * @throws IOException captura excepción
 	 */
 	public static TreeMap<Integer, Visita> listaVisitas(String ndni) throws IOException {
 
 		TreeMap<Integer, Visita> listaVisitas = new TreeMap<Integer, Visita>();
 		String cadena; // variable donde almacenanamos cada linea del fichero
-		String delimitador = ","; // indica como van separados los atributos
+		String delimitador = ";"; // indica como van separados los atributos
 		Integer indice = 0; // contador de número de linea
 		String dni; // actua también de clave en los mapas
 		Visita visita = new Visita(); // clase visitas
@@ -204,14 +214,14 @@ public class TratamientoFichero {
 	 * 
 	 * @param ndni es el número de dni
 	 * @return devuelve un objeto paciente si lo encuentra
-	 * @throws NumberFormatException
-	 * @throws IOException
+	 * @throws NumberFormatException captura excepción de error tipo numero
+	 * @throws IOException captura excepción
 	 */
 
 	public static Paciente buscarPaciente(String ndni) throws NumberFormatException, IOException {
 
 		String cadena; // variable donde almacenanamos cada linea del fichero
-		String delimitador = ","; // indica como van separados los atributos
+		String delimitador = ";"; // indica como van separados los atributos
 		String dni = ""; // actua también de clave en los mapas
 		Paciente paciente = new Paciente(); // clase paciente
 		String[] pacienteArray; // array para almacenar atributos de la linea del fichero
@@ -273,7 +283,7 @@ public class TratamientoFichero {
 		TreeMap<String, Visita> listavisitas = visitas;
 		FileWriter fichero = null;
 		PrintWriter pw = null;
-		String delimitador = ",";
+		String delimitador = ";";
 
 		try {
 

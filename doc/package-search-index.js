@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"javadoc_git","l":"javadoc_git"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"javadoc_git","l":"clases"},{"m":"javadoc_git","l":"menus"}];updateSearchResults();

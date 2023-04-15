@@ -29,15 +29,23 @@ public class Paciente {
 	private double peso;
 	private double altura;
 
+	/**
+	 * Constructor por defecto
+	 */
 	public Paciente() {
 	}
 
+	
 	/**
-	 * Declaramos constructor con parametros (String dni ,String nombre, int edad ,
-	 * char sexo, String calle, String localidad, String cod_postal) lo utilizaremos
-	 * por defecto en el tratamiento de ficheros
+	 *  * Declaramos constructor para el tratamiento de ficheros
+	 * @param dni   DNI de la persona
+	 * @param nombre   Nombre
+	 * @param edad     Edad
+	 * @param sexo     Sexo
+	 * @param calle    Calle
+	 * @param localidad   Localidad
+	 * @param cod_postal  Código Postal
 	 */
-
 	public Paciente(String dni, String nombre, int edad, char sexo, String calle, String localidad, String cod_postal) {
 
 		this.dni = dni.toUpperCase();
@@ -84,90 +92,140 @@ public class Paciente {
 
 	
 	/**
-	 * Declaramos setters
+	 *  Establece DNI
+	 * @param dni  DNI
 	 */
-
 	public void setDni(String dni) {
 		this.dni = dni.toUpperCase();
 	}
-
+    /**
+     * Establece Calle
+     * @param calle  Calle
+     */
 	public void setCalle(String calle) {
 		this.calle = calle.toUpperCase();
 	}
-
+    /**
+     * Establece La Localidad
+     * @param localidad Localidad
+     */
 	public void setLocalidad(String localidad) {
 		this.localidad = localidad.toUpperCase();
 	}
-
+     /**
+      * Establece Código Postal
+      * @param cod_postal  Código Postal
+      */
 	public void setCod_postal(String cod_postal) {
 		this.cod_postal = cod_postal;
 	}
-
+    /**
+     * Establece Nombre
+     * @param nombre Nombre
+     */
 	public void setNombre(String nombre) {
 		this.nombre = nombre.toUpperCase();
 	}
-
+    /**
+     * Establece Edad
+     * @param edad Edad
+     */
 	public void setEdad(int edad) {
 		this.edad = edad;
 	}
-
+    /**
+     * Establece Sexo
+     * @param sexo Sexo
+     */
 	public void setSexo(char sexo) {
 		this.sexo = sexo;
 	}
-
+    /**
+     * Establece Peso
+     * @param peso Peso
+     */
 	public void setPeso(double peso) {
 		this.peso = peso;
 	}
-
+    /**
+     * Establece Altura
+     * @param altura Altura
+     */
 	public void setAltura(double altura) {
 		this.altura = altura;
 	}
 
-	/**
-	 * Declaramos getters
-	 */
-
+	
+    /**
+     * Devuelve el Nombre
+     * @return Nombre
+     */
 	public String getNombre() {
 		return nombre;
 	}
-
+    /**
+     * Devuelve la Edad
+     * @return  Edad
+     */
 	public int getEdad() {
 		return edad;
 	}
-
+    /**
+     * Devuelve el DNI
+     * @return DNI
+     */
 	public String getDni() {
 		return dni;
 	}
-
+    /**
+     * Devuelve la Calle
+     * @return  Calle
+     */
 	public String getCalle() {
 		return calle;
 	}
-
+    /**
+     * Devuelve la Localidad
+     * @return Localidad
+     */
 	public String getLocalidad() {
 		return localidad;
 	}
-
+    /**
+     * Devuelve el Código Postal
+     * @return Código Postal
+     */
 	public String getCod_postal() {
 		return cod_postal;
 	}
-
+    /**
+     * Devuelve el Sexo
+     * @return Sexo
+     */
 	public char getSexo() {
 		return sexo;
 	}
-
+    /**
+     * Devuelve el Peso
+     * @return Peso
+     */
 	public double getPeso() {
 		return peso;
 	}
-
+    /**
+     * Devuelve la Altura
+     * @return Altura
+     */
 	public double getAltura() {
 		return altura;
 	}
 
-	/**
-	 * Método que calcularImc , calcula el indice de masa corporal deben estar los
+    /**
+     * Método que calcularImc , calcula el indice de masa corporal deben estar los
 	 * valores almacenados en KILOS y METROS
 	 * 
-	 */
+     * @return resultado calculo IMC
+     */
 	public int calcularImc() {
 //Calculamos el peso de la persona
 		double pesoActual = peso / (Math.pow(altura, 2));
@@ -220,6 +278,7 @@ public class Paciente {
 	 * Método que graba el peso ideal de la persona
 	 * 
 	 * @param p pasamos como parámetro la clase persona que queremos evaluar
+	 * @return String con el resultado del IMC
 	 */
 
 	public static String resultadoImc(Paciente p) {

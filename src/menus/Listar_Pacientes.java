@@ -9,14 +9,25 @@ import java.util.Map.Entry;
 import clases.Paciente;
 import clases.TratamientoFichero;
 
+
+/**
+ * Clase Listar_Pacientes para manejar el listado de los pacientes
+ * @author Alber
+ *
+ */
 public class Listar_Pacientes {
 	
+	  
+	/**
+	 * Constructor por defecto
+	 */
+	public Listar_Pacientes() {}
 	
 
 	/**
 	 * Método para imprimir el menu
 	 * 
-	 * @throws IOException
+	 * @throws IOException captura la excepción
 	 */
 	public void printMenu() throws IOException {
 
@@ -29,15 +40,7 @@ public class Listar_Pacientes {
 		for (Entry<String, Paciente> listap : listapacientes.entrySet()) {
 
 			System.out.println(listap.toString());
-//			String nombre = listap.getValue().getNombre();
-//			int edad = listap.getValue().getEdad();
-//			char sexo = listap.getValue().getSexo();
-//			String calle = listap.getValue().getCalle();
-//			String localidad = listap.getValue().getLocalidad();
-//			String cod_postal = listap.getValue().getCod_postal();
-//
-//			pw.println(dni + delimitador + nombre + delimitador + edad + delimitador + sexo + delimitador + calle
-//					+ delimitador + localidad + delimitador + cod_postal);
+
 		}
 		
 		

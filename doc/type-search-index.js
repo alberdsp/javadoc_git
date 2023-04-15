@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"javadoc_git","l":"Persona"}];updateSearchResults();
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"menus","l":"Alta_Pacientes"},{"p":"menus","l":"Alta_Visitas"},{"p":"menus","l":"Listar_Pacientes"},{"p":"menus","l":"Listar_Visitas"},{"p":"clases","l":"Main"},{"p":"menus","l":"Menu_Inicial"},{"p":"clases","l":"Paciente"},{"p":"clases","l":"TratamientoFichero"},{"p":"clases","l":"Visita"}];updateSearchResults();

@@ -9,13 +9,18 @@ import clases.Paciente;
 import clases.TratamientoFichero;
 
 /**
- * 
- * @author Alber clase menu para el alta de los pacientes
+ * Clase Alta_Pacientes para gestionar el alta de los pacientes
+ * @author Alber 
  *
  */
 
 public class Alta_Pacientes {
 
+	
+	
+	/**
+	 * Constructor por defecto
+	 */
 	public Alta_Pacientes() {
 	}
 
@@ -38,7 +43,7 @@ public class Alta_Pacientes {
 	 * Método para crear un nuevo paciente
 	 * 
 	 * @return devuelve un objeto Paciente
-	 * @throws IOException
+	 * @throws IOException  capturamos el error
 	 */
 
 	public Paciente nuevoPaciente() throws IOException {

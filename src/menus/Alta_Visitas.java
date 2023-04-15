@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 
 /**
- * Clase para mostrar menu de alta y métodos de alta de Visitas
+ * Clase Alta_Visitas menu de alta y métodos de alta de Visitas
  * 
  * @author Alber
  *
@@ -46,7 +46,7 @@ public class Alta_Visitas {
 	/**
 	 * método para grabar nueva visita completa
 	 * 
-	 * @throws IOException
+	 * @throws IOException captura la excepcion
 	 */
 	public void nuevaVisita() throws IOException {
 

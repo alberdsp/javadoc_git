@@ -10,7 +10,7 @@ import clases.TratamientoFichero;
 import clases.Visita;
 
 /**
- * Clase para listar las visitas de los pacientes
+ * Clase Listar_Visitas para listar las visitas de los pacientes
  * 
  * @author Alber
  *
@@ -27,7 +27,7 @@ public class Listar_Visitas {
 	/**
 	 * Método para imprimir el menu
 	 * 
-	 * @throws IOException
+	 * @throws IOException captura la excepción
 	 */
 	public void printMenu() throws IOException {
 

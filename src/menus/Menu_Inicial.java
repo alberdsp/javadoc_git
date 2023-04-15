@@ -1,5 +1,10 @@
 package menus;
 
+/**
+ * Clase Menu_Inicial lista las opciones del menu al iniciar la aplicacion
+ * @author Alber
+ *
+ */
 public class Menu_Inicial {
 
 	/**

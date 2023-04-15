@@ -10,20 +10,26 @@ import menus.Listar_Pacientes;
 import menus.Listar_Visitas;
 
 /**
- * Clase PersonaApp_Scanner carga menú y selecciona añadir alta o visitas
+ * Clase Main carga menú y selecciona añadir alta o visitas
  * 
  * @author Alberto
  * @version v0.2
  */
-public class Main {
+public class Main { 
+	
+	/**
+	 * constructor por defecto
+	 */
+	public Main() {}
+	
+	
 
 	/**
 	 * metodo main
 	 * 
 	 * @param args argumentos del método main
-	 * @throws IOException
+	 * @throws IOException captura la excepción
 	 */
-
 	public static void main(String[] args) throws IOException {
 		// iniciamos variables
 

@@ -2,6 +2,11 @@ package clases;
 
 import java.util.Date;
 
+/**
+ * Clase Visita establece los parametros a utilizar en una visita
+ * @author Alber
+ *
+ */
 public class Visita {
 
 	/**
@@ -48,55 +53,63 @@ public class Visita {
 	}
 
 	/**
-	 * @return the dni
+	 * Devuelve DNI
+	 * @return  dni
 	 */
 	public String getDni() {
 		return dni;
 	}
 
 	/**
-	 * @return devuelve la fecha
+	 * Devuelve Fecha
+	 * @return fecha
 	 */
 	public String getFecha() {
 		return fecha;
 	}
 
 	/**
-	 * @return devuelve la hora
+	 * devuelve la hora
+	 * @return hora
 	 */
 	public String getHora() {
 		return hora;
 	}
 
 	/**
-	 * @return devuelve el peso
+	 * devuelve el peso
+	 * @return peso
 	 */
 	public Double getPeso() {
 		return peso;
 	}
 
 	/**
-	 * @return devuelve la altura
+	 * devuelve la altura
+	 * @return  altura
 	 */
 	public Double getAltura() {
 		return altura;
 	}
 
 	/**
-	 * @return devuelve la unidad de altura
+	 * devuelve la unidad de altura
+	 * @return unidad de altura
 	 */
 	public String getUnidadaltura() {
 		return unidadaltura;
 	}
 
 	/**
-	 * @return devuelve el resultado del IMC
+	 * devuelve el resultado del IMC
+	 * @return resultado del IMC
 	 */
 	public String getResulimc() {
 		return resulimc;
 	}
 
 	/**
+	 * Establece Dni
 	 * @param dni establece el dni
 	 */
 	public void setDni(String dni) {
@@ -104,47 +117,58 @@ public class Visita {
 	}
 
 	/**
-	 * @param fecha establece la fecha de la visita
+	 * Establece Fecha
+	 * @param fecha de la visita
 	 */
 	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
 
 	/**
-	 * @param hora establece la hora de la visita
+	 * Establece Hora de la visita
+	 * @param hora pasamos hora de la visita
 	 */
 	public void setHora(String hora) {
 		this.hora = hora;
 	}
 
 	/**
-	 * @param peso establece el peso de la visita
+	 * Establece  peso de la visita
+	 * @param peso pasamos  peso de la visita
 	 */
 	public void setPeso(Double peso) {
 		this.peso = peso;
 	}
 
 	/**
-	 * @param altura establece la altura de la visita
-	 */
+	 * Establece la altura de la visita
+	 * @param altura  pasamos altura de la visita
+	 */ 
 	public void setAltura(Double altura) {
 		this.altura = altura;
 	}
 
 	/**
-	 * @param resulimc establece el resultado del calculo Paciente.resultadoImc()
+	 * Establece el resultado del calculo Paciente.resultadoImc()
+	 * @param resulimc  pasamos el resultado de IMC
 	 */
 	public void setResulimc(String resulimc) {
 		this.resulimc = resulimc;
 	}
 
 	/**
-	 * @param unidadaltura establece la unidad de altura
+	 * Establece la unidad de altura
+	 * @param unidadaltura  pasamos la unidad de altura metros generalmente
 	 */
 	public void setUnidadaltura(String unidadaltura) {
 		this.unidadaltura = unidadaltura;
 	}
 
+	
+	/**
+	 * Sobrescribe toString() por defecto e imprime las visitas
+	 * @return string con la visita
+	 */
 	@Override
 	public String toString() {
 

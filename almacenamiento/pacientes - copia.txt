@@ -1,5 +1,0 @@
-48456925L,Alberto Barberá, 43, Camino viejo de callosa 39, Orihuela,03300
-44444325L,Pepa Perez, 43, Almar 3, Bigastro,03380
-42216925L,Pedro Barberá, 43, Camino viejo de callosa 39, Orihuela,03300
-
-458787733J,Pedro Perez,56,H,89.97,178.97,Calle la Mata 23,Torrevieja,03380
