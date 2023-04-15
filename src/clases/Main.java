@@ -6,6 +6,7 @@ import java.util.Scanner;
 import menus.Menu_Inicial;
 import menus.Alta_Pacientes;
 import menus.Alta_Visitas;
+import menus.Listar_Pacientes;
 import menus.Listar_Visitas;
 
 /**
@@ -84,8 +85,18 @@ public class Main {
 
 				break;
 			}
-
 			case 3: {
+
+				System.out.println("Ha elegido listado de Pacientes");
+				System.out.println("----------------------------------");
+
+				// Instanciamos Listar_Visitas
+				Listar_Pacientes listarpacientes = new Listar_Pacientes();
+				listarpacientes.printMenu();
+				break;
+
+			}
+			case 4: {
 
 				System.out.println("Ha elegido listado de Visitas");
 				System.out.println("----------------------------------");

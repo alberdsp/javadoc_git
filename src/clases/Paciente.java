@@ -198,8 +198,8 @@ public class Paciente {
 			tipopersona = "Menor de edad";
 		}
 
-		return "----------------------------\n" + "Informacion del Paciente:\n" + "Nombre: " + nombre + "\n" + "Sexo: "
-				+ sexo + "\n" + "Edad: " + edad + " \n" + " DNI: " + dni + "\n" + "Condicion: " + tipopersona;
+		return "\n" + "Informacion del Paciente:\n" + "Nombre: " + nombre + "\n" + "Sexo: "
+				+ sexo + "\n" + "Edad: " + edad + " \n" + " DNI: " + dni + "\n" + "Condicion: " + tipopersona+"\n"+"----------------------------\n";
 	}
 
 // agregamos el método mayor de edad
