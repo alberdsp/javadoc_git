@@ -5,6 +5,7 @@ import java.util.Locale;
 import java.util.Scanner;
 import java.util.TreeMap;
 
+import clases.Paciente;
 import clases.TratamientoFichero;
 import clases.Visita;
 
@@ -39,11 +40,44 @@ public class Listar_Visitas {
 		// sc.useDelimiter("\n");
 		scd.useLocale(Locale.US);
 
-		// Introducimos los datos
+		// Introducimos los datos y capturamos el dni
 
 		String dni = scd.next().toUpperCase();
-
-		TratamientoFichero.listaVisitas(dni);
+        
+		
+		// si existe el dni listamos el Paciente y las visitas
+		 if (TratamientoFichero.buscarPaciente(dni) != null ) {
+			
+			 Paciente paciente = TratamientoFichero.buscarPaciente(dni);
+			 
+			 System.out.println(paciente.toString());
+			 System.out.println("\n");
+			 System.out.println(" ------------------------- ");
+			   // si hay visitas las lista
+			  if (TratamientoFichero.listaVisitas(dni).size() > 0) {
+			  System.out.println("   Fin visitas registradas     ");
+			  System.out.println(" ------------------------- ");
+			  //Si no hay visitas 
+			  }else {
+				  System.out.println("\n");
+				  System.out.println("   El paciente no tiene visitas   ");
+				  System.out.println(" ------------------------------------ ");  
+				  System.out.println("\n");
+			  }
+			
+			 
+		 }else {
+			 
+			 System.out.println("\n");
+			 System.out.println(" Lo sentimos, el DNI introducido no se"
+			 		+ "corresponde con pacientes");
+			 System.out.println("\n");
+			 
+		 }
+		
+        
+        
+		
 
 	}
 

@@ -50,12 +50,23 @@ public class Paciente {
 
 	}
 
-	private void generarDni() {
+	
+	private Boolean validadDni(String ndni) {
 		final int divisor = 23;
-		int numDNI = ((int) Math.floor(Math.random() * (100000000 - 10000000) + 10000000));
+		Boolean dnivalido = false;
+		String strdni = ndni.trim().substring(0,7);
+		int numDNI = Integer.parseInt(ndni);
 		int res = numDNI - (numDNI / divisor * divisor);
 		char letraDNI = generaLetraDNI(res);
 		dni = Integer.toString(numDNI) + letraDNI;
+		
+		if(ndni.equals(dni)) {
+			
+			dnivalido = true;
+			
+		}
+		
+		return dnivalido;
 	}
 
 	private char generaLetraDNI(int res) {
@@ -64,6 +75,38 @@ public class Paciente {
 		return letras[res];
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+//	private void generarDni() {
+//		final int divisor = 23;
+//		int numDNI = ((int) Math.floor(Math.random() * (100000000 - 10000000) + 10000000));
+//		int res = numDNI - (numDNI / divisor * divisor);
+//		char letraDNI = generaLetraDNI(res);
+//		dni = Integer.toString(numDNI) + letraDNI;
+//	}
+//
+//	private char generaLetraDNI(int res) {
+//		char letras[] = { 'T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H',
+//				'L', 'C', 'K', 'E' };
+//		return letras[res];
+//	}
+//
+//	
+	
+	
+	
+	
+	
+	
+	
 	/**
 	 * Declaramos setters
 	 */
@@ -180,7 +223,7 @@ public class Paciente {
 		}
 
 		return "----------------------------\n" + "Informacion del Paciente:\n" + "Nombre: " + nombre + "\n" + "Sexo: "
-				+ sexo + "\n" + "Edad: " + edad + " años\n" + "DNI: " + dni + "\n" + "Condicion: " + tipopersona;
+				+ sexo + "\n" + "Edad: " + edad + " \n" + " DNI: " + dni + "\n" + "Condicion: " + tipopersona;
 	}
 
 // agregamos el método mayor de edad
