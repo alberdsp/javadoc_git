@@ -32,13 +32,13 @@ public class TratamientoFichero {
 	public TratamientoFichero() {}
 
 	/**
-	 * ruta del fichero pacientes
+	 * ruta del fichero pacientes, ruta relativa dentro de la carpeta del proyecto
 	 */
-	public static String ruta_pacientes = "C:/Users/Alber/eclipse-workspace/javadoc_git/almacenamiento/pacientes.txt";
+	public static String ruta_pacientes = "almacenamiento/pacientes.txt";
 	/**
-	 * ruta del fichero visitas
-	 */
-	public static String ruta_visitas = "C:/Users/Alber/eclipse-workspace/javadoc_git/almacenamiento/visitas.txt";
+	 * ruta del fichero visitas, ruta relativa dentro de la carpeta del proyecto
+	 */ 
+	public static String ruta_visitas = "almacenamiento/visitas.txt";
 
 	/**
 	 * metodo para escribir pacientes en el fichero pasamos como parametro un

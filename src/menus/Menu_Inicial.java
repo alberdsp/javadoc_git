@@ -21,7 +21,7 @@ public class Menu_Inicial {
 	public void printMenu() {
 		System.out.println("\n");
 		System.out.println("\n");
-		System.out.println("      Gestion de Pacientes 2023    ");
+		System.out.println(" Gestion de Pacientes 2023 v1.0    ");
 		System.out.println("***********************************");
 		System.out.println("----------MENU PRINCIPAL-----------");
 		System.out.println("***********************************");
