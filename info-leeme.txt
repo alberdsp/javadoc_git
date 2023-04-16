@@ -1,0 +1,12 @@
+Aplicación para gestión de consulta médica
+
+los ficheros se guardan en C:\Users\Propietario\eclipse-workspace\javadoc_git\almacenamiento
+
+
+pacientes.txt
+visitas.txt
+
+
+ejecutarconsulta.bat  inicia el programa
+
+99 sale del programa. 
