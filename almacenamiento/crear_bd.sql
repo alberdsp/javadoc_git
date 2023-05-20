@@ -4,7 +4,7 @@ use clinica;
 
 
 
-CREATE TABLE `paciente` (
+CREATE TABLE `pacientes` (
 	`dni` VARCHAR(9) NOT NULL,
 	`nombre` VARCHAR(100) NULL DEFAULT NULL,
 	`edad` INT(11) NULL DEFAULT NULL,

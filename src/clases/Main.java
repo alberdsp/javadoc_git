@@ -5,6 +5,8 @@ package clases;
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import conexionSQL.Conexion;
 import menus.*;
 
 
@@ -43,6 +45,9 @@ public class Main {
 		
 		// cargamos la configuración de la conexión a la base de datos
 		TratamientoFichero.leerConexion();
+		
+		  Conexion conexion = new Conexion();
+	        System.out.println(conexion.toString());
 		
 		
 		

@@ -1,4 +1,4 @@
-NOMBRE_BD=euroagro
+NOMBRE_BD=clinica
 UBICACION=localhost
 PUERTO=3306
 USUARIO=root

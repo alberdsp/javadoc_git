@@ -7,13 +7,15 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import clases.TratamientoFichero;
+
 public class Conexion {
 
-	private static String NOMBRE_BD = "europos";
-	private static String UBICACION = "localhost";
-	private static String PUERTO = "3306";
-	private static String USUARIO = "root";
-	private static String CLAVE = "sauber";
+	private static String NOMBRE_BD = TratamientoFichero.getNOMBRE_BD();
+	private static String UBICACION = TratamientoFichero.getUBICACION();
+	private static String PUERTO = TratamientoFichero.getPUERTO();
+	private static String USUARIO = TratamientoFichero.getUSUARIO();
+	private static String CLAVE = TratamientoFichero.getCLAVE();
 
 	// Para versión mysql-conector-java-5.1.6.jar + mysql Server 5.7
 	private static final String CONTROLADOR = "com.mysql.jdbc.Driver";

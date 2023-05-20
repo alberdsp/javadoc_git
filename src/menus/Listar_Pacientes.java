@@ -8,6 +8,7 @@ import java.util.Map.Entry;
 
 import clases.Paciente;
 import clases.TratamientoFichero;
+import conexionSQL.SentenciasSQL;
 
 
 /**
@@ -42,6 +43,8 @@ public class Listar_Pacientes {
 			System.out.println(listap.toString());
 
 		}
+		
+		SentenciasSQL.grabarPacientes(listapacientes);
 		
 		
 		

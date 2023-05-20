@@ -32,6 +32,61 @@ import java.util.TreeMap;
 
 public class TratamientoFichero {
 	
+	
+	
+	/**
+	 * parametros nuevos para las conexiones a BD
+	 */
+	
+
+    private static String NOMBRE_BD;
+	private static String UBICACION;
+	private static String PUERTO;
+	private static String USUARIO;
+	private static String CLAVE;
+	
+	
+	/**
+	 * @return the nOMBRE_BD
+	 */
+	public static String getNOMBRE_BD() {
+		return NOMBRE_BD;
+	}
+
+	/**
+	 * @return the uBICACION
+	 */
+	public static String getUBICACION() {
+		return UBICACION;
+	}
+
+	/**
+	 * @return the pUERTO
+	 */
+	public static String getPUERTO() {
+		return PUERTO;
+	}
+
+	/**
+	 * @return the uSUARIO
+	 */
+	public static String getUSUARIO() {
+		return USUARIO;
+	}
+
+	/**
+	 * @return the cLAVE
+	 */
+	public static String getCLAVE() {
+		return CLAVE;
+	}
+
+
+	
+	
+	
+	
+	
 	/**
 	 * Constructor por defecto
 	 */
@@ -553,23 +608,27 @@ public class TratamientoFichero {
 	        }
 
 	        // Retrieve the values from the properties object
-	        String nombreBd = properties.getProperty("NOMBRE_BD");
-	        String ubicacion = properties.getProperty("UBICACION");
-	        String puerto = properties.getProperty("PUERTO");
-	        String usuario = properties.getProperty("USUARIO");
-	        String clave = properties.getProperty("CLAVE");
-	        String controlador = properties.getProperty("CONTROLADOR");
-	        String url = properties.getProperty("URL");
+	        String nombreBd = properties.getProperty("NOMBRE_BD").trim();
+	        String ubicacion = properties.getProperty("UBICACION").trim();
+	        String puerto = properties.getProperty("PUERTO").trim();
+	        String usuario = properties.getProperty("USUARIO").trim();
+	        String clave = properties.getProperty("CLAVE").trim();
+	       
 
 	        // Use the retrieved values as needed
-	        Conexion.setNombreBd(nombreBd);
-	        Conexion.setUbicacion(ubicacion);
-	        Conexion.setPuerto(puerto);
-	        Conexion.setUsuario(usuario);
-	        Conexion.setClave(clave);
-	   
+	        
+	         NOMBRE_BD = nombreBd;
+	    	 UBICACION = ubicacion;
+	    	 PUERTO = puerto;
+	         USUARIO = usuario;
+	    	 CLAVE = clave;
+	        
+	        
+	        
 
 	        System.out.println("Configuración de conexión cargada correctamente.");
+	        
+	      
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	    }

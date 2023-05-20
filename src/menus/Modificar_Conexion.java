@@ -65,6 +65,7 @@ public class Modificar_Conexion {
 		System.out.println("\n");
 		System.out.println("Configuración de conexión guardada correctamente.");
 		System.out.println("\n");
+		System.out.println("Reinicie la aplicacion para que los cambios surtan efecto.");
 
 	}
 
