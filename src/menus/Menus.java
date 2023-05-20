@@ -35,6 +35,7 @@ public class Menus {
 		System.out.println("5. Lista de Visitas");
 		System.out.println("6. Lista de Visitas por fecha y profesional");
 		System.out.println("7. Lista de Profesionales");
+		System.out.println("8. Modificar conexion a BD");
 		System.out.println("99. Salir");
 		System.out.println("\n");
 		System.out.println("\n");

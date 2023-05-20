@@ -1,0 +1,5 @@
+NOMBRE_BD=euroagro
+UBICACION=localhost
+PUERTO=3306
+USUARIO=root
+CLAVE=sauber

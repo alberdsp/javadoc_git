@@ -40,6 +40,12 @@ public class Main {
 		int opcionmenu = 0; // opción elegida
 		Scanner omenu;
 		Menus menuinicial = new Menus(); // cargamos menú
+		
+		// cargamos la configuración de la conexión a la base de datos
+		TratamientoFichero.leerConexion();
+		
+		
+		
 
 		// cargamos el menú inicial
 		do {
@@ -101,7 +107,7 @@ public class Main {
 				System.out.println("Ha elegido alta de profesionales médicos");
 				System.out.println("----------------------------------");
 
-				// Instanciamos Listar_Visitas
+				// Instanciamos Alta_Profesionales
 				Alta_Profesionales altaprofesionales = new Alta_Profesionales();
 				altaprofesionales.printMenu();
 
@@ -121,7 +127,7 @@ public class Main {
 				System.out.println("Ha elegido listado de Pacientes");
 				System.out.println("----------------------------------");
 
-				// Instanciamos Listar_Visitas
+				// Instanciamos Listar_Pacientes
 				Listar_Pacientes listarpacientes = new Listar_Pacientes();
 				listarpacientes.printMenu();
 				break;
@@ -145,7 +151,7 @@ public class Main {
 				System.out.println("Ha elegido listado de Visitas por fecha y profesional");
 				System.out.println("----------------------------------");
 
-				// Instanciamos Listar_Visitas
+				// Instanciamos Listar_Visitas_fecha_profesional
 				Listar_Visitas_fecha_profesional listarvisitas = new Listar_Visitas_fecha_profesional();
 				listarvisitas.printMenu();
 				break;
@@ -158,9 +164,23 @@ public class Main {
 				System.out.println("Ha elegido listado de Profesionales");
 				System.out.println("----------------------------------");
 
-				// Instanciamos Listar_Visitas
+				// Instanciamos Listar_Profesionales
 				Listar_Profesionales listarprofesionales = new Listar_Profesionales();
 				listarprofesionales.printMenu();
+				break;
+
+			}
+			
+			
+			case 8: {
+
+				System.out.println("Ha elegido modificar conexion a BD");
+				System.out.println("----------------------------------");
+
+				// Instanciamos Listar_Visitas
+				Modificar_Conexion modconexion = new Modificar_Conexion();
+				modconexion.printMenu();
+				modconexion.configurarConexion();
 				break;
 
 			}

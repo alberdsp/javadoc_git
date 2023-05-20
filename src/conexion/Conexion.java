@@ -9,15 +9,15 @@ import java.sql.SQLException;
 
 public class Conexion {
 
-	private static final String NOMBRE_BD = "europos";
-	private static final String UBICACION = "localhost";
-	private static final String PUERTO = "3306";
-	private static final String USUARIO = "root";
-	private static final String CLAVE = "sauber";
+	private static String NOMBRE_BD = "europos";
+	private static String UBICACION = "localhost";
+	private static String PUERTO = "3306";
+	private static String USUARIO = "root";
+	private static String CLAVE = "sauber";
 
 	// Para versión mysql-conector-java-5.1.6.jar + mysql Server 5.7
 	private static final String CONTROLADOR = "com.mysql.jdbc.Driver";
-	private static final String URL = "jdbc:mysql://" + UBICACION + ":" + PUERTO + "/" + NOMBRE_BD
+	private static final String URL = "jdbc:mysql://" + getUbicacion() + ":" + getPuerto() + "/" + getNombreBd()
 			+ "?useUnicode=true&characterEncoding=utf-8";
 
 	// RECUERDA CAMBIAR!!
@@ -38,7 +38,7 @@ public class Conexion {
 		try {
 			Class.forName(CONTROLADOR);
 		} catch (ClassNotFoundException e) {
-			// * TODO Auto-generated catch block
+		
 			System.out.println("Error al cargar el controlador");
 			e.printStackTrace();
 		}
@@ -50,9 +50,9 @@ public class Conexion {
 		try {
 
 			// Establecemos la conexión para eso java nos prporciona conexion =
-			conexion = DriverManager.getConnection(URL, USUARIO, CLAVE);
+			conexion = DriverManager.getConnection(URL, getUsuario(), getClave());
 
-			System.out.println("Conexión correctamente establecida con la base de datos " + NOMBRE_BD);
+			System.out.println("Conexión correctamente establecida con la base de datos " + getNombreBd());
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -62,6 +62,105 @@ public class Conexion {
 
 		return conexion;
 	}
+
+	
+	/**
+	 *  metodo para consultar el nombre de la bd
+	 * @return  nombre bd
+	 */
+	public static String getNombreBd() {
+		return NOMBRE_BD;
+	}
+
+	
+	/**
+	 *  metodo para consultar servidor de la bd
+	 * @return  ruta ip o nombre del servidor
+	 */
+	public static String getUbicacion() {
+		return UBICACION;
+	}
+
+	
+	/**
+	 *  metodo para consultar el puerto del servidor
+	 * @return  puerto del servidor
+	 */
+	public static String getPuerto() {
+		return PUERTO;
+	}
+
+	
+	/**
+	 *  metodo para consultar el usuario de la bd
+	 * @return  usuario de la bd
+	 */
+	public static String getUsuario() {
+		return USUARIO;
+	}
+	/**
+	 *  metodo para consultar el password de la bd
+	 * @return  password de la bd
+	 */
+	public static String getClave() {
+		return CLAVE;
+	}
+
+
+	/**
+	 * @param nombreBd nombre de la bd a asignar
+	 */
+	public static void setNombreBd(String nombreBd) {
+		NOMBRE_BD = nombreBd;
+	}
+
+	/**
+	 * @param ubicacion ip o nombre del servidor
+	 */
+	public static void setUbicacion(String ubicacion) {
+		UBICACION = ubicacion;
+	}
+
+	/**
+	 * @param puerto puerto del servidor
+	 */
+	public static void setPuerto(String puerto) {
+		PUERTO = puerto;
+	}
+
+	/**
+	 * @param usuario usuario con permisos
+	 */
+	public static void setUsuario(String usuario) {
+		USUARIO = usuario;
+	}
+
+	/**
+	 * @param clave password
+	 */
+	public static void setClave(String clave) {
+		CLAVE = clave;
+	}
+	
+	
+	
+	/**
+	 * sobrescribimos el metodo toString para imprimir los
+	 * datos de la conexion
+	 */
+	@Override
+    public String toString() {
+        return "Conexion{" +
+                "nombreBd='" + getNombreBd() + '\'' +
+                ", ubicacion='" + getUbicacion() + '\'' +
+                ", puerto='" + getPuerto() + '\'' +
+                ", usuario='" + getUsuario() + '\'' +
+                ", clave='" + getClave() + '\'' +
+                '}';
+    }
+	
+	
+	
 
 	// SEGUNDA ACTUALIZACION
 

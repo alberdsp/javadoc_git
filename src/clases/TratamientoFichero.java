@@ -1,6 +1,7 @@
 package clases;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -12,9 +13,12 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Map.Entry;
+import java.util.Properties;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeMap;
+
+import conexion.Conexion;
 
 /**
  * Clase TratamientoFichero para tratar los fichero tanto de clientes
@@ -42,7 +46,15 @@ public class TratamientoFichero {
 	public static String ruta_visitas = "almacenamiento/visitas.txt";
 
 	
+	/**
+	 * ruta del fichero de profesionales
+	 */
 	public static String ruta_profesionales = "almacenamiento/profesionales.txt";
+
+	/**
+	 * ruta del fichero de configuracion
+	 */
+	public static String ruta_config = "almacenamiento/config.txt";
 
 	
 	/**
@@ -475,7 +487,11 @@ public class TratamientoFichero {
 	    return profesional;
 	}
 	
-	
+	/**
+	 *  método para leer el fichero de los profesionales
+	 * @return Treemap con los profesionales almacenados
+	 * @throws IOException
+	 */
 	public static TreeMap<String, Profesionales_Medicos> leerFicheroProfesionales() throws IOException {
 	    TreeMap<String, Profesionales_Medicos> listaProfesionales = new TreeMap<String, Profesionales_Medicos>();
 	    String cadena; // variable donde almacenamos cada linea del fichero
@@ -502,6 +518,60 @@ public class TratamientoFichero {
 	}
 
 	
+	/**
+	 * metodo para grabar el fichero de conexión
+	 */
+	public static void grabarConexion() {
+        try (PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(ruta_config)))) {
+            pw.println("NOMBRE_BD=" + Conexion.getNombreBd());
+            pw.println("UBICACION=" + Conexion.getUbicacion());
+            pw.println("PUERTO=" + Conexion.getPuerto());
+            pw.println("USUARIO=" + Conexion.getUsuario());
+            pw.println("CLAVE=" + Conexion.getClave());
+           
 
+            System.out.println("Configuración de conexión guardada correctamente.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+	public static void leerConexion() {
+	    try (Scanner scanner = new Scanner(new File(ruta_config))) {
+	        Properties properties = new Properties();
+	        while (scanner.hasNextLine()) {
+	            String line = scanner.nextLine().trim();
+	            if (!line.isEmpty() && !line.startsWith("#")) {
+	                int index = line.indexOf('=');
+	                if (index != -1) {
+	                    String key = line.substring(0, index).trim();
+	                    String value = line.substring(index + 1).trim();
+	                    properties.setProperty(key, value);
+	                }
+	            }
+	        }
+
+	        // Retrieve the values from the properties object
+	        String nombreBd = properties.getProperty("NOMBRE_BD");
+	        String ubicacion = properties.getProperty("UBICACION");
+	        String puerto = properties.getProperty("PUERTO");
+	        String usuario = properties.getProperty("USUARIO");
+	        String clave = properties.getProperty("CLAVE");
+	        String controlador = properties.getProperty("CONTROLADOR");
+	        String url = properties.getProperty("URL");
+
+	        // Use the retrieved values as needed
+	        Conexion.setNombreBd(nombreBd);
+	        Conexion.setUbicacion(ubicacion);
+	        Conexion.setPuerto(puerto);
+	        Conexion.setUsuario(usuario);
+	        Conexion.setClave(clave);
+	   
+
+	        System.out.println("Configuración de conexión cargada correctamente.");
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	}
 
 }
