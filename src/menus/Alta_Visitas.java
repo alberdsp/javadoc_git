@@ -53,7 +53,7 @@ public class Alta_Visitas {
         String dniPaciente = scanner.next();
         dniPaciente = dniPaciente.toUpperCase();
 
-        // Search for the patient by DNI
+        // Buscamos el paciente por el dni
         Paciente paciente = TratamientoFichero.buscarPaciente(dniPaciente);
         if (paciente.getDni() == null) {
             System.out.println("Paciente no encontrado. Procediendo al alta de paciente.");
@@ -69,7 +69,9 @@ public class Alta_Visitas {
         
         
         // imprimimos los profesionales medicos 
-        TratamientoFichero.leerFicheroProfesionales();
+        Listar_Profesionales profesionaleslist =new Listar_Profesionales();
+        
+        profesionaleslist.printMenu();
         
         System.out.println("Introduce el DNI del profesional médico:");
         String dniProfesional = scanner.next();

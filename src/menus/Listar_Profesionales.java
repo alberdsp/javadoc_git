@@ -31,7 +31,7 @@ public class Listar_Profesionales {
         System.out.println("***************************************");
         System.out.println();
 
-        TreeMap<String, Profesionales_Medicos> listaProfesionales = TratamientoFichero.leerFicheroProfesionales();
+        TreeMap<String, Profesionales_Medicos> listaProfesionales = SentenciasSQL.leerProfesionales();
 
         for (Entry<String, Profesionales_Medicos> listapro : listaProfesionales.entrySet()) {
             

@@ -2,12 +2,16 @@ package conexionSQL;
 
 import java.sql.PreparedStatement;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 
+import clases.Fechas_util;
 import clases.Paciente;
 import clases.Profesionales_Medicos;
 import clases.Visita;
@@ -17,7 +21,11 @@ public class SentenciasSQL {
 	private static String selectTableSQL;
 	private static String insertTableSQL;
 	private static String updateTableSQL;
+	
+	
 
+	
+	
 	public static void cerrar_conexion(Connection cn, Statement stm, ResultSet rs) {
 		// Liberar recursos revisar el orden en el que se cierran, orden inverso
 		try {
@@ -140,6 +148,7 @@ public class SentenciasSQL {
 	        }
 
 	        System.out.println("Profesionales guardados correctamente en la tabla 'profesionales_medicos'.");
+	        
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    } finally {
@@ -204,6 +213,7 @@ public class SentenciasSQL {
 	        }
 
 	        System.out.println("Visitas guardadas correctamente en la tabla 'visitas'.");
+	        
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    } finally {
@@ -222,7 +232,10 @@ public class SentenciasSQL {
 
 	
 	
-	
+	/**
+	 * Método para leer los pacientes de la BD
+	 * @return TreeMap de pacientes  
+	 */
 	public static TreeMap<String, Paciente> leerPacientes() {
 	    TreeMap<String, Paciente> listaPacientes = new TreeMap<>();
 
@@ -276,6 +289,187 @@ public class SentenciasSQL {
 	    }
 
 	    return listaPacientes;
+	}
+
+
+	/**
+	 * Método que consulta los pacientes en la BD
+	 * @param dni pasamos el dni que queremos filtrar
+	 * @return  TreeMap con el resultado
+	 */
+	public static Paciente buscarPaciente( String dni) {
+		Paciente paciente = new Paciente();
+	    Conexion conexion = new Conexion();
+	    Connection cn = null;
+	    Statement stmt = null;
+	    ResultSet rs = null;
+
+	    try {
+	        cn = conexion.conectar();
+	        stmt = cn.createStatement();
+	        String query = "SELECT * FROM pacientes WHERE dni = "+"'"+ dni+"'";
+	        rs = stmt.executeQuery(query);
+
+	        while (rs.next()) {
+	          
+	            String dnis = rs.getString("dni");
+
+	            paciente.setDni(dnis);
+	            paciente.setNombre(rs.getString("nombre"));
+	            paciente.setEdad(rs.getInt("edad"));
+	            paciente.setSexo(rs.getString("sexo").charAt(0));
+	            paciente.setCalle(rs.getString("calle"));
+	            paciente.setLocalidad(rs.getString("localidad"));
+	            paciente.setCod_postal(rs.getString("cod_postal"));
+
+	            
+	        }
+
+	        System.out.println("Pacientes leidos corréctamente.");
+	        System.out.println("-------------------------------");
+	        System.out.println("\n");
+	        
+	        
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (rs != null) {
+	                rs.close();
+	            }
+	            if (stmt != null) {
+	                stmt.close();
+	            }
+	            if (cn != null) {
+	                cn.close();
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+
+	    return paciente;
+	}
+
+	
+	
+	
+	/**
+	 * Método para consultar los profesionales en la BD
+	 * @return  TreeMap con el resultado
+	 */
+	public static TreeMap<String, Profesionales_Medicos> leerProfesionales() {
+
+	    TreeMap<String, Profesionales_Medicos> listaProfesionales = new TreeMap<>();
+	    
+	    Conexion conexion = new Conexion();
+	    Connection cn = null;
+	    Statement stmt = null;
+	    ResultSet rs = null;
+	    
+	    String selectQuery = "SELECT * FROM profesionales_medicos";
+
+	    try {
+	        cn = conexion.conectar();
+	        stmt = cn.createStatement();
+	        rs = stmt.executeQuery(selectQuery);
+
+	        while (rs.next()) {
+	            String dni = rs.getString("dni");
+	            String nombre = rs.getString("nombre");
+	            String apellidos = rs.getString("apellidos");
+	            String localidad = rs.getString("localidad");
+	            String telefono = rs.getString("telefono");
+	            String especialidad = rs.getString("especialidad");
+
+	            Profesionales_Medicos profesional = new Profesionales_Medicos(nombre, apellidos, dni, localidad, telefono, especialidad);
+	            listaProfesionales.put(dni, profesional);
+	        }
+	        
+	  
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (rs != null) {
+	                rs.close();
+	            }
+	            if (stmt != null) {
+	                stmt.close();
+	            }
+	            if (cn != null) {
+	                cn.close();
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+
+	    return listaProfesionales;
+	}
+
+	
+	/**
+	 * Método que lee las visitas de pacientes por dni
+	 * @param dni  del paciente
+	 * @return TreeMap con las visitas
+	 */
+	public static TreeMap<String, Visita> leerVisitas(String dni) {
+	    TreeMap<String, Visita> listaVisitas = new TreeMap<>();
+
+	    Conexion conexion = new Conexion();
+	    Connection cn = null;
+	    PreparedStatement ps = null;
+	    ResultSet rs = null;
+
+	    try {
+	        cn = conexion.conectar();
+	        String query = "SELECT * FROM visitas WHERE dni = ?";
+	        ps = cn.prepareStatement(query);
+	        ps.setString(1, dni);
+	        rs = ps.executeQuery();
+
+	        while (rs.next()) {
+	            Visita visita = new Visita();
+	            String fecha = rs.getString("fecha");
+                
+	            fecha = Fechas_util.fechaStrMysqltoESP(fecha);
+	            
+	            visita.setDni(rs.getString("dni"));
+	            visita.setDniProfesional(rs.getString("dniProfesional"));
+	            visita.setFecha(fecha);
+	            visita.setHora(rs.getString("hora"));
+	            visita.setPeso(rs.getDouble("peso"));
+	            visita.setAltura(rs.getDouble("altura"));
+	            visita.setUnidadaltura(rs.getString("unidadaltura"));
+	            visita.setResulimc(rs.getString("resulimc"));
+
+	            listaVisitas.put(fecha, visita);
+	        }
+
+	        System.out.println("Visitas leídas correctamente.");
+	        System.out.println("----------------------------");
+	        System.out.println();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (rs != null) {
+	                rs.close();
+	            }
+	            if (ps != null) {
+	                ps.close();
+	            }
+	            if (cn != null) {
+	                cn.close();
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+
+	    return listaVisitas;
 	}
 
 
