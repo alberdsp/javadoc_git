@@ -13,12 +13,13 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Map.Entry;
+
+import conexionSQL.Conexion;
+
 import java.util.Properties;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeMap;
-
-import conexion.Conexion;
 
 /**
  * Clase TratamientoFichero para tratar los fichero tanto de clientes
@@ -54,7 +55,7 @@ public class TratamientoFichero {
 	/**
 	 * ruta del fichero de configuracion
 	 */
-	public static String ruta_config = "almacenamiento/config.txt";
+	public static String ruta_config = "almacenamiento/conf.txt";
 
 	
 	/**

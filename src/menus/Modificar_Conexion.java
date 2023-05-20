@@ -2,7 +2,7 @@ package menus;
 
 import java.util.Scanner;
 import clases.TratamientoFichero;
-import conexion.Conexion;
+import conexionSQL.Conexion;
 
 /**
  * Clase Modificar_Conexion para configurar la conexión a la base de datos.
