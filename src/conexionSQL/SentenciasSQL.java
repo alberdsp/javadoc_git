@@ -10,6 +10,7 @@ import java.util.TreeMap;
 
 import clases.Paciente;
 import clases.Profesionales_Medicos;
+import clases.Visita;
 
 public class SentenciasSQL {
 
@@ -37,6 +38,12 @@ public class SentenciasSQL {
 
 	}
 
+	
+	
+	/**
+	 *  Método para grabar los pacientes en mysql
+	 * @param pacientes TreeMap
+	 */
 	public static void grabarPacientes(TreeMap<String, Paciente> pacientes) {
 		TreeMap<String, Paciente> listapacientes = pacientes;
 
@@ -97,6 +104,11 @@ public class SentenciasSQL {
 
 	}
 	
+	
+	/**
+	 * Método para grabar profesionales en Mysql
+	 * @param profesionales  TreeMap
+	 */
 	public static void grabarProfesionales(TreeMap<String, Profesionales_Medicos> profesionales) {
 	    TreeMap<String, Profesionales_Medicos> listaProfesionales = profesionales;
 
@@ -143,6 +155,71 @@ public class SentenciasSQL {
 	        }
 	    }
 	}
+	
+	
+	
+	/**
+	 * Método para grabar visitas en Mysql
+	 * @param visitas  TreeMap
+	 */
+	public static void grabarVisitas(TreeMap<String, Visita> visitas) {
+	    TreeMap<String, Visita> listaVisitas = visitas;
+
+	    Conexion conexion = new Conexion();
+	    Connection cn = null;
+	    PreparedStatement ps = null;
+
+	    String insertTableSQL = "INSERT INTO visitas (dni, dniProfesional, fecha, hora, peso, altura, unidadaltura, resulimc) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+	    try {
+	        cn = conexion.conectar();
+	        ps = cn.prepareStatement(insertTableSQL);
+
+	        for (Entry<String, Visita> lista : listaVisitas.entrySet()) {
+	            String dni = lista.getValue().getDni();
+	            String dniProfesional = lista.getValue().getDniProfesional();
+	            String fecha = lista.getValue().getFecha();
+	            String hora = lista.getValue().getHora();
+	            Double peso = lista.getValue().getPeso();
+	            Double altura = lista.getValue().getAltura();
+	            String unidadaltura = lista.getValue().getUnidadaltura();
+	            String resulimc = lista.getValue().getResulimc();
+
+	            
+	         // Adecuamos el formato de fecha "20/05/2023" to "20-05-2023"
+	            String fecha_ = fecha.replaceAll("/", "-");
+	            String[] dateParts = fecha_.split("-");
+	            String fechamysql = dateParts[2] + "-" + dateParts[1] + "-" + dateParts[0];
+
+	            
+	            ps.setString(1, dni);
+	            ps.setString(2, dniProfesional);
+	            ps.setString(3, fechamysql);
+	            ps.setString(4, hora);
+	            ps.setDouble(5, peso);
+	            ps.setDouble(6, altura);
+	            ps.setString(7, unidadaltura);
+	            ps.setString(8, resulimc);
+	            ps.executeUpdate();
+	        }
+
+	        System.out.println("Visitas guardadas correctamente en la tabla 'visitas'.");
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (ps != null) {
+	                ps.close();
+	            }
+	            if (cn != null) {
+	                cn.close();
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	}
+
 
 	
 	

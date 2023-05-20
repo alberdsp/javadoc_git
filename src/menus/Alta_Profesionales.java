@@ -5,6 +5,7 @@ import java.util.Locale;
 import java.util.Scanner;
 import java.util.TreeMap;
 import clases.Validadores;
+import conexionSQL.SentenciasSQL;
 import clases.Profesionales_Medicos;
 import clases.TratamientoFichero;
 
@@ -94,7 +95,7 @@ public class Alta_Profesionales {
 			profesional.setEspecialidad(especialidad);
 
 			listaProfesionales.put(dni, profesional);
-			TratamientoFichero.grabarProfesionales(listaProfesionales);
+			SentenciasSQL.grabarProfesionales(listaProfesionales);
 
 			System.out.println("\n");
 		} else {

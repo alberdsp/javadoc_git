@@ -50,6 +50,9 @@ public class Listar_Visitas {
 			
 			 Paciente paciente = TratamientoFichero.buscarPaciente(dni);
 			 
+			 
+			 
+			 
 			 System.out.println(paciente.toString());
 			 System.out.println("\n");
 			 System.out.println(" ------------------------- ");

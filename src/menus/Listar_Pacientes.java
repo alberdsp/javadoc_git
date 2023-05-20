@@ -41,6 +41,8 @@ public class Listar_Pacientes {
 		for (Entry<String, Paciente> listap : listapacientes.entrySet()) {
 
 			System.out.println(listap.toString());
+			
+		
 
 		}
 		

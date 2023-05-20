@@ -11,6 +11,7 @@ import clases.Paciente;
 import clases.Profesionales_Medicos;
 import clases.TratamientoFichero;
 import clases.Visita;
+import conexionSQL.SentenciasSQL;
 
 import java.time.LocalDateTime;
 
@@ -94,7 +95,7 @@ public class Alta_Visitas {
         TreeMap<String, Visita> visitas = new TreeMap<String, Visita>();
         visitas.put(dniPaciente, nuevaVisita);
 
-        TratamientoFichero.grabarVisitas(visitas);
+        SentenciasSQL.grabarVisitas(visitas);
         
         System.out.println("\n");
         System.out.println("Visita grabada correctamente.");
