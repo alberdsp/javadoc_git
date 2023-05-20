@@ -6,6 +6,7 @@ import java.util.TreeMap;
 
 import clases.Profesionales_Medicos;
 import clases.TratamientoFichero;
+import conexionSQL.SentenciasSQL;
 
 /**
  * Clase Listar_Profesionales para manejar el listado de los profesionales médicos
@@ -35,6 +36,8 @@ public class Listar_Profesionales {
         for (Entry<String, Profesionales_Medicos> listapro : listaProfesionales.entrySet()) {
             
             System.out.println(listapro.toString());
+            
+       
         }
     }
 

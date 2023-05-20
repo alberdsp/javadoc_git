@@ -1,15 +1,15 @@
 package conexionSQL;
 
 import java.sql.PreparedStatement;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 
-import com.mysql.jdbc.Connection;
-
 import clases.Paciente;
+import clases.Profesionales_Medicos;
 
 public class SentenciasSQL {
 
@@ -41,7 +41,7 @@ public class SentenciasSQL {
 		TreeMap<String, Paciente> listapacientes = pacientes;
 
 		Conexion conexion = new Conexion();
-		java.sql.Connection cn = null;
+		Connection cn = null;
 		PreparedStatement ps = null;
 
 		insertTableSQL = "INSERT INTO pacientes (dni, nombre, edad, sexo, calle, localidad, cod_postal) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -96,4 +96,54 @@ public class SentenciasSQL {
 		}
 
 	}
+	
+	public static void grabarProfesionales(TreeMap<String, Profesionales_Medicos> profesionales) {
+	    TreeMap<String, Profesionales_Medicos> listaProfesionales = profesionales;
+
+	    Conexion conexion = new Conexion();
+	    Connection cn = null;
+	    PreparedStatement ps = null;
+
+	    String insertTableSQL = "INSERT INTO profesionales_medicos (dni, nombre, apellidos, localidad, telefono, especialidad) VALUES (?, ?, ?, ?, ?, ?)";
+
+	    try {
+	        cn = conexion.conectar();
+	        ps = cn.prepareStatement(insertTableSQL);
+
+	        for (Entry<String, Profesionales_Medicos> lista : listaProfesionales.entrySet()) {
+	            String dni = lista.getValue().getDni();
+	            String nombre = lista.getValue().getNombre();
+	            String apellidos = lista.getValue().getApellidos();
+	            String localidad = lista.getValue().getLocalidad();
+	            String telefono = lista.getValue().getTelefono();
+	            String especialidad = lista.getValue().getEspecialidad();
+
+	            ps.setString(1, dni);
+	            ps.setString(2, nombre);
+	            ps.setString(3, apellidos);
+	            ps.setString(4, localidad);
+	            ps.setString(5, telefono);
+	            ps.setString(6, especialidad);
+	            ps.executeUpdate();
+	        }
+
+	        System.out.println("Profesionales guardados correctamente en la tabla 'profesionales_medicos'.");
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (ps != null) {
+	                ps.close();
+	            }
+	            if (cn != null) {
+	                cn.close();
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	}
+
+	
+	
 }

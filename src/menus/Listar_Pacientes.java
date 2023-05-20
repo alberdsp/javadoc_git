@@ -44,9 +44,6 @@ public class Listar_Pacientes {
 
 		}
 		
-		SentenciasSQL.grabarPacientes(listapacientes);
-		
-		
 		
 
 	}

@@ -7,6 +7,7 @@ import java.util.TreeMap;
 
 import clases.Paciente;
 import clases.TratamientoFichero;
+import conexionSQL.SentenciasSQL;
 
 /**
  * Clase Alta_Pacientes para gestionar el alta de los pacientes
@@ -209,7 +210,7 @@ public class Alta_Pacientes {
 		paciente = new Paciente(dni, nombre, edad, sexo, direccion, localidad, cod_postal);
 
 		listaPacientes.put(dni, paciente);
-		TratamientoFichero.grabarPacientes(listaPacientes);
+		SentenciasSQL.grabarPacientes(listaPacientes);
 
 		return paciente;
 	}
