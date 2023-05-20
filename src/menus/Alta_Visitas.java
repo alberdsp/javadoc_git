@@ -1,5 +1,6 @@
 package menus;
 
+import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.Locale;
@@ -7,168 +8,121 @@ import java.util.Scanner;
 import java.util.TreeMap;
 
 import clases.Paciente;
+import clases.Profesionales_Medicos;
 import clases.TratamientoFichero;
 import clases.Visita;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
 
 /**
- * Clase Alta_Visitas menu de alta y métodos de alta de Visitas
+ * Clase Alta_Visitas para manejar el alta de visitas
  * 
- * @author Alber
- *
  */
 public class Alta_Visitas {
-	// establecemos los formatos de fecha y hora
-	DateTimeFormatter forma_fecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-	DateTimeFormatter forma_hora = DateTimeFormatter.ofPattern("HH:mm");
+    private static final DateTimeFormatter FORMATTER_FECHA = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private static final DateTimeFormatter FORMATTER_HORA = DateTimeFormatter.ofPattern("HH:mm");
 
-	/**
-	 * Método constructor por defecto
-	 */
-	public Alta_Visitas() {
+    /**
+     * Método constructor por defecto
+     */
+    public Alta_Visitas() {
 
-	}
+    }
 
-	/**
-	 * Método que imprime el menú de Alta de visitas
-	 */
-	public void printMenu() {
+    /**
+     * Método para imprimir el menú de alta de visitas
+     */
+    public void printMenu() {
+        System.out.println("      Alta de Visitas  ");
+        System.out.println("***********************************");
+        System.out.println("  Introduzca los datos de la visita ");
+        System.out.println("\n");
+    }
 
-		System.out.println("      Grabar nueva visita  ");
-		System.out.println("***********************************");
-		System.out.println("  Introduzca los datos de la visita ");
-		System.out.println("\n");
+    /**
+     * Método para grabar una nueva visita
+     * 
+     * @throws IOException captura la excepción de entrada y salida
+     */
+    public void nuevaVisita() throws IOException {
+        Scanner scanner = new Scanner(System.in);
+        scanner.useLocale(Locale.US);
 
-	}
+        System.out.println("Introduce el DNI del paciente:");
+        String dniPaciente = scanner.next();
+        dniPaciente = dniPaciente.toUpperCase();
 
-	/**
-	 * método para grabar nueva visita completa
-	 * 
-	 * @throws IOException captura la excepcion
-	 */
-	public void nuevaVisita() throws IOException {
+        // Search for the patient by DNI
+        Paciente paciente = TratamientoFichero.buscarPaciente(dniPaciente);
+        if (paciente.getDni() == null) {
+            System.out.println("Paciente no encontrado. Procediendo al alta de paciente.");
+            System.out.println();
 
-		Scanner sc = new Scanner(System.in);
-		// sc.useDelimiter("\n");
-		sc.useLocale(Locale.US);
+            Alta_Pacientes altaPaciente = new Alta_Pacientes();
+            paciente = altaPaciente.nuevoPaciente(dniPaciente);
+        } else {
+            System.out.println("Paciente encontrado:");
+            System.out.println(paciente.toString());
+            System.out.println();
+        }
+        
+        
+        // imprimimos los profesionales medicos 
+        TratamientoFichero.leerFicheroProfesionales();
+        
+        System.out.println("Introduce el DNI del profesional médico:");
+        String dniProfesional = scanner.next();
+        dniProfesional = dniProfesional.toUpperCase();
+        Profesionales_Medicos profesional = TratamientoFichero.buscarProfesional(dniProfesional);
+        if (profesional.getDni() == null) {
+            System.out.println("Profesional médico no encontrado. La visita se registrará sin profesional.");
+            System.out.println();
+        }
 
-		String insertado = " Visita grabada";
+        LocalDateTime now = LocalDateTime.now();
+        String fecha = FORMATTER_FECHA.format(now);
+        String hora = FORMATTER_HORA.format(now);
 
-		// Introducimos los datos
+        double peso = getInputValue("Introduce el peso en kilogramos:");
+        double altura = getInputValue("Introduce la altura en metros:");
+        String resulimc = Paciente.resultadoImc(paciente);
+        
+        
 
-		System.out.println("Introduce el DNI");
-		String dni = sc.next();
-		
-		 dni = dni.toUpperCase();
+        Visita nuevaVisita = new Visita(dniPaciente, dniProfesional, fecha, hora, peso, altura, "metros", resulimc);
 
-		// buscamos el DNI en el fichero, si lo encuentra pasamos al alta
-		// de visitas, si no lo encuentra llamamos al método Alta_Pacientes
-		Paciente paciente = TratamientoFichero.buscarPaciente(dni);
-		if (paciente.getDni() != null) {
+        TreeMap<String, Visita> visitas = new TreeMap<String, Visita>();
+        visitas.put(dniPaciente, nuevaVisita);
 
-			System.out.println("\n");
-			System.out.println("\n");
-			System.out.println("****************************");
-			System.out.println("    Paciente encontrado     ");
-			System.out.println("****************************");
-			System.out.println("\n");
-			System.out.println("\n");
-			System.out.println(TratamientoFichero.buscarPaciente(dni).toString());
-			System.out.println("\n");
-			System.out.println("\n");
+        TratamientoFichero.grabarVisitas(visitas);
+        
+        System.out.println("\n");
+        System.out.println("Visita grabada correctamente.");
+        System.out.println();
+    }
 
-		} else {
+    /**
+     * Método auxiliar para obtener un valor numérico de entrada
+     * 
+     * @param prompt mensaje de entrada
+     * @return el valor numérico ingresado
+     */
+    private double getInputValue(String prompt) {
+        Scanner scanner = new Scanner(System.in);
+        double value = 0.0;
+        boolean validInput = false;
 
-			System.out.println("\n");
-			System.out.println("\n");
-			System.out.println("paciente no encontrado");
-			System.out.println("----------------------");
-			System.out.println("Procedemos a dar de alta");
-			System.out.println("\n");
-			System.out.println("\n");
+        while (!validInput) {
+            try {
+                System.out.println(prompt);
+                value = scanner.nextDouble();
+                validInput = true;
+            } catch (InputMismatchException e) {
+                System.out.println("Entrada inválida. Introduce un valor numérico válido.");
+                scanner.nextLine(); 
+            }
+        }
 
-			/**
-			 * Instanciamos la clase Alta_Pacientes
-			 */
-			Alta_Pacientes alta_paciente = new Alta_Pacientes();
-
-			alta_paciente.printMenu();
-
-			// pasamos dni como paramatro para grabar paciente con dni
-			paciente = alta_paciente.nuevoPaciente(dni);
-
-		}
-
-		// Se establece la fecha y la hora a la del momento de grabar
-
-		LocalDateTime now = LocalDateTime.now();
-		String fecha = forma_fecha.format(now);
-		String hora = forma_hora.format(now);
-		// Scanner scd = new Scanner(System.in);
-		double peso = 0;
-		double altura = 0;
-		Boolean error = true; // para detectar error de entrada de datos
-
-		do {
-			Scanner scd = new Scanner(System.in);
-			try {
-				scd.reset();
-				System.out.println("Introduce el peso, ejemplo 60,50 (Será en Kilogramos");
-
-				peso = scd.nextDouble();
-				error = false;
-				paciente.setPeso(peso);
-				scd.reset();
-			} catch (InputMismatchException i) {
-
-				System.out.println("ha introducido el peso incorrecto");
-				System.out.println("---------------------------------");
-				System.out.println("\n");
-
-			}
-		} while (error);
-
-		error = true;
-
-		do {
-			Scanner scd2 = new Scanner(System.in);
-			try {
-
-				System.out.println("Introduce la altura, ejemplo 1,75 (Será en Metros");
-
-				scd2.reset();
-				altura = scd2.nextDouble();
-				scd2.reset();
-				paciente.setAltura(altura);
-				error = false;
-			} catch (InputMismatchException i2) {
-
-				System.out.println("ha introducido una altura incorrecta");
-				System.out.println("---------------------------------");
-				System.out.println("\n");
-
-			}
-
-		} while (error);
-
-		String unidadaltura = "metros";
-		String resulimc = Paciente.resultadoImc(paciente);
-		Visita nuevavisita = new Visita(dni, fecha, hora, peso, altura, unidadaltura, resulimc);
-
-		// lista de visitas, puede grabar de una en una o varias en el futuro
-		TreeMap<String, Visita> visitas = new TreeMap<String, Visita>();
-		visitas.put(dni, nuevavisita);
-
-		TratamientoFichero.grabarVisitas(visitas);
-		
-		System.out.println("\n");
-		System.out.println("   Visita grabada correctamente  ");
-		System.out.println("---------------------------------");
-		System.out.println("\n");
-		
-
-	}
-
+        return value;
+    }
 }

@@ -33,6 +33,7 @@ public class Menus {
 		System.out.println("3. Alta de Profesionales");
 		System.out.println("4. Lista de Pacientes");
 		System.out.println("5. Lista de Visitas");
+		System.out.println("6. Lista de Profesionales");
 		System.out.println("99. Salir");
 		System.out.println("\n");
 		System.out.println("\n");

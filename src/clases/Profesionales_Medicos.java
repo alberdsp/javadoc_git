@@ -2,7 +2,7 @@ package clases;
 
 
 /**
- * Clase Profesionales_Medicos 
+ * Clase Profesionales_Medicos Almacena los profesionales que pasan consulta
  */
 public class Profesionales_Medicos  {
 	
@@ -13,7 +13,7 @@ public class Profesionales_Medicos  {
 		
 	}
 	
-	public Profesionales_Medicos(int codigo, String nombre, String apellidos, String dni,
+	public Profesionales_Medicos( String nombre, String apellidos, String dni,
 			String localidad, String telefono, String especialidad) {
 		
 		this.nombre = nombre;
@@ -26,7 +26,10 @@ public class Profesionales_Medicos  {
 		
 
 
-
+/**
+ *  metodo que devuelve nombre
+ * @return
+ */
 	public String getNombre() {
 		return nombre;
 	}
@@ -75,6 +78,18 @@ public class Profesionales_Medicos  {
 		this.especialidad = especialidad;
 	}
 	
+	@Override
+	public String toString() {
+	    return "Información del Profesional Médico:\n" +
+	           "Nombre: " + nombre + "\n" +
+	           "Apellidos: " + apellidos + "\n" +
+	           "DNI: " + dni + "\n" +
+	           "Localidad: " + localidad + "\n" +
+	           "Teléfono: " + telefono + "\n" +
+	           "Especialidad: " + especialidad + "\n" +
+	           "----------------------------\n";
+	}
+
 	
 }
 

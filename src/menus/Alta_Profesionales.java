@@ -58,7 +58,7 @@ public class Alta_Profesionales {
 			System.out.println("Introduce un DNI válido (8 números y letra)");
 			dni = sc.next().trim();
 			dni = dni.toUpperCase();
-		} while (validadores.validarDni(dni));
+		} while (!validadores.validarDni(dni));
 
 		// Comprobamos si el profesional ya existe
 		profesional = TratamientoFichero.buscarProfesional(dni);

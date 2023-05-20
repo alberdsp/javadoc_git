@@ -94,7 +94,29 @@ public class Main {
 
 				break;
 			}
+			
+			
 			case 3: {
+
+				System.out.println("Ha elegido alta de profesionales médicos");
+				System.out.println("----------------------------------");
+
+				// Instanciamos Listar_Visitas
+				Alta_Profesionales altaprofesionales = new Alta_Profesionales();
+				altaprofesionales.printMenu();
+
+				Profesionales_Medicos profesional = new Profesionales_Medicos();
+				profesional = altaprofesionales.nuevoProfesional();
+
+				System.out.print(profesional.toString());
+
+				break;
+			}
+			
+			
+			
+			
+			case 4: {
 
 				System.out.println("Ha elegido listado de Pacientes");
 				System.out.println("----------------------------------");
@@ -105,7 +127,7 @@ public class Main {
 				break;
 
 			}
-			case 4: {
+			case 5: {
 
 				System.out.println("Ha elegido listado de Visitas");
 				System.out.println("----------------------------------");
@@ -113,6 +135,18 @@ public class Main {
 				// Instanciamos Listar_Visitas
 				Listar_Visitas listarvisitas = new Listar_Visitas();
 				listarvisitas.printMenu();
+				break;
+
+			}
+			
+			case 6: {
+
+				System.out.println("Ha elegido listado de Profesionales");
+				System.out.println("----------------------------------");
+
+				// Instanciamos Listar_Visitas
+				Listar_Profesionales listarprofesionales = new Listar_Profesionales();
+				listarprofesionales.printMenu();
 				break;
 
 			}

@@ -182,12 +182,13 @@ public class TratamientoFichero {
 
 			dni = visitaArray[0];
 			visita.setDni(visitaArray[0]);
-			visita.setFecha(visitaArray[1]);
-			visita.setHora(visitaArray[2]);
-			visita.setPeso(Double.parseDouble(visitaArray[3]));
-			visita.setAltura(Double.parseDouble(visitaArray[4]));
-			visita.setUnidadaltura(visitaArray[5]);
-			visita.setResulimc(visitaArray[6]);
+			visita.setDniProfesional(visitaArray[1]);
+			visita.setFecha(visitaArray[2]);
+			visita.setHora(visitaArray[3]);
+			visita.setPeso(Double.parseDouble(visitaArray[4]));
+			visita.setAltura(Double.parseDouble(visitaArray[5]));
+			visita.setUnidadaltura(visitaArray[6]);
+			visita.setResulimc(visitaArray[7]);
 
 			// Grabamos el objeto en el TreeMap con clave indice
 			// si coincide con el dni que buscamos
@@ -300,6 +301,7 @@ public class TratamientoFichero {
 			for (Entry<String, Visita> listav : listavisitas.entrySet()) {
 
 				String dni = listav.getValue().getDni();
+				String dniProfesional = listav.getValue().getDniProfesional();
 				String fecha = listav.getValue().getFecha();
 				String hora = listav.getValue().getHora();
 				Double peso = listav.getValue().getPeso();
@@ -307,7 +309,7 @@ public class TratamientoFichero {
 				String unidadaltura = listav.getValue().getUnidadaltura();
 				String resulimc = listav.getValue().getResulimc();
 
-				pw.println(dni + delimitador + fecha + delimitador + hora + delimitador + peso + delimitador + altura
+				pw.println(dni + delimitador + dniProfesional + delimitador + fecha + delimitador + hora + delimitador + peso + delimitador + altura
 						+ delimitador + unidadaltura + delimitador + resulimc);
 			}
 		} catch (Exception e) {
@@ -348,7 +350,7 @@ public class TratamientoFichero {
 	            String especialidad = profesional.getEspecialidad();
 
 	            pw.println(dni + delimitador + nombre + delimitador + apellidos + delimitador +
-	                     delimitador + localidad + delimitador + telefono + delimitador + especialidad);
+	                      localidad + delimitador + telefono + delimitador + especialidad);
 	        }
 	    } catch (Exception e) {
 	        e.printStackTrace();
@@ -364,7 +366,17 @@ public class TratamientoFichero {
 	}
 
 	
-	
+	/**
+	 * Método buscar un Profesional, busca en el fichero de Profesionales hasta que encuentra
+	 * el DNI pasado como parametro String ndni en el fichero indicado o bien llega
+	 * al final del fichero y nos devuelve el objeto paciente vacio
+	 * 
+	 * @param ndni es el número de dni
+	 * @return devuelve un objeto Profesional_Medico si lo encuentra
+	 * @throws NumberFormatException captura excepción de error tipo numero
+	 * @throws IOException captura excepción
+	 */
+
 	public static Profesionales_Medicos buscarProfesional(String ndni) throws NumberFormatException, IOException {
 	    String cadena;
 	    String delimitador = ";";
@@ -403,6 +415,34 @@ public class TratamientoFichero {
 	    b.close();
 	    return profesional;
 	}
+	
+	
+	public static TreeMap<String, Profesionales_Medicos> leerFicheroProfesionales() throws IOException {
+	    TreeMap<String, Profesionales_Medicos> listaProfesionales = new TreeMap<String, Profesionales_Medicos>();
+	    String cadena; // variable donde almacenamos cada linea del fichero
+	    String delimitador = ";"; // indica cómo van separados los atributos
+
+	    FileReader f = new FileReader(ruta_profesionales);
+	    BufferedReader b = new BufferedReader(f);
+
+	    while ((cadena = b.readLine()) != null) {
+	        String[] profesionalArray = cadena.split(delimitador);
+	        Profesionales_Medicos profesional = new Profesionales_Medicos();
+	        profesional.setDni(profesionalArray[0]);
+	        profesional.setNombre(profesionalArray[1]);
+	        profesional.setApellidos(profesionalArray[2]);
+	        profesional.setLocalidad(profesionalArray[3]);
+	        profesional.setTelefono(profesionalArray[4]);
+	        profesional.setEspecialidad(profesionalArray[5]);
+
+	        listaProfesionales.put(profesional.getDni(), profesional);
+	    }
+
+	    b.close();
+	    return listaProfesionales;
+	}
+
+	
 
 
 }
