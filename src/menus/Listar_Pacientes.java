@@ -36,7 +36,7 @@ public class Listar_Pacientes {
 		System.out.println("***********************************");
 		System.out.println("\n");
         
-		TreeMap<String, Paciente> listapacientes = TratamientoFichero.leerFicheroPaci();    
+		TreeMap<String, Paciente> listapacientes = SentenciasSQL.leerPacientes();    
         
 		for (Entry<String, Paciente> listap : listapacientes.entrySet()) {
 

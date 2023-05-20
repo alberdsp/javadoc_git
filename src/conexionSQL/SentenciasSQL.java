@@ -220,6 +220,64 @@ public class SentenciasSQL {
 	    }
 	}
 
+	
+	
+	
+	public static TreeMap<String, Paciente> leerPacientes() {
+	    TreeMap<String, Paciente> listaPacientes = new TreeMap<>();
+
+	    Conexion conexion = new Conexion();
+	    Connection cn = null;
+	    Statement stmt = null;
+	    ResultSet rs = null;
+
+	    try {
+	        cn = conexion.conectar();
+	        stmt = cn.createStatement();
+	        String query = "SELECT * FROM pacientes";
+	        rs = stmt.executeQuery(query);
+
+	        while (rs.next()) {
+	            Paciente paciente = new Paciente();
+	            String dni = rs.getString("dni");
+
+	            paciente.setDni(dni);
+	            paciente.setNombre(rs.getString("nombre"));
+	            paciente.setEdad(rs.getInt("edad"));
+	            paciente.setSexo(rs.getString("sexo").charAt(0));
+	            paciente.setCalle(rs.getString("calle"));
+	            paciente.setLocalidad(rs.getString("localidad"));
+	            paciente.setCod_postal(rs.getString("cod_postal"));
+
+	            listaPacientes.put(dni, paciente);
+	        }
+
+	        System.out.println("Pacientes leidos corréctamente.");
+	        System.out.println("-------------------------------");
+	        System.out.println("\n");
+	        
+	        
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (rs != null) {
+	                rs.close();
+	            }
+	            if (stmt != null) {
+	                stmt.close();
+	            }
+	            if (cn != null) {
+	                cn.close();
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+
+	    return listaPacientes;
+	}
+
 
 	
 	
