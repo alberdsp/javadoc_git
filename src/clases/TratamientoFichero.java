@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
@@ -211,6 +212,64 @@ public class TratamientoFichero {
 		return listaVisitas;
 
 	}
+	
+	
+	
+	
+	
+	/**
+	 * Método listarVisitas que nos devuelve un TreeMap de las visitas de un
+	 * paciente filtrado por fecha y dni del profesional
+	 * @param fecha
+	 * @param ndni pasamos el parámetro ndni como número de DNI  del profesional
+	 * @return devuelve un TreeMap con clave Integer incremental y objeto visita
+	 * @throws IOException captura excepción
+	 */
+	public static TreeMap<Integer, Visita> listaVisitas(String ndni, String fecha) throws IOException {
+	    TreeMap<Integer, Visita> listaVisitas = new TreeMap<Integer, Visita>();
+	    String cadena; // variable donde almacenanamos cada linea del fichero
+	    String delimitador = ";"; // indica como van separados los atributos
+	    Integer indice = 0; // contador de número de línea
+	    String dni; // actúa también de clave en los mapas
+	    Visita visita; // clase visitas
+	  
+	    String[] visitaArray; // array para almacenar atributos de la línea del fichero visita
+
+	    FileReader f = new FileReader(ruta_visitas);
+	    BufferedReader b = new BufferedReader(f);
+
+	    while ((cadena = b.readLine()) != null) {
+	        visitaArray = cadena.split(delimitador);
+	        dni = visitaArray[1];
+	        
+	        
+	        if (ndni.equalsIgnoreCase(dni) && fecha.equals(visitaArray[2])) {
+	            visita = new Visita();
+	            visita.setDni(dni);
+	            visita.setDniProfesional(visitaArray[1]);
+	            visita.setFecha(visitaArray[2]);
+	            visita.setHora(visitaArray[3]);
+	            visita.setPeso(Double.parseDouble(visitaArray[4]));
+	            visita.setAltura(Double.parseDouble(visitaArray[5]));
+	            visita.setUnidadaltura(visitaArray[6]);
+	            visita.setResulimc(visitaArray[7]);
+
+	            indice++;
+	            listaVisitas.put(indice, visita);
+	            System.out.println(indice + ". " + visita.toString());
+	            System.out.println("\n");
+	        }
+	    }
+
+	    b.close();
+	    return listaVisitas;
+	}
+
+	
+	
+	
+	
+	
 
 	/**
 	 * Método buscar Paciente, busca en el fichero de Pacientes hasta que encuentra

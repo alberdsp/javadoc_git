@@ -139,7 +139,21 @@ public class Main {
 
 			}
 			
+			
 			case 6: {
+
+				System.out.println("Ha elegido listado de Visitas por fecha y profesional");
+				System.out.println("----------------------------------");
+
+				// Instanciamos Listar_Visitas
+				Listar_Visitas_fecha_profesional listarvisitas = new Listar_Visitas_fecha_profesional();
+				listarvisitas.printMenu();
+				break;
+
+			}
+			
+			
+			case 7: {
 
 				System.out.println("Ha elegido listado de Profesionales");
 				System.out.println("----------------------------------");
