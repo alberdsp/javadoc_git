@@ -34,12 +34,16 @@ public class TratamientoFichero {
 	/**
 	 * ruta del fichero pacientes
 	 */
-	public static String ruta_pacientes = "C:/Users/Alber/eclipse-workspace/javadoc_git/almacenamiento/pacientes.txt";
+	public static String ruta_pacientes = "almacenamiento/pacientes.txt";
 	/**
 	 * ruta del fichero visitas
 	 */
-	public static String ruta_visitas = "C:/Users/Alber/eclipse-workspace/javadoc_git/almacenamiento/visitas.txt";
+	public static String ruta_visitas = "almacenamiento/visitas.txt";
 
+	
+	public static String ruta_profesionales = "almacenamiento/profesionales.txt";
+
+	
 	/**
 	 * metodo para escribir pacientes en el fichero pasamos como parametro un
 	 * TreeMap con clave = dni del paciente y valor = Objeto tipo Paciente
@@ -321,5 +325,84 @@ public class TratamientoFichero {
 		}
 
 	}
+	
+	
+	public static void grabarProfesionales(TreeMap<String, Profesionales_Medicos> profesionales) {
+	    TreeMap<String, Profesionales_Medicos> listaProfesionales = profesionales;
+	    FileWriter fichero = null;
+	    PrintWriter pw = null;
+	    String delimitador = ";";
+
+	    try {
+	        fichero = new FileWriter(ruta_profesionales, true);
+	        pw = new PrintWriter(fichero);
+
+	        for (Entry<String, Profesionales_Medicos> listaP : listaProfesionales.entrySet()) {
+	            Profesionales_Medicos profesional = listaP.getValue();
+
+	            String dni = profesional.getDni();
+	            String nombre = profesional.getNombre();
+	            String apellidos = profesional.getApellidos();
+	            String localidad = profesional.getLocalidad();
+	            String telefono = profesional.getTelefono();
+	            String especialidad = profesional.getEspecialidad();
+
+	            pw.println(dni + delimitador + nombre + delimitador + apellidos + delimitador +
+	                     delimitador + localidad + delimitador + telefono + delimitador + especialidad);
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (null != fichero) {
+	                fichero.close();
+	            }
+	        } catch (Exception e2) {
+	            e2.printStackTrace();
+	        }
+	    }
+	}
+
+	
+	
+	public static Profesionales_Medicos buscarProfesional(String ndni) throws NumberFormatException, IOException {
+	    String cadena;
+	    String delimitador = ";";
+	    String dni = "";
+	    Profesionales_Medicos profesional = new Profesionales_Medicos();
+	    String[] profesionalArray;
+	    Boolean encontrado = false;
+
+	    FileReader f = new FileReader(ruta_profesionales);
+	    BufferedReader b = new BufferedReader(f);
+
+	    while ((cadena = b.readLine()) != null && !encontrado) {
+	        profesionalArray = cadena.split(delimitador);
+
+	       
+	        
+	        dni = profesionalArray[0].trim(); 
+	        profesional.setDni(profesionalArray[0]);
+	        profesional.setNombre(profesionalArray[1]);
+	        profesional.setApellidos(profesionalArray[2]);
+	        profesional.setLocalidad(profesionalArray[3]);
+	        profesional.setTelefono(profesionalArray[4]);
+	        profesional.setEspecialidad(profesionalArray[5]);
+
+	        ndni = ndni.toUpperCase();
+
+	        if (ndni.equals(dni)) {
+	            encontrado = true;
+	        } else {
+	            profesional = new Profesionales_Medicos();
+	        }
+
+	        profesionalArray = null;
+	    }
+	    
+	    b.close();
+	    return profesional;
+	}
+
 
 }

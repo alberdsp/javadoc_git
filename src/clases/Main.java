@@ -1,13 +1,16 @@
 package clases;
 
+
+
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import menus.Menu_Inicial;
-import menus.Alta_Pacientes;
-import menus.Alta_Visitas;
-import menus.Listar_Pacientes;
-import menus.Listar_Visitas;
+import menus.*;
+
+
+
+
+
 
 /**
  * Clase Main carga menú y selecciona añadir alta o visitas
@@ -36,7 +39,7 @@ public class Main {
 		boolean salir = false; // controla cuando salir de la aplicación
 		int opcionmenu = 0; // opción elegida
 		Scanner omenu;
-		Menu_Inicial menuinicial = new Menu_Inicial(); // cargamos menú
+		Menus menuinicial = new Menus(); // cargamos menú
 
 		// cargamos el menú inicial
 		do {
