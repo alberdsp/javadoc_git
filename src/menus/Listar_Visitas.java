@@ -41,8 +41,14 @@ public class Listar_Visitas {
 		Scanner scanner = new Scanner(System.in);
 		String dni = scanner.next().toUpperCase();
 
+		
+		
+		try {
 		// Consultamos las visitas por DNI del paciente
 		TreeMap<String, Visita> visitas = SentenciasSQL.leerVisitas(dni);
+		
+		
+		
 
 		if (visitas.isEmpty()) {
 			System.out.println("No se encontraron visitas para el paciente con DNI " + dni);
@@ -60,5 +66,20 @@ public class Listar_Visitas {
 				System.out.println(visita.toString());
 			}
 		}
+		
+		
+		
+		// capturamos excepción de conexion
+	} catch (Exception e) {
+	    // Handle the CommunicationsException
+	    System.err.println("Error de conexion con el servidor: " + e.getMessage());
+	    // Additional error handling or recovery logic can be added here
+	    // For example, you can log the error, retry the operation, or show an error message to the user
+	}
+		
+		
+		
+		
+		
 	}
 }

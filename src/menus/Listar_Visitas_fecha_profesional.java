@@ -86,6 +86,10 @@ public class Listar_Visitas_fecha_profesional {
 			break; // Salimos si es correcto
 		} while (true);
 
+		
+		try {
+		
+		
 		// Buscar el profesional médico
 		Profesionales_Medicos profesional = SentenciasSQL.buscarProfesional(dniProfesional);
 
@@ -109,6 +113,17 @@ public class Listar_Visitas_fecha_profesional {
 			System.out.println("Lo sentimos, el DNI del profesional médico no se encontró en el sistema.");
 			System.out.println();
 		}
+		
+		
+		// capturamos excepción de conexion
+	} catch (Exception e) {
+	    // Handle the CommunicationsException
+	    System.err.println("Error de conexion con el servidor: " + e.getMessage());
+	    // Additional error handling or recovery logic can be added here
+	    // For example, you can log the error, retry the operation, or show an error message to the user
+	}
+		
+		
 	}
 
 }
