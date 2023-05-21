@@ -8,6 +8,7 @@ import java.util.TreeMap;
 import clases.Paciente;
 import clases.TratamientoFichero;
 import clases.Visita;
+import conexionSQL.SentenciasSQL;
 
 /**
  * Clase Listar_Visitas para listar las visitas de los pacientes
@@ -15,70 +16,70 @@ import clases.Visita;
  * @author Alber
  *
  */
+import java.io.IOException;
+import java.util.Scanner;
+import java.util.TreeMap;
+
 public class Listar_Visitas {
 
 	/**
 	 * Constructor por defecto
 	 */
-
 	public Listar_Visitas() {
 	}
 
 	/**
 	 * Método para imprimir el menu
-	 * 
+	 *
 	 * @throws IOException captura la excepción
 	 */
 	public void printMenu() throws IOException {
-
-		System.out.println("      Listado de visitas  ");
+		System.out.println("Listado de visitas");
 		System.out.println("***********************************");
-		System.out.println("  Introduzca dni del paciente a listar ");
-		System.out.println("\n");
+		System.out.println("Introduzca el DNI del paciente a listar: ");
 
-		Scanner scd = new Scanner(System.in);
-		// sc.useDelimiter("\n");
-		scd.useLocale(Locale.US);
+		Scanner scanner = new Scanner(System.in);
+		String dni = scanner.next().toUpperCase();
 
-		// Introducimos los datos y capturamos el dni
-
-		String dni = scd.next().toUpperCase();
-        
 		
-		// si existe el dni listamos el Paciente y las visitas
-		 if (TratamientoFichero.buscarPaciente(dni) != null ) {
-			
-			 Paciente paciente = TratamientoFichero.buscarPaciente(dni);
-			 
-			 System.out.println(paciente.toString());
-			 System.out.println("\n");
-			 System.out.println(" ------------------------- ");
-			   // si hay visitas las lista
-			  if (TratamientoFichero.listaVisitas(dni).size() > 0) {
-			  System.out.println("   Fin visitas registradas     ");
-			  System.out.println(" ------------------------- ");
-			  //Si no hay visitas 
-			  }else {
-				  System.out.println("\n");
-				  System.out.println("   El paciente no tiene visitas   ");
-				  System.out.println(" ------------------------------------ ");  
-				  System.out.println("\n");
-			  }
-			
-			 
-		 }else {
-			 
-			 System.out.println("\n");
-			 System.out.println(" Lo sentimos, el DNI introducido no se"
-			 		+ "corresponde con pacientes");
-			 System.out.println("\n");
-			 
-		 }
 		
-        
-        
+		try {
+		// Consultamos las visitas por DNI del paciente
+		TreeMap<String, Visita> visitas = SentenciasSQL.leerVisitas(dni);
+		
+		
 		
 
+		if (visitas.isEmpty()) {
+			System.out.println("No se encontraron visitas para el paciente con DNI " + dni);
+		} else {
+			// Print the patient information
+			Paciente paciente = SentenciasSQL.buscarPaciente(dni);
+			if (paciente != null) {
+				System.out.println(paciente.toString());
+				System.out.println("------------------------------------");
+			}
+
+			// Print the visits
+			System.out.println("Visitas registradas:");
+			for (Visita visita : visitas.values()) {
+				System.out.println(visita.toString());
+			}
+		}
+		
+		
+		
+		// capturamos excepción de conexion
+	} catch (Exception e) {
+	    // Handle the CommunicationsException
+	    System.err.println("Error de conexion con el servidor: " + e.getMessage());
+	    // Additional error handling or recovery logic can be added here
+	    // For example, you can log the error, retry the operation, or show an error message to the user
 	}
-
+		
+		
+		
+		
+		
+	}
 }

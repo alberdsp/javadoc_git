@@ -1,5 +1,6 @@
 package menus;
 
+import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.Locale;
@@ -7,22 +8,20 @@ import java.util.Scanner;
 import java.util.TreeMap;
 
 import clases.Paciente;
+import clases.Profesionales_Medicos;
 import clases.TratamientoFichero;
 import clases.Visita;
+import conexionSQL.SentenciasSQL;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
 
 /**
- * Clase Alta_Visitas menu de alta y métodos de alta de Visitas
+ * Clase Alta_Visitas para manejar el alta de visitas
  * 
- * @author Alber
- *
  */
 public class Alta_Visitas {
-	// establecemos los formatos de fecha y hora
-	DateTimeFormatter forma_fecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-	DateTimeFormatter forma_hora = DateTimeFormatter.ofPattern("HH:mm");
+	private static final DateTimeFormatter FORMATTER_FECHA = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	private static final DateTimeFormatter FORMATTER_HORA = DateTimeFormatter.ofPattern("HH:mm");
 
 	/**
 	 * Método constructor por defecto
@@ -32,143 +31,118 @@ public class Alta_Visitas {
 	}
 
 	/**
-	 * Método que imprime el menú de Alta de visitas
+	 * Método para imprimir el menú de alta de visitas
 	 */
 	public void printMenu() {
-
-		System.out.println("      Grabar nueva visita  ");
+		System.out.println("      Alta de Visitas  ");
 		System.out.println("***********************************");
 		System.out.println("  Introduzca los datos de la visita ");
 		System.out.println("\n");
-
 	}
 
 	/**
-	 * método para grabar nueva visita completa
+	 * Método para grabar una nueva visita
 	 * 
-	 * @throws IOException captura la excepcion
+	 * @throws IOException captura la excepción de entrada y salida
 	 */
 	public void nuevaVisita() throws IOException {
+		Scanner scanner = new Scanner(System.in);
+		scanner.useLocale(Locale.US);
 
-		Scanner sc = new Scanner(System.in);
-		// sc.useDelimiter("\n");
-		sc.useLocale(Locale.US);
+		System.out.println("Introduce el DNI del paciente:");
+		String dniPaciente = scanner.next();
+		dniPaciente = dniPaciente.toUpperCase();
 
-		String insertado = " Visita grabada";
-
-		// Introducimos los datos
-
-		System.out.println("Introduce el DNI");
-		String dni = sc.next();
 		
-		 dni = dni.toUpperCase();
+		
+		
+		
+		
+		try {
+		
+		// Buscamos el paciente por el dni
+		Paciente paciente = SentenciasSQL.buscarPaciente(dniPaciente);
+		if (paciente.getDni() == null) {
+			System.out.println("Paciente no encontrado. Procediendo al alta de paciente.");
+			System.out.println();
 
-		// buscamos el DNI en el fichero, si lo encuentra pasamos al alta
-		// de visitas, si no lo encuentra llamamos al método Alta_Pacientes
-		Paciente paciente = TratamientoFichero.buscarPaciente(dni);
-		if (paciente.getDni() != null) {
-
-			System.out.println("\n");
-			System.out.println("\n");
-			System.out.println("****************************");
-			System.out.println("    Paciente encontrado     ");
-			System.out.println("****************************");
-			System.out.println("\n");
-			System.out.println("\n");
-			System.out.println(TratamientoFichero.buscarPaciente(dni).toString());
-			System.out.println("\n");
-			System.out.println("\n");
-
+			Alta_Pacientes altaPaciente = new Alta_Pacientes();
+			paciente = altaPaciente.nuevoPaciente(dniPaciente);
 		} else {
-
-			System.out.println("\n");
-			System.out.println("\n");
-			System.out.println("paciente no encontrado");
-			System.out.println("----------------------");
-			System.out.println("Procedemos a dar de alta");
-			System.out.println("\n");
-			System.out.println("\n");
-
-			/**
-			 * Instanciamos la clase Alta_Pacientes
-			 */
-			Alta_Pacientes alta_paciente = new Alta_Pacientes();
-
-			alta_paciente.printMenu();
-
-			// pasamos dni como paramatro para grabar paciente con dni
-			paciente = alta_paciente.nuevoPaciente(dni);
-
+			System.out.println("Paciente encontrado:");
+			System.out.println(paciente.toString());
+			System.out.println();
 		}
 
-		// Se establece la fecha y la hora a la del momento de grabar
+		// imprimimos los profesionales medicos
+		Listar_Profesionales profesionaleslist = new Listar_Profesionales();
+
+		profesionaleslist.printMenu();
+
+		System.out.println("Introduce el DNI del profesional médico:");
+		String dniProfesional = scanner.next();
+		dniProfesional = dniProfesional.toUpperCase();
+		Profesionales_Medicos profesional = SentenciasSQL.buscarProfesional(dniProfesional);
+		if (profesional.getDni() == null) {
+			System.out.println("Profesional médico no encontrado. La visita se registrará sin profesional.");
+			System.out.println();
+		}
 
 		LocalDateTime now = LocalDateTime.now();
-		String fecha = forma_fecha.format(now);
-		String hora = forma_hora.format(now);
-		// Scanner scd = new Scanner(System.in);
-		double peso = 0;
-		double altura = 0;
-		Boolean error = true; // para detectar error de entrada de datos
+		String fecha = FORMATTER_FECHA.format(now);
+		String hora = FORMATTER_HORA.format(now);
 
-		do {
-			Scanner scd = new Scanner(System.in);
-			try {
-				scd.reset();
-				System.out.println("Introduce el peso, ejemplo 60,50 (Será en Kilogramos");
-
-				peso = scd.nextDouble();
-				error = false;
-				paciente.setPeso(peso);
-				scd.reset();
-			} catch (InputMismatchException i) {
-
-				System.out.println("ha introducido el peso incorrecto");
-				System.out.println("---------------------------------");
-				System.out.println("\n");
-
-			}
-		} while (error);
-
-		error = true;
-
-		do {
-			Scanner scd2 = new Scanner(System.in);
-			try {
-
-				System.out.println("Introduce la altura, ejemplo 1,75 (Será en Metros");
-
-				scd2.reset();
-				altura = scd2.nextDouble();
-				scd2.reset();
-				paciente.setAltura(altura);
-				error = false;
-			} catch (InputMismatchException i2) {
-
-				System.out.println("ha introducido una altura incorrecta");
-				System.out.println("---------------------------------");
-				System.out.println("\n");
-
-			}
-
-		} while (error);
-
-		String unidadaltura = "metros";
+		double peso = getInputValue("Introduce el peso en kilogramos:");
+		double altura = getInputValue("Introduce la altura en metros:");
 		String resulimc = Paciente.resultadoImc(paciente);
-		Visita nuevavisita = new Visita(dni, fecha, hora, peso, altura, unidadaltura, resulimc);
 
-		// lista de visitas, puede grabar de una en una o varias en el futuro
+		Visita nuevaVisita = new Visita(dniPaciente, dniProfesional, fecha, hora, peso, altura, "metros", resulimc);
+
 		TreeMap<String, Visita> visitas = new TreeMap<String, Visita>();
-		visitas.put(dni, nuevavisita);
+		visitas.put(dniPaciente, nuevaVisita);
 
-		TratamientoFichero.grabarVisitas(visitas);
-		
-		System.out.println("\n");
-		System.out.println("   Visita grabada correctamente  ");
-		System.out.println("---------------------------------");
-		System.out.println("\n");
-		
+		SentenciasSQL.grabarVisitas(visitas);
 
+		System.out.println("\n");
+		System.out.println("Visita grabada correctamente.");
+		System.out.println();
+		
+		// capturamos excepción de conexion
+		} catch (Exception e) {
+		    // Handle the CommunicationsException
+		    System.err.println("Error de conexion con el servidor: " + e.getMessage());
+		    // Additional error handling or recovery logic can be added here
+		    // For example, you can log the error, retry the operation, or show an error message to the user
+		}
+		
+		
+		
+		
+		
 	}
 
+	/**
+	 * Método auxiliar para obtener un valor numérico de entrada
+	 * 
+	 * @param prompt mensaje de entrada
+	 * @return el valor numérico ingresado
+	 */
+	private double getInputValue(String prompt) {
+		Scanner scanner = new Scanner(System.in);
+		double value = 0.0;
+		boolean validInput = false;
+
+		while (!validInput) {
+			try {
+				System.out.println(prompt);
+				value = scanner.nextDouble();
+				validInput = true;
+			} catch (InputMismatchException e) {
+				System.out.println("Entrada inválida. Introduce un valor numérico válido.");
+				scanner.nextLine();
+			}
+		}
+
+		return value;
+	}
 }

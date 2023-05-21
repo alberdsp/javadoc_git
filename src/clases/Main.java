@@ -3,11 +3,9 @@ package clases;
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import menus.Menu_Inicial;
-import menus.Alta_Pacientes;
-import menus.Alta_Visitas;
-import menus.Listar_Pacientes;
-import menus.Listar_Visitas;
+
+import conexionSQL.Conexion;
+import menus.*;
 
 /**
  * Clase Main carga menú y selecciona añadir alta o visitas
@@ -15,14 +13,13 @@ import menus.Listar_Visitas;
  * @author Alberto
  * @version v0.2
  */
-public class Main { 
-	
+public class Main {
+
 	/**
 	 * constructor por defecto
 	 */
-	public Main() {}
-	
-	
+	public Main() {
+	}
 
 	/**
 	 * metodo main
@@ -36,7 +33,13 @@ public class Main {
 		boolean salir = false; // controla cuando salir de la aplicación
 		int opcionmenu = 0; // opción elegida
 		Scanner omenu;
-		Menu_Inicial menuinicial = new Menu_Inicial(); // cargamos menú
+		Menus menuinicial = new Menus(); // cargamos menú
+
+		// cargamos la configuración de la conexión a la base de datos
+		TratamientoFichero.leerConexion();
+
+		Conexion conexion = new Conexion();
+		
 
 		// cargamos el menú inicial
 		do {
@@ -73,6 +76,9 @@ public class Main {
 				alta_paciente.printMenu();
 
 				Paciente paciente = new Paciente();
+				
+				
+				
 				paciente = alta_paciente.nuevoPaciente();
 
 				System.out.print(paciente.toString());
@@ -91,18 +97,36 @@ public class Main {
 
 				break;
 			}
+
 			case 3: {
+
+				System.out.println("Ha elegido alta de profesionales médicos");
+				System.out.println("----------------------------------");
+
+				// Instanciamos Alta_Profesionales
+				Alta_Profesionales altaprofesionales = new Alta_Profesionales();
+				altaprofesionales.printMenu();
+
+				Profesionales_Medicos profesional = new Profesionales_Medicos();
+				profesional = altaprofesionales.nuevoProfesional();
+
+				System.out.print(profesional.toString());
+
+				break;
+			}
+
+			case 4: {
 
 				System.out.println("Ha elegido listado de Pacientes");
 				System.out.println("----------------------------------");
 
-				// Instanciamos Listar_Visitas
+				// Instanciamos Listar_Pacientes
 				Listar_Pacientes listarpacientes = new Listar_Pacientes();
 				listarpacientes.printMenu();
 				break;
 
 			}
-			case 4: {
+			case 5: {
 
 				System.out.println("Ha elegido listado de Visitas");
 				System.out.println("----------------------------------");
@@ -110,6 +134,43 @@ public class Main {
 				// Instanciamos Listar_Visitas
 				Listar_Visitas listarvisitas = new Listar_Visitas();
 				listarvisitas.printMenu();
+				break;
+
+			}
+
+			case 6: {
+
+				System.out.println("Ha elegido listado de Visitas por fecha y profesional");
+				System.out.println("----------------------------------");
+
+				// Instanciamos Listar_Visitas_fecha_profesional
+				Listar_Visitas_fecha_profesional listarvisitas = new Listar_Visitas_fecha_profesional();
+				listarvisitas.printMenu();
+				break;
+
+			}
+
+			case 7: {
+
+				System.out.println("Ha elegido listado de Profesionales");
+				System.out.println("----------------------------------");
+
+				// Instanciamos Listar_Profesionales
+				Listar_Profesionales listarprofesionales = new Listar_Profesionales();
+				listarprofesionales.printMenu();
+				break;
+
+			}
+
+			case 8: {
+
+				System.out.println("Ha elegido modificar conexion a BD");
+				System.out.println("----------------------------------");
+
+				// Instanciamos Listar_Visitas
+				Modificar_Conexion modconexion = new Modificar_Conexion();
+				modconexion.printMenu();
+				modconexion.configurarConexion();
 				break;
 
 			}

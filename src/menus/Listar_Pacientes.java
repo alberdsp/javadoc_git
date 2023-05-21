@@ -8,21 +8,21 @@ import java.util.Map.Entry;
 
 import clases.Paciente;
 import clases.TratamientoFichero;
-
+import conexionSQL.SentenciasSQL;
 
 /**
  * Clase Listar_Pacientes para manejar el listado de los pacientes
+ * 
  * @author Alber
  *
  */
 public class Listar_Pacientes {
-	
-	  
+
 	/**
 	 * Constructor por defecto
 	 */
-	public Listar_Pacientes() {}
-	
+	public Listar_Pacientes() {
+	}
 
 	/**
 	 * Método para imprimir el menu
@@ -34,17 +34,14 @@ public class Listar_Pacientes {
 		System.out.println("      Listado de Pacientes  ");
 		System.out.println("***********************************");
 		System.out.println("\n");
-        
-		TreeMap<String, Paciente> listapacientes = TratamientoFichero.leerFicheroPaci();    
-        
+
+		TreeMap<String, Paciente> listapacientes = SentenciasSQL.leerPacientes();
+
 		for (Entry<String, Paciente> listap : listapacientes.entrySet()) {
 
 			System.out.println(listap.toString());
 
 		}
-		
-		
-		
 
 	}
 

@@ -5,17 +5,23 @@ import java.util.Locale;
 import java.util.Scanner;
 import java.util.TreeMap;
 
+import com.mysql.jdbc.CommunicationsException;
+
 import clases.Paciente;
 import clases.TratamientoFichero;
+import clases.Validadores;
+import conexionSQL.SentenciasSQL;
 
 /**
  * Clase Alta_Pacientes para gestionar el alta de los pacientes
- * @author Alber 
+ * 
+ * @author Alber
  *
  */
 
 public class Alta_Pacientes {
 
+	private Validadores validador = new Validadores();
 	
 	
 	/**
@@ -43,43 +49,45 @@ public class Alta_Pacientes {
 	 * Método para crear un nuevo paciente
 	 * 
 	 * @return devuelve un objeto Paciente
-	 * @throws IOException  capturamos el error
+	 * @throws IOException capturamos el error
 	 */
 
+	@SuppressWarnings("resource")
 	public Paciente nuevoPaciente() throws IOException {
 
 		TreeMap<String, Paciente> listaPacientes = new TreeMap<String, Paciente>();
-        
-		
-		
-	
+
 		Scanner sc = new Scanner(System.in);
 		sc.useDelimiter("\n");
 		sc.useLocale(Locale.US);
 
-	   
-	    String dni;
+		String dni;
 		sc.reset();
-        Paciente paciente = new Paciente(); 
+		Paciente paciente = new Paciente();
+
 		
-        // validamos dni 
+		try {
+		
+		
+		
+		// validamos dni
 		do {
-			
+
 			System.out.println("Introduce DNI valido 8 numeros y letra");
 			dni = sc.next().trim();
 			dni = dni.toUpperCase();
-			
-			
-			
-		}while (paciente.validarDni(dni)==false);
-		
-	
-		
-		
-		// comprobamos si existe el paciente
-		 paciente = TratamientoFichero.buscarPaciente(dni);
-		// si no existe pasamos a darlo de alta
 
+		} while (validador.validarDni(dni) == false);
+
+		
+		
+		
+		
+		paciente = SentenciasSQL.buscarPaciente(dni);
+
+		
+		
+		
 		if (paciente.getDni() == null) {
 			System.out.println("Introduce el nombre");
 			Scanner sc1 = new Scanner(System.in).useDelimiter("\n");
@@ -122,7 +130,17 @@ public class Alta_Pacientes {
 			paciente.setCod_postal(cod_postal);
 
 			listaPacientes.put(dni, paciente);
-			TratamientoFichero.grabarPacientes(listaPacientes);
+			
+			// comprobamos si existe el paciente
+			try {
+				SentenciasSQL.grabarPacientes(listaPacientes);
+			   
+			} catch (Exception e) {
+			   
+			   System.out.println("error de conexión con la base de datos");
+			}
+			
+			
 			System.out.println("\n");
 
 		} else {
@@ -133,7 +151,21 @@ public class Alta_Pacientes {
 
 		}
 
+		
+		
+		// capturamos excepción de conexion
+		} catch (Exception e) {
+		    // Handle the CommunicationsException
+		    System.err.println("Error de conexion con el servidor: " + e.getMessage());
+		    // Additional error handling or recovery logic can be added here
+		    // For example, you can log the error, retry the operation, or show an error message to the user
+		}
+		
+		
+		
 		return paciente;
+		
+		
 
 	}
 
@@ -147,33 +179,30 @@ public class Alta_Pacientes {
 	public Paciente nuevoPaciente(String ndni) {
 		TreeMap<String, Paciente> listaPacientes = new TreeMap<String, Paciente>();
 
-
 //// Introducimos los datos
 //
 
-				Scanner sc = new Scanner(System.in);
-				sc.useDelimiter("\n");
-				sc.useLocale(Locale.US);
+		Scanner sc = new Scanner(System.in);
+		sc.useDelimiter("\n");
+		sc.useLocale(Locale.US);
 
-			   
-			    String dni;
-				sc.reset();
-		        Paciente paciente = new Paciente(); 
-				
-		        // validamos dni 
-				do {
-					
-					System.out.println("Introduce DNI valido 8 numeros y letra");
-					dni = sc.next().trim();
-					dni = dni.toUpperCase();
-					
-					
-					
-				}while (paciente.validarDni(dni)==false);
+		String dni;
+		sc.reset();
+		Paciente paciente = new Paciente();
+
+		
+		try {
 		
 		
-		
-		
+		// validamos dni
+		do {
+
+			System.out.println("Introduce DNI valido 8 numeros y letra");
+			dni = sc.next().trim();
+			dni = dni.toUpperCase();
+
+		} while (paciente.validarDni(dni) == false);
+
 		System.out.println("Introduce el nombre");
 		Scanner sc1 = new Scanner(System.in).useDelimiter("\n");
 
@@ -209,8 +238,20 @@ public class Alta_Pacientes {
 		paciente = new Paciente(dni, nombre, edad, sexo, direccion, localidad, cod_postal);
 
 		listaPacientes.put(dni, paciente);
-		TratamientoFichero.grabarPacientes(listaPacientes);
+		SentenciasSQL.grabarPacientes(listaPacientes);
 
+		
+		
+		
+		// capturamos excepción de conexion
+	} catch (Exception e) {
+	    // Handle the CommunicationsException
+	    System.err.println("Error de conexion con el servidor: " + e.getMessage());
+	    // Additional error handling or recovery logic can be added here
+	    // For example, you can log the error, retry the operation, or show an error message to the user
+	}
+		
+		
 		return paciente;
 	}
 
