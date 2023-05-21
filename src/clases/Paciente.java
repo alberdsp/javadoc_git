@@ -35,16 +35,16 @@ public class Paciente {
 	public Paciente() {
 	}
 
-	
 	/**
-	 *  * Declaramos constructor para el tratamiento de ficheros
-	 * @param dni   DNI de la persona
-	 * @param nombre   Nombre
-	 * @param edad     Edad
-	 * @param sexo     Sexo
-	 * @param calle    Calle
-	 * @param localidad   Localidad
-	 * @param cod_postal  Código Postal
+	 * * Declaramos constructor para el tratamiento de ficheros
+	 * 
+	 * @param dni        DNI de la persona
+	 * @param nombre     Nombre
+	 * @param edad       Edad
+	 * @param sexo       Sexo
+	 * @param calle      Calle
+	 * @param localidad  Localidad
+	 * @param cod_postal Código Postal
 	 */
 	public Paciente(String dni, String nombre, int edad, char sexo, String calle, String localidad, String cod_postal) {
 
@@ -60,28 +60,28 @@ public class Paciente {
 
 	/**
 	 * Método para validar un DNI introducido
-	 * @param ndni   StrinG ndni  pasamos  DNI completo con letra
+	 * 
+	 * @param ndni StrinG ndni pasamos DNI completo con letra
 	 * @return devuelve true si el DNI es válido o false si no lo es
 	 */
 	public Boolean validarDni(String ndni) {
 		final int divisor = 23;
 		Boolean dnivalido = false;
-		String strdni = ndni.trim().substring(0,8);
+		String strdni = ndni.trim().substring(0, 8);
 		int numDNI = Integer.parseInt(strdni);
 		int res = numDNI - (numDNI / divisor * divisor);
 		char letraDNI = generaLetraDNI(res);
 		dni = Integer.toString(numDNI) + letraDNI;
-		
-		if(ndni.equals(dni)) {
-			
+
+		if (ndni.equals(dni)) {
+
 			dnivalido = true;
-			
+
 		}
-		
+
 		return dnivalido;
 	}
 
-	
 	// nos calcula la letra del DNI
 	private char generaLetraDNI(int res) {
 		char letras[] = { 'T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H',
@@ -89,143 +89,174 @@ public class Paciente {
 		return letras[res];
 	}
 
-
-	
 	/**
-	 *  Establece DNI
-	 * @param dni  DNI
+	 * Establece DNI
+	 * 
+	 * @param dni DNI
 	 */
 	public void setDni(String dni) {
 		this.dni = dni.toUpperCase();
 	}
-    /**
-     * Establece Calle
-     * @param calle  Calle
-     */
+
+	/**
+	 * Establece Calle
+	 * 
+	 * @param calle Calle
+	 */
 	public void setCalle(String calle) {
 		this.calle = calle.toUpperCase();
 	}
-    /**
-     * Establece La Localidad
-     * @param localidad Localidad
-     */
+
+	/**
+	 * Establece La Localidad
+	 * 
+	 * @param localidad Localidad
+	 */
 	public void setLocalidad(String localidad) {
 		this.localidad = localidad.toUpperCase();
 	}
-     /**
-      * Establece Código Postal
-      * @param cod_postal  Código Postal
-      */
+
+	/**
+	 * Establece Código Postal
+	 * 
+	 * @param cod_postal Código Postal
+	 */
 	public void setCod_postal(String cod_postal) {
 		this.cod_postal = cod_postal;
 	}
-    /**
-     * Establece Nombre
-     * @param nombre Nombre
-     */
+
+	/**
+	 * Establece Nombre
+	 * 
+	 * @param nombre Nombre
+	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre.toUpperCase();
 	}
-    /**
-     * Establece Edad
-     * @param edad Edad
-     */
+
+	/**
+	 * Establece Edad
+	 * 
+	 * @param edad Edad
+	 */
 	public void setEdad(int edad) {
 		this.edad = edad;
 	}
-    /**
-     * Establece Sexo
-     * @param sexo Sexo
-     */
+
+	/**
+	 * Establece Sexo
+	 * 
+	 * @param sexo Sexo
+	 */
 	public void setSexo(char sexo) {
 		this.sexo = sexo;
 	}
-    /**
-     * Establece Peso
-     * @param peso Peso
-     */
+
+	/**
+	 * Establece Peso
+	 * 
+	 * @param peso Peso
+	 */
 	public void setPeso(double peso) {
 		this.peso = peso;
 	}
-    /**
-     * Establece Altura
-     * @param altura Altura
-     */
+
+	/**
+	 * Establece Altura
+	 * 
+	 * @param altura Altura
+	 */
 	public void setAltura(double altura) {
 		this.altura = altura;
 	}
 
-	
-    /**
-     * Devuelve el Nombre
-     * @return Nombre
-     */
+	/**
+	 * Devuelve el Nombre
+	 * 
+	 * @return Nombre
+	 */
 	public String getNombre() {
 		return nombre;
 	}
-    /**
-     * Devuelve la Edad
-     * @return  Edad
-     */
+
+	/**
+	 * Devuelve la Edad
+	 * 
+	 * @return Edad
+	 */
 	public int getEdad() {
 		return edad;
 	}
-    /**
-     * Devuelve el DNI
-     * @return DNI
-     */
+
+	/**
+	 * Devuelve el DNI
+	 * 
+	 * @return DNI
+	 */
 	public String getDni() {
 		return dni;
 	}
-    /**
-     * Devuelve la Calle
-     * @return  Calle
-     */
+
+	/**
+	 * Devuelve la Calle
+	 * 
+	 * @return Calle
+	 */
 	public String getCalle() {
 		return calle;
 	}
-    /**
-     * Devuelve la Localidad
-     * @return Localidad
-     */
+
+	/**
+	 * Devuelve la Localidad
+	 * 
+	 * @return Localidad
+	 */
 	public String getLocalidad() {
 		return localidad;
 	}
-    /**
-     * Devuelve el Código Postal
-     * @return Código Postal
-     */
+
+	/**
+	 * Devuelve el Código Postal
+	 * 
+	 * @return Código Postal
+	 */
 	public String getCod_postal() {
 		return cod_postal;
 	}
-    /**
-     * Devuelve el Sexo
-     * @return Sexo
-     */
+
+	/**
+	 * Devuelve el Sexo
+	 * 
+	 * @return Sexo
+	 */
 	public char getSexo() {
 		return sexo;
 	}
-    /**
-     * Devuelve el Peso
-     * @return Peso
-     */
+
+	/**
+	 * Devuelve el Peso
+	 * 
+	 * @return Peso
+	 */
 	public double getPeso() {
 		return peso;
 	}
-    /**
-     * Devuelve la Altura
-     * @return Altura
-     */
+
+	/**
+	 * Devuelve la Altura
+	 * 
+	 * @return Altura
+	 */
 	public double getAltura() {
 		return altura;
 	}
 
-    /**
-     * Método que calcularImc , calcula el indice de masa corporal deben estar los
+	/**
+	 * Método que calcularImc , calcula el indice de masa corporal deben estar los
 	 * valores almacenados en KILOS y METROS
 	 * 
-     * @return resultado calculo IMC
-     */
+	 * @return resultado calculo IMC
+	 */
 	public int calcularImc() {
 //Calculamos el peso de la persona
 		double pesoActual = peso / (Math.pow(altura, 2));
@@ -256,8 +287,9 @@ public class Paciente {
 			tipopersona = "Menor de edad";
 		}
 
-		return "\n" + "Informacion del Paciente:\n" + "Nombre: " + nombre + "\n" + "Sexo: "
-				+ sexo + "\n" + "Edad: " + edad + " \n" + " DNI: " + dni + "\n" + "Condicion: " + tipopersona+"\n"+"----------------------------\n";
+		return "\n" + "Informacion del Paciente:\n" + "Nombre: " + nombre + "\n" + "Sexo: " + sexo + "\n" + "Edad: "
+				+ edad + " \n" + " DNI: " + dni + "\n" + "Condicion: " + tipopersona + "\n"
+				+ "----------------------------\n";
 	}
 
 // agregamos el método mayor de edad

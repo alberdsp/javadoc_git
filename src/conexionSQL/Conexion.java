@@ -1,8 +1,6 @@
 package conexionSQL;
 
-
 import java.sql.Connection;
-
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -40,7 +38,7 @@ public class Conexion {
 		try {
 			Class.forName(CONTROLADOR);
 		} catch (ClassNotFoundException e) {
-		
+
 			System.out.println("Error al cargar el controlador");
 			e.printStackTrace();
 		}
@@ -65,49 +63,50 @@ public class Conexion {
 		return conexion;
 	}
 
-	
 	/**
-	 *  metodo para consultar el nombre de la bd
-	 * @return  nombre bd
+	 * metodo para consultar el nombre de la bd
+	 * 
+	 * @return nombre bd
 	 */
 	public static String getNombreBd() {
 		return NOMBRE_BD;
 	}
 
-	
 	/**
-	 *  metodo para consultar servidor de la bd
-	 * @return  ruta ip o nombre del servidor
+	 * metodo para consultar servidor de la bd
+	 * 
+	 * @return ruta ip o nombre del servidor
 	 */
 	public static String getUbicacion() {
 		return UBICACION;
 	}
 
-	
 	/**
-	 *  metodo para consultar el puerto del servidor
-	 * @return  puerto del servidor
+	 * metodo para consultar el puerto del servidor
+	 * 
+	 * @return puerto del servidor
 	 */
 	public static String getPuerto() {
 		return PUERTO;
 	}
 
-	
 	/**
-	 *  metodo para consultar el usuario de la bd
-	 * @return  usuario de la bd
+	 * metodo para consultar el usuario de la bd
+	 * 
+	 * @return usuario de la bd
 	 */
 	public static String getUsuario() {
 		return USUARIO;
 	}
+
 	/**
-	 *  metodo para consultar el password de la bd
-	 * @return  password de la bd
+	 * metodo para consultar el password de la bd
+	 * 
+	 * @return password de la bd
 	 */
 	public static String getClave() {
 		return CLAVE;
 	}
-
 
 	/**
 	 * @param nombreBd nombre de la bd a asignar
@@ -143,26 +142,16 @@ public class Conexion {
 	public static void setClave(String clave) {
 		CLAVE = clave;
 	}
-	
-	
-	
+
 	/**
-	 * sobrescribimos el metodo toString para imprimir los
-	 * datos de la conexion
+	 * sobrescribimos el metodo toString para imprimir los datos de la conexion
 	 */
 	@Override
-    public String toString() {
-        return "Conexion{" +
-                "nombreBd='" + getNombreBd() + '\'' +
-                ", ubicacion='" + getUbicacion() + '\'' +
-                ", puerto='" + getPuerto() + '\'' +
-                ", usuario='" + getUsuario() + '\'' +
-                ", clave='" + getClave() + '\'' +
-                '}';
-    }
-	
-	
-	
+	public String toString() {
+		return "Conexion{" + "nombreBd='" + getNombreBd() + '\'' + ", ubicacion='" + getUbicacion() + '\''
+				+ ", puerto='" + getPuerto() + '\'' + ", usuario='" + getUsuario() + '\'' + ", clave='" + getClave()
+				+ '\'' + '}';
+	}
 
 	// SEGUNDA ACTUALIZACION
 
@@ -209,7 +198,6 @@ public class Conexion {
 	 * }
 	 */
 
-	
 	/*
 	 * public static void main(String[] args) {
 	 * 
@@ -240,4 +228,3 @@ public class Conexion {
 	 * }
 	 */
 }
-

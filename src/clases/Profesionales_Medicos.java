@@ -1,35 +1,32 @@
 package clases;
 
-
 /**
  * Clase Profesionales_Medicos Almacena los profesionales que pasan consulta
  */
-public class Profesionales_Medicos  {
-	
+public class Profesionales_Medicos {
+
 	private String nombre, apellidos, dni, localidad, telefono, especialidad;
 
-
 	public Profesionales_Medicos() {
-		
+
 	}
-	
-	public Profesionales_Medicos( String nombre, String apellidos, String dni,
-			String localidad, String telefono, String especialidad) {
-		
+
+	public Profesionales_Medicos(String nombre, String apellidos, String dni, String localidad, String telefono,
+			String especialidad) {
+
 		this.nombre = nombre;
 		this.apellidos = apellidos;
-		this.dni = dni;  // usaremos dni como clave primaria
+		this.dni = dni; // usaremos dni como clave primaria
 		this.localidad = localidad;
 		this.telefono = telefono;
-		this.especialidad = especialidad;	
+		this.especialidad = especialidad;
 	}
-		
 
-
-/**
- *  metodo que devuelve nombre
- * @return
- */
+	/**
+	 * metodo que devuelve nombre
+	 * 
+	 * @return
+	 */
 	public String getNombre() {
 		return nombre;
 	}
@@ -77,19 +74,12 @@ public class Profesionales_Medicos  {
 	public void setEspecialidad(String especialidad) {
 		this.especialidad = especialidad;
 	}
-	
+
 	@Override
 	public String toString() {
-	    return "Información del Profesional Médico:\n" +
-	           "Nombre: " + nombre + "\n" +
-	           "Apellidos: " + apellidos + "\n" +
-	           "DNI: " + dni + "\n" +
-	           "Localidad: " + localidad + "\n" +
-	           "Teléfono: " + telefono + "\n" +
-	           "Especialidad: " + especialidad + "\n" +
-	           "----------------------------\n";
+		return "Información del Profesional Médico:\n" + "Nombre: " + nombre + "\n" + "Apellidos: " + apellidos + "\n"
+				+ "DNI: " + dni + "\n" + "Localidad: " + localidad + "\n" + "Teléfono: " + telefono + "\n"
+				+ "Especialidad: " + especialidad + "\n" + "----------------------------\n";
 	}
 
-	
 }
-

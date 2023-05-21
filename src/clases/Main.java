@@ -1,7 +1,5 @@
 package clases;
 
-
-
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -9,25 +7,19 @@ import java.util.Scanner;
 import conexionSQL.Conexion;
 import menus.*;
 
-
-
-
-
-
 /**
  * Clase Main carga menú y selecciona añadir alta o visitas
  * 
  * @author Alberto
  * @version v0.2
  */
-public class Main { 
-	
+public class Main {
+
 	/**
 	 * constructor por defecto
 	 */
-	public Main() {}
-	
-	
+	public Main() {
+	}
 
 	/**
 	 * metodo main
@@ -42,15 +34,12 @@ public class Main {
 		int opcionmenu = 0; // opción elegida
 		Scanner omenu;
 		Menus menuinicial = new Menus(); // cargamos menú
-		
+
 		// cargamos la configuración de la conexión a la base de datos
 		TratamientoFichero.leerConexion();
-		
-		  Conexion conexion = new Conexion();
-	        System.out.println(conexion.toString());
-		
-		
-		
+
+		Conexion conexion = new Conexion();
+		System.out.println(conexion.toString());
 
 		// cargamos el menú inicial
 		do {
@@ -105,8 +94,7 @@ public class Main {
 
 				break;
 			}
-			
-			
+
 			case 3: {
 
 				System.out.println("Ha elegido alta de profesionales médicos");
@@ -123,10 +111,7 @@ public class Main {
 
 				break;
 			}
-			
-			
-			
-			
+
 			case 4: {
 
 				System.out.println("Ha elegido listado de Pacientes");
@@ -149,8 +134,7 @@ public class Main {
 				break;
 
 			}
-			
-			
+
 			case 6: {
 
 				System.out.println("Ha elegido listado de Visitas por fecha y profesional");
@@ -162,8 +146,7 @@ public class Main {
 				break;
 
 			}
-			
-			
+
 			case 7: {
 
 				System.out.println("Ha elegido listado de Profesionales");
@@ -175,8 +158,7 @@ public class Main {
 				break;
 
 			}
-			
-			
+
 			case 8: {
 
 				System.out.println("Ha elegido modificar conexion a BD");

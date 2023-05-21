@@ -13,114 +13,102 @@ import clases.Profesionales_Medicos;
 import clases.TratamientoFichero;
 import clases.Validadores;
 import clases.Visita;
+import conexionSQL.SentenciasSQL;
 
 /**
- * Clase Listar_Visitas_fecha_profesional para listar las visitas de los pacientes por fecha y por profesional
+ * Clase Listar_Visitas_fecha_profesional para listar las visitas de los
+ * pacientes por fecha y por profesional
  * 
  */
 public class Listar_Visitas_fecha_profesional {
-	
-    private Validadores validador = new Validadores();
 
-    /**
-     * Constructor por defecto
-     */
-    public Listar_Visitas_fecha_profesional() {
-    }
+	private Validadores validador = new Validadores();
 
-    /**
-     * Método para imprimir el menú
-     *
-     * @throws IOException captura la excepción
-     */
-    public void printMenu() throws IOException {
-    	String fecha;
-    	String dniProfesional;
-        TreeMap<Integer, Visita> visitas = new TreeMap<Integer, Visita>();
+	/**
+	 * Constructor por defecto
+	 */
+	public Listar_Visitas_fecha_profesional() {
+	}
 
-        System.out.println("Listado de visitas por fecha y profesional");
-        System.out.println("***********************************");
-        System.out.println("Introduzca la fecha (dd/MM/yyyy) y el DNI del profesional médico a listar");
-        System.out.println();
+	/**
+	 * Método para imprimir el menú
+	 *
+	 * @throws IOException captura la excepción
+	 */
+	public void printMenu() throws IOException {
+		String fecha;
+		String dniProfesional;
+		TreeMap<Integer, Visita> visitas = new TreeMap<Integer, Visita>();
 
-        Scanner sc = new Scanner(System.in);
-        sc.useLocale(Locale.US);
+		System.out.println("Listado de visitas por fecha y profesional");
+		System.out.println("***********************************");
+		System.out.println("Introduzca la fecha (dd/MM/yyyy) y el DNI del profesional médico a listar");
+		System.out.println();
 
-        // Introducir la fecha
-     
+		Scanner sc = new Scanner(System.in);
+		sc.useLocale(Locale.US);
 
-        // Validar el formato de fecha
-        
-        
-        // Pedimos fecha hasta que sea correcta
-        do {
-            System.out.print("Introduzca la fecha (dd/MM/yyyy): ");
-            fecha = sc.next().trim();
+		// Introducir la fecha
 
-            // Validate the format of the date
-            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            try {
-                LocalDate.parse(fecha, dateFormatter);
-            } catch (DateTimeParseException e) {
-                System.out.println("Fecha en formato incorrecto. Por favor, introduzca la fecha en formato dd/MM/yyyy.");
-                continue; // repite hasta que sea correcto
-            }
+		// Validar el formato de fecha
 
-            break; // salimos del bucle si es correcto
-        } while (true);
-        	 
-        // Introducir el DNI del profesional médico
-   
+		// Pedimos fecha hasta que sea correcta
+		do {
+			System.out.print("Introduzca la fecha (dd/MM/yyyy): ");
+			fecha = sc.next().trim();
 
-        
-     // lanzamos mientras sea incorrecto el DNI
-        do {
-            System.out.print("Introduzca el DNI del profesional médico: ");
-            dniProfesional = sc.next().toUpperCase();
+			// Validate the format of the date
+			DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			try {
+				LocalDate.parse(fecha, dateFormatter);
+			} catch (DateTimeParseException e) {
+				System.out
+						.println("Fecha en formato incorrecto. Por favor, introduzca la fecha en formato dd/MM/yyyy.");
+				continue; // repite hasta que sea correcto
+			}
 
-            // Validar el DNI del profesional médico
-            if (!validador.validarDni(dniProfesional)) {
-                System.out.println("DNI del profesional médico inválido. Por favor, introduzca un DNI válido.");
-                return; 
-            }
+			break; // salimos del bucle si es correcto
+		} while (true);
 
-            break; // Salimos si es correcto
-        } while (true);
+		// Introducir el DNI del profesional médico
 
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    
+		// lanzamos mientras sea incorrecto el DNI
+		do {
+			System.out.print("Introduzca el DNI del profesional médico: ");
+			dniProfesional = sc.next().toUpperCase();
 
-        // Buscar el profesional médico
-        Profesionales_Medicos profesional = TratamientoFichero.buscarProfesional(dniProfesional);
+			// Validar el DNI del profesional médico
+			if (!validador.validarDni(dniProfesional)) {
+				System.out.println("DNI del profesional médico inválido. Por favor, introduzca un DNI válido.");
+				return;
+			}
 
-        if (profesional != null) {
-            System.out.println(profesional.toString());
-            System.out.println();
-            System.out.println("-------------------------");
+			break; // Salimos si es correcto
+		} while (true);
 
-            // Obtener la lista de visitas por fecha y profesional
-            visitas = TratamientoFichero.listaVisitas(dniProfesional, fecha);
-            if (!visitas.isEmpty()) {
-                System.out.println(" Fin del listado de Visitas.");
-                
-                System.out.println("-------------------------");
-            } else {
-                System.out.println("No se encontraron visitas para la fecha y el profesional médico especificados.");
-                System.out.println("-------------------------");
-            }
-        } else {
-            System.out.println();
-            System.out.println("Lo sentimos, el DNI del profesional médico no se encontró en el sistema.");
-            System.out.println();
-        }
-    }
+		// Buscar el profesional médico
+		Profesionales_Medicos profesional = SentenciasSQL.buscarProfesional(dniProfesional);
+
+		if (profesional != null) {
+			System.out.println(profesional.toString());
+			System.out.println();
+			System.out.println("-------------------------");
+
+			// Obtener la lista de visitas por fecha y profesional
+			visitas = SentenciasSQL.listaVisitas(dniProfesional, fecha);
+			if (!visitas.isEmpty()) {
+				System.out.println(" Fin del listado de Visitas.");
+
+				System.out.println("-------------------------");
+			} else {
+				System.out.println("No se encontraron visitas para la fecha y el profesional médico especificados.");
+				System.out.println("-------------------------");
+			}
+		} else {
+			System.out.println();
+			System.out.println("Lo sentimos, el DNI del profesional médico no se encontró en el sistema.");
+			System.out.println();
+		}
+	}
 
 }

@@ -14,8 +14,7 @@ import clases.TratamientoFichero;
  * 
  */
 public class Alta_Profesionales {
-	
-	
+
 	Validadores validadores = new Validadores();
 
 	/**
@@ -41,7 +40,7 @@ public class Alta_Profesionales {
 	 * Método para crear un nuevo profesional médico
 	 * 
 	 * @return devuelve un objeto Profesionales_Medicos
-	 * @throws IOException  capturamos el error
+	 * @throws IOException capturamos el error
 	 */
 	public Profesionales_Medicos nuevoProfesional() throws IOException {
 		TreeMap<String, Profesionales_Medicos> listaProfesionales = new TreeMap<String, Profesionales_Medicos>();
@@ -160,4 +159,3 @@ public class Alta_Profesionales {
 		return profesional;
 	}
 }
-

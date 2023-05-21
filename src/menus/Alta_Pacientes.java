@@ -11,14 +11,13 @@ import conexionSQL.SentenciasSQL;
 
 /**
  * Clase Alta_Pacientes para gestionar el alta de los pacientes
- * @author Alber 
+ * 
+ * @author Alber
  *
  */
 
 public class Alta_Pacientes {
 
-	
-	
 	/**
 	 * Constructor por defecto
 	 */
@@ -44,41 +43,32 @@ public class Alta_Pacientes {
 	 * Método para crear un nuevo paciente
 	 * 
 	 * @return devuelve un objeto Paciente
-	 * @throws IOException  capturamos el error
+	 * @throws IOException capturamos el error
 	 */
 
 	public Paciente nuevoPaciente() throws IOException {
 
 		TreeMap<String, Paciente> listaPacientes = new TreeMap<String, Paciente>();
-        
-		
-		
-	
+
 		Scanner sc = new Scanner(System.in);
 		sc.useDelimiter("\n");
 		sc.useLocale(Locale.US);
 
-	   
-	    String dni;
+		String dni;
 		sc.reset();
-        Paciente paciente = new Paciente(); 
-		
-        // validamos dni 
+		Paciente paciente = new Paciente();
+
+		// validamos dni
 		do {
-			
+
 			System.out.println("Introduce DNI valido 8 numeros y letra");
 			dni = sc.next().trim();
 			dni = dni.toUpperCase();
-			
-			
-			
-		}while (paciente.validarDni(dni)==false);
-		
-	
-		
-		
+
+		} while (paciente.validarDni(dni) == false);
+
 		// comprobamos si existe el paciente
-		 paciente = TratamientoFichero.buscarPaciente(dni);
+		paciente = TratamientoFichero.buscarPaciente(dni);
 		// si no existe pasamos a darlo de alta
 
 		if (paciente.getDni() == null) {
@@ -148,33 +138,26 @@ public class Alta_Pacientes {
 	public Paciente nuevoPaciente(String ndni) {
 		TreeMap<String, Paciente> listaPacientes = new TreeMap<String, Paciente>();
 
-
 //// Introducimos los datos
 //
 
-				Scanner sc = new Scanner(System.in);
-				sc.useDelimiter("\n");
-				sc.useLocale(Locale.US);
+		Scanner sc = new Scanner(System.in);
+		sc.useDelimiter("\n");
+		sc.useLocale(Locale.US);
 
-			   
-			    String dni;
-				sc.reset();
-		        Paciente paciente = new Paciente(); 
-				
-		        // validamos dni 
-				do {
-					
-					System.out.println("Introduce DNI valido 8 numeros y letra");
-					dni = sc.next().trim();
-					dni = dni.toUpperCase();
-					
-					
-					
-				}while (paciente.validarDni(dni)==false);
-		
-		
-		
-		
+		String dni;
+		sc.reset();
+		Paciente paciente = new Paciente();
+
+		// validamos dni
+		do {
+
+			System.out.println("Introduce DNI valido 8 numeros y letra");
+			dni = sc.next().trim();
+			dni = dni.toUpperCase();
+
+		} while (paciente.validarDni(dni) == false);
+
 		System.out.println("Introduce el nombre");
 		Scanner sc1 = new Scanner(System.in).useDelimiter("\n");
 

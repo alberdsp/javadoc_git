@@ -2,6 +2,7 @@ package menus;
 
 /**
  * Clase Menu que contiene los menus de toda la app
+ * 
  * @author Alber
  *
  */
@@ -41,7 +42,7 @@ public class Menus {
 		System.out.println("\n");
 
 	}
-	
+
 	/**
 	 * Método que imprime el menú de Alta de Pacientes
 	 */
@@ -56,7 +57,5 @@ public class Menus {
 		System.out.println("\n");
 		System.out.println("\n");
 	}
-	
-	
 
 }
