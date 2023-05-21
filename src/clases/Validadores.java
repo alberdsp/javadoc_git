@@ -12,7 +12,12 @@ public class Validadores {
 		String dni;
 		final int divisor = 23;
 		Boolean dnivalido = false;
-		String strdni = ndni.trim().substring(0, 8);
+		
+		String strdni;
+		
+		
+		try {
+		strdni = ndni.trim().substring(0, 8);
 		int numDNI = Integer.parseInt(strdni);
 		int res = numDNI - (numDNI / divisor * divisor);
 		char letraDNI = generaLetraDNI(res);
@@ -23,7 +28,11 @@ public class Validadores {
 			dnivalido = true;
 
 		}
-
+		}catch (Exception e) {
+			
+			System.out.println("error dni mal introducido");
+			
+		}
 		return dnivalido;
 	}
 

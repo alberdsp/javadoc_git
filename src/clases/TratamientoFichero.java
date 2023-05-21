@@ -581,14 +581,14 @@ public class TratamientoFichero {
 				}
 			}
 
-			// Retrieve the values from the properties object
+			// Recibimos los valores del objeto property
 			String nombreBd = properties.getProperty("NOMBRE_BD").trim();
 			String ubicacion = properties.getProperty("UBICACION").trim();
 			String puerto = properties.getProperty("PUERTO").trim();
 			String usuario = properties.getProperty("USUARIO").trim();
 			String clave = properties.getProperty("CLAVE").trim();
 
-			// Use the retrieved values as needed
+			// Establecemos los valores
 
 			NOMBRE_BD = nombreBd;
 			UBICACION = ubicacion;

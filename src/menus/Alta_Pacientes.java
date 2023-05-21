@@ -5,8 +5,11 @@ import java.util.Locale;
 import java.util.Scanner;
 import java.util.TreeMap;
 
+import com.mysql.jdbc.CommunicationsException;
+
 import clases.Paciente;
 import clases.TratamientoFichero;
+import clases.Validadores;
 import conexionSQL.SentenciasSQL;
 
 /**
@@ -18,6 +21,9 @@ import conexionSQL.SentenciasSQL;
 
 public class Alta_Pacientes {
 
+	private Validadores validador = new Validadores();
+	
+	
 	/**
 	 * Constructor por defecto
 	 */
@@ -46,6 +52,7 @@ public class Alta_Pacientes {
 	 * @throws IOException capturamos el error
 	 */
 
+	@SuppressWarnings("resource")
 	public Paciente nuevoPaciente() throws IOException {
 
 		TreeMap<String, Paciente> listaPacientes = new TreeMap<String, Paciente>();
@@ -58,6 +65,11 @@ public class Alta_Pacientes {
 		sc.reset();
 		Paciente paciente = new Paciente();
 
+		
+		try {
+		
+		
+		
 		// validamos dni
 		do {
 
@@ -65,12 +77,17 @@ public class Alta_Pacientes {
 			dni = sc.next().trim();
 			dni = dni.toUpperCase();
 
-		} while (paciente.validarDni(dni) == false);
+		} while (validador.validarDni(dni) == false);
 
-		// comprobamos si existe el paciente
-		paciente = TratamientoFichero.buscarPaciente(dni);
-		// si no existe pasamos a darlo de alta
+		
+		
+		
+		
+		paciente = SentenciasSQL.buscarPaciente(dni);
 
+		
+		
+		
 		if (paciente.getDni() == null) {
 			System.out.println("Introduce el nombre");
 			Scanner sc1 = new Scanner(System.in).useDelimiter("\n");
@@ -113,7 +130,17 @@ public class Alta_Pacientes {
 			paciente.setCod_postal(cod_postal);
 
 			listaPacientes.put(dni, paciente);
-			TratamientoFichero.grabarPacientes(listaPacientes);
+			
+			// comprobamos si existe el paciente
+			try {
+				SentenciasSQL.grabarPacientes(listaPacientes);
+			   
+			} catch (Exception e) {
+			   
+			   System.out.println("error de conexión con la base de datos");
+			}
+			
+			
 			System.out.println("\n");
 
 		} else {
@@ -124,7 +151,21 @@ public class Alta_Pacientes {
 
 		}
 
+		
+		
+		// capturamos excepción de conexion
+		} catch (Exception e) {
+		    // Handle the CommunicationsException
+		    System.err.println("Error de conexion con el servidor: " + e.getMessage());
+		    // Additional error handling or recovery logic can be added here
+		    // For example, you can log the error, retry the operation, or show an error message to the user
+		}
+		
+		
+		
 		return paciente;
+		
+		
 
 	}
 
@@ -149,6 +190,10 @@ public class Alta_Pacientes {
 		sc.reset();
 		Paciente paciente = new Paciente();
 
+		
+		try {
+		
+		
 		// validamos dni
 		do {
 
@@ -195,6 +240,18 @@ public class Alta_Pacientes {
 		listaPacientes.put(dni, paciente);
 		SentenciasSQL.grabarPacientes(listaPacientes);
 
+		
+		
+		
+		// capturamos excepción de conexion
+	} catch (Exception e) {
+	    // Handle the CommunicationsException
+	    System.err.println("Error de conexion con el servidor: " + e.getMessage());
+	    // Additional error handling or recovery logic can be added here
+	    // For example, you can log the error, retry the operation, or show an error message to the user
+	}
+		
+		
 		return paciente;
 	}
 

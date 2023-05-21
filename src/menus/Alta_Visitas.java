@@ -53,8 +53,15 @@ public class Alta_Visitas {
 		String dniPaciente = scanner.next();
 		dniPaciente = dniPaciente.toUpperCase();
 
+		
+		
+		
+		
+		
+		try {
+		
 		// Buscamos el paciente por el dni
-		Paciente paciente = TratamientoFichero.buscarPaciente(dniPaciente);
+		Paciente paciente = SentenciasSQL.buscarPaciente(dniPaciente);
 		if (paciente.getDni() == null) {
 			System.out.println("Paciente no encontrado. Procediendo al alta de paciente.");
 			System.out.println();
@@ -75,7 +82,7 @@ public class Alta_Visitas {
 		System.out.println("Introduce el DNI del profesional médico:");
 		String dniProfesional = scanner.next();
 		dniProfesional = dniProfesional.toUpperCase();
-		Profesionales_Medicos profesional = TratamientoFichero.buscarProfesional(dniProfesional);
+		Profesionales_Medicos profesional = SentenciasSQL.buscarProfesional(dniProfesional);
 		if (profesional.getDni() == null) {
 			System.out.println("Profesional médico no encontrado. La visita se registrará sin profesional.");
 			System.out.println();
@@ -99,6 +106,19 @@ public class Alta_Visitas {
 		System.out.println("\n");
 		System.out.println("Visita grabada correctamente.");
 		System.out.println();
+		
+		// capturamos excepción de conexion
+		} catch (Exception e) {
+		    // Handle the CommunicationsException
+		    System.err.println("Error de conexion con el servidor: " + e.getMessage());
+		    // Additional error handling or recovery logic can be added here
+		    // For example, you can log the error, retry the operation, or show an error message to the user
+		}
+		
+		
+		
+		
+		
 	}
 
 	/**

@@ -53,15 +53,20 @@ public class Alta_Profesionales {
 		sc.reset();
 		Profesionales_Medicos profesional = new Profesionales_Medicos();
 
+		
+		
+		try {
+		
+		
 		// Validamos el DNI
 		do {
 			System.out.println("Introduce un DNI válido (8 números y letra)");
 			dni = sc.next().trim();
 			dni = dni.toUpperCase();
-		} while (!validadores.validarDni(dni));
+		} while (validadores.validarDni(dni)== false);
 
 		// Comprobamos si el profesional ya existe
-		profesional = TratamientoFichero.buscarProfesional(dni);
+		profesional = SentenciasSQL.buscarProfesional(dni);
 
 		// Si el profesional no existe, lo damos de alta
 		if (profesional.getDni() == null) {
@@ -103,6 +108,16 @@ public class Alta_Profesionales {
 			System.out.println("\n");
 		}
 
+		// capturamos excepción de conexion
+		} catch (Exception e) {
+		    // Handle the CommunicationsException
+		    System.err.println("Error de conexion con el servidor: " + e.getMessage());
+		    // Additional error handling or recovery logic can be added here
+		    // For example, you can log the error, retry the operation, or show an error message to the user
+		}
+		
+		
+		
 		return profesional;
 	}
 
@@ -154,7 +169,7 @@ public class Alta_Profesionales {
 		profesional = new Profesionales_Medicos(nombre, apellidos, dni, localidad, telefono, especialidad);
 
 		listaProfesionales.put(dni, profesional);
-		TratamientoFichero.grabarProfesionales(listaProfesionales);
+		SentenciasSQL.grabarProfesionales(listaProfesionales);
 
 		return profesional;
 	}

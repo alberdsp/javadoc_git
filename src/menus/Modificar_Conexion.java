@@ -38,12 +38,15 @@ public class Modificar_Conexion {
 		Scanner sc = new Scanner(System.in);
 
 		System.out.println("Introduzca el nombre de la base de datos: ");
+		System.out.println("Por defecto 'clinica' ");
 		String nombreBd = sc.nextLine();
 
 		System.out.println("Introduzca la ubicación del servidor: ");
+		System.out.println("Por defecto 'localhost' si está en su equipo");
 		String ubicacion = sc.nextLine();
 
 		System.out.println("Introduzca el puerto del servidor: ");
+		System.out.println("Por defecto '3306' ");
 		String puerto = sc.nextLine();
 
 		System.out.println("Introduzca el usuario de la base de datos: ");
@@ -65,8 +68,12 @@ public class Modificar_Conexion {
 		System.out.println("\n");
 		System.out.println("Configuración de conexión guardada correctamente.");
 		System.out.println("\n");
-		System.out.println("Reinicie la aplicacion para que los cambios surtan efecto.");
-
+		System.out.println("Se va a proceder a cerrar la aplicación para que los cambios");
+		System.out.println("surtan efecto.");
+		System.out.println("_____________________");
+		System.out.println("Saliendo del programa");
+		System.exit(0);
+		
 	}
 
 }

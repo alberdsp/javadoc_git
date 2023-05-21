@@ -39,7 +39,7 @@ public class Main {
 		TratamientoFichero.leerConexion();
 
 		Conexion conexion = new Conexion();
-		System.out.println(conexion.toString());
+		
 
 		// cargamos el menú inicial
 		do {
@@ -76,6 +76,9 @@ public class Main {
 				alta_paciente.printMenu();
 
 				Paciente paciente = new Paciente();
+				
+				
+				
 				paciente = alta_paciente.nuevoPaciente();
 
 				System.out.print(paciente.toString());
