@@ -6,12 +6,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Alber/eclipse-workspace/javadoc_git/driver/mysql-connector-java-5.1.6.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Alber/eclipse-workspace/jar_librerias/java-sql-jdbc-1.0.3.jar">
+	<classpathentry kind="lib" path="C:/Users/Propietario/eclipse-workspace/javadoc_git/driver/mysql-connector-java-5.1.6.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>

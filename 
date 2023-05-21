@@ -1,0 +1,204 @@
+[33mcommit 508a008b15a82e12cbbda5ae8c53177d11e5bbf9[m[33m ([m[1;36mHEAD -> [m[1;32mdevelop[m[33m, [m[1;31morigin/develop[m[33m)[m
+Author: Alber <alberdsp@gmail.com>
+Date:   Sun May 21 22:41:10 2023 +0200
+
+     finalizada V2.0
+
+[33mcommit d3d97007c049df68e8f80160f70b939332efdead[m
+Author: Alber <alberdsp@gmail.com>
+Date:   Sun May 21 22:26:33 2023 +0200
+
+     funcionalidades testeadas
+
+[33mcommit 0409cfd4c0504ada98a0e99939bfe969b84b6332[m
+Author: Alber <alberdsp@gmail.com>
+Date:   Sun May 21 15:51:49 2023 +0200
+
+     solucionadas excepciones si no hay conexión a la bd al listar visitas
+
+[33mcommit 5b662a66731aa18565f80c0835af3e0b40279d2a[m
+Author: Alber <alberdsp@gmail.com>
+Date:   Sun May 21 15:45:35 2023 +0200
+
+     solucionadas excepciones si no hay conexión a la bd al dar de alta
+
+[33mcommit e8fa2050a9224edb47f844710d5b07720cfc0c6d[m
+Author: Alber <alberdsp@gmail.com>
+Date:   Sun May 21 02:51:00 2023 +0200
+
+     implementado Tercera funcionalidad F3
+
+[33mcommit 93008ea0fca56c7415657ad2291ecf5a585ccba7[m
+Author: Alber <alberdsp@gmail.com>
+Date:   Sun May 21 01:27:00 2023 +0200
+
+     implementado listar visitas desde  BD
+
+[33mcommit 11efc58f5829e194e7e890bf22bcf18a184385be[m
+Author: Alber <alberdsp@gmail.com>
+Date:   Sat May 20 23:52:11 2023 +0200
+
+     implementado listar pacientes desde  BD
+
+[33mcommit 80155184f27e0d13dfa371584cebc9e3a8d7744f[m
+Author: Alber <alberdsp@gmail.com>
+Date:   Sat May 20 23:31:05 2023 +0200
+
+     implementado alta de visitas en BD
+
+[33mcommit 07e3b85e52def627a958c93bd2deedbcb80702f4[m
+Author: Alber <alberdsp@gmail.com>
+Date:   Sat May 20 22:45:13 2023 +0200
+
+     implementado grabar pacientes y profesionales en BD
+
+[33mcommit e6150a8619104c670c0631305563ccb42071b732[m
+Author: Alber <alberdsp@gmail.com>
+Date:   Sat May 20 22:23:20 2023 +0200
+
+     implementado poder cambiar de conexion y se guarde en fichero
+
+[33mcommit 970d6edca656427743d3884643bf0b60b838f795[m
+Author: Alber <alberdsp@gmail.com>
+Date:   Sat May 20 20:24:42 2023 +0200
+
+     creado fichero de creacion inicial de BD en .sql
+
+[33mcommit 29575e07820097aedee29127257bd6cadf80a625[m
+Author: Alber <alberdsp@gmail.com>
+Date:   Sat May 20 19:25:52 2023 +0200
+
+     implementada conexión con BD grabado en fichero local y posibilidad de modificar la conexión en el menú
+
+[33mcommit c3a0bfdf5d85f50325616c9085c0674b25d0cd2f[m
+Author: Alber <alberdsp@gmail.com>
+Date:   Sat May 20 17:18:45 2023 +0200
+
+     finalizadado implementación de listados de visitas F2.1 y F2.2
+
+[33mcommit 80fafbfc07bad49bdf503ccd5d8b816a25af0cdd[m
+Author: Alber <alberdsp@gmail.com>
+Date:   Sat May 20 14:24:58 2023 +0200
+
+     implementado grabar Profesionales, listar profesionales y visitas con profesional incluido
+
+[33mcommit 528f4fec10f98f1c6195cbd091ad8d9f4a7b25cd[m
+Author: Alber <alberdsp@gmail.com>
+Date:   Sat May 20 12:38:30 2023 +0200
+
+     Implementada clase Profesionales_Medicos, F1
+    s
+
+[33mcommit 3e54ec3226d5df974a82343f29178930b9fddcbb[m
+Author: Alber <alberdsp@gmail.com>
+Date:   Sun Apr 16 01:52:43 2023 +0200
+
+     Aplicación finalizada
+
+[33mcommit 2d90bc53ac15304da4b888de72c9c3dafc32f97f[m
+Author: Alber <alberdsp@gmail.com>
+Date:   Sun Apr 16 00:20:22 2023 +0200
+
+     finalizadas todas las funciones
+
+[33mcommit 141323ece0c81b1219bc603d32732b47f68a9c75[m
+Author: Alber <alberdsp@gmail.com>
+Date:   Sat Apr 15 23:17:15 2023 +0200
+
+     funcionando todo a falta listar pacientes
+
+[33mcommit 4d6b7a884c798df4c35f966c6603c2d652adc6d4[m
+Author: Alber <alberdsp@gmail.com>
+Date:   Sat Apr 15 22:29:08 2023 +0200
+
+     implementado listar visitas completo
+
+[33mcommit 4fb7848b7e4404417ea0354e0be3e61979ea91ad[m
+Author: Alber <alberdsp@gmail.com>
+Date:   Sat Apr 15 21:45:04 2023 +0200
+
+     implementado primera version de listar visitas
+
+[33mcommit 155f5df6b781f430db4dcb4c4811422866f8a2df[m
+Author: Alber <alberdsp@gmail.com>
+Date:   Sat Apr 15 18:28:34 2023 +0200
+
+     refactorizado alta de visitas
+
+[33mcommit c2561b301e8d0795f306e1e8628767a0e38ac90f[m
+Author: Alber <alberdsp@gmail.com>
+Date:   Sat Apr 15 01:52:36 2023 +0200
+
+     refactorizados paquetes y controlado excepciones de peso y altura y errores en el menu
+
+[33mcommit cdac0871fedd2186f1083020b43ea4a9ed1ad810[m
+Author: Alber <alberdsp@gmail.com>
+Date:   Fri Apr 14 13:42:29 2023 +0200
+
+     Implementado menú principal alta pacientes no repite
+
+[33mcommit e0773e8891bc2b632de7f9983afb841727453ee0[m
+Author: Alber <alberdsp@gmail.com>
+Date:   Thu Apr 13 23:48:00 2023 +0200
+
+     refactorizado paciente, añadido buscar antes de añadir
+
+[33mcommit 63237e80f46b7f13259a46ede87a89a929b00023[m
+Author: Alber <alberdsp@gmail.com>
+Date:   Tue Apr 11 02:01:35 2023 +0200
+
+     Implementado clases visitas corregidas, falta busqueda Pacientes
+
+[33mcommit 927192a93d97d2c0709c2d68123b044dca21b7e9[m
+Author: Alber <alberdsp@gmail.com>
+Date:   Sun Apr 9 23:54:03 2023 +0200
+
+     Implementado Menú inicial solo alta pacientes
+
+[33mcommit 736efc60df5bec76d9679a5d98c404eb040e3f83[m
+Author: Alber <alberdsp@gmail.com>
+Date:   Sun Apr 9 22:17:52 2023 +0200
+
+     Implementado Alta de Pacientes
+
+[33mcommit ed0493ec44b4c9654b8a3314ec544814f97459f8[m
+Author: Alber <alberdsp@gmail.com>
+Date:   Thu Apr 6 01:48:20 2023 +0200
+
+     Implementado grabación de fichero pacientes
+
+[33mcommit a3e1e39313cc86174f8afb5c461c21e2b1ba02d4[m
+Author: Alber <alberdsp@gmail.com>
+Date:   Wed Apr 5 22:42:32 2023 +0200
+
+     Implementado calculo IMC y lectura ficheros con Altura
+
+[33mcommit 1fb8bcd5089a3a971e3c44575b9b6a0209dc8080[m
+Author: Alber <alberdsp@gmail.com>
+Date:   Sun Apr 2 21:22:50 2023 +0200
+
+     implementado el método para leer fichero de pacientes
+
+[33mcommit 997a5d1ebf7ea38c5657f34721e3fb09a7e5ba49[m
+Author: Alber <alberdsp@gmail.com>
+Date:   Sun Apr 2 20:51:44 2023 +0200
+
+     Refactorizado Persona a Paciente y nuevo constructor
+
+[33mcommit ccc7559b0417f8e20769d3fa03849c8174e42c90[m
+Author: prueba <alberto@sauberofimatica.com>
+Date:   Fri Feb 10 21:50:36 2023 +0100
+
+    version 0.1 terminada
+
+[33mcommit 4b62fa7f6a7928fc90c7281af435c2fd1416aeda[m
+Author: prueba <alberto@sauberofimatica.com>
+Date:   Fri Feb 10 20:08:46 2023 +0100
+
+     version modificada
+
+[33mcommit e4432650171e7a973ac829133532effa5a84efbb[m[33m ([m[1;31morigin/test[m[33m)[m
+Author: prueba <alberto@sauberofimatica.com>
+Date:   Fri Feb 10 18:41:35 2023 +0100
+
+     primera version
